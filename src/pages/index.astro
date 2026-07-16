@@ -71,8 +71,8 @@ const categories = categoryOrder
       <p class="eyebrow mono">all projects</p>
       <h2>Browse by type</h2>
       <p class="section__hint">
-        Three most recent per category by default — pick a language above, or click any badge
-        on a card, to see the full, most-recent-first list for it.
+        Three most recent per category by default — pick one or more languages above, or click
+        any badge on a card, to see the full, most-recent-first list matching any of them.
       </p>
 
       <div class="filter-bar mono" data-filter-bar role="group" aria-label="Filter projects by language">
@@ -82,10 +82,7 @@ const categories = categoryOrder
         ))}
       </div>
 
-      <p class="active-filter mono" data-active-filter hidden>
-        filtering by <span data-active-filter-label></span>
-        <button type="button" data-clear-filter>&times; clear</button>
-      </p>
+      <div class="active-filter mono" data-active-filter hidden></div>
 
       {categories.map((group) => (
         <div class="category-group" data-category-group>
@@ -258,7 +255,7 @@ const categories = categoryOrder
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 0.4rem 0.6rem;
+    gap: 0.4rem 0.5rem;
     font-size: 0.8rem;
     color: var(--color-text-muted);
     margin: -0.75rem 0 1.75rem;
@@ -268,12 +265,27 @@ const categories = categoryOrder
     display: none;
   }
 
-  .active-filter span {
-    color: var(--color-pink);
-    font-weight: 600;
+  .active-filter :global(.active-filter__label) {
+    color: var(--color-text-muted);
   }
 
-  .active-filter button {
+  .active-filter :global(.active-filter__chip) {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    background: color-mix(in srgb, var(--color-pink) 12%, transparent);
+    border: 1px solid var(--color-pink);
+    color: var(--color-pink);
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+    cursor: pointer;
+  }
+
+  .active-filter :global(.active-filter__chip:hover) {
+    background: var(--color-pink);
+    color: var(--color-on-accent);
+  }
+
+  .active-filter :global(.active-filter__clear) {
     font-family: var(--font-mono);
     font-size: 0.75rem;
     background: none;
@@ -284,7 +296,7 @@ const categories = categoryOrder
     text-decoration: underline;
   }
 
-  .active-filter button:hover {
+  .active-filter :global(.active-filter__clear:hover) {
     color: var(--color-pink);
   }
 
