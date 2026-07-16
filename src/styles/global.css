@@ -20,7 +20,7 @@
   --dot-yellow: #f2c14e;
   --dot-green: #6cc48a;
 
-  --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'Fira Code', 'SFMono-Regular', Menlo, Consolas,
     'Liberation Mono', monospace;
   --max-width: 68rem;
