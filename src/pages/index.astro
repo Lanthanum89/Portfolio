@@ -3,11 +3,18 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { projects } from '../data/projects';
+import { projects, categoryOrder } from '../data/projects';
 
 const featured = projects.filter((project) => project.featured);
 const more = projects.filter((project) => !project.featured);
 const languages = [...new Set(projects.map((project) => project.language))].sort();
+
+const categories = categoryOrder
+  .map((category) => ({
+    name: category,
+    items: more.filter((project) => project.category === category),
+  }))
+  .filter((group) => group.items.length > 0);
 ---
 
 <Layout
@@ -18,17 +25,21 @@ const languages = [...new Set(projects.map((project) => project.language))].sort
 
   <main id="top">
     <section class="hero wrapper">
-      <p class="eyebrow mono">hi, i'm</p>
-      <h1 class="mono">Laura Norwood<span class="cursor" aria-hidden="true"></span></h1>
-      <p class="hero__tagline">Developer with a love of data, game design, and making cool things.</p>
-      <p class="hero__location mono">Reading, England 🇬🇧</p>
-      <div class="hero__actions">
+      <p class="eyebrow mono hero-in" style="--hero-delay: 0ms">hi, i'm</p>
+      <h1 class="mono hero-in" style="--hero-delay: 60ms">
+        Laura Norwood<span class="cursor" aria-hidden="true"></span>
+      </h1>
+      <p class="hero__tagline hero-in" style="--hero-delay: 120ms">
+        Developer with a love of data, game design, and making cool things.
+      </p>
+      <p class="hero__location mono hero-in" style="--hero-delay: 160ms">Reading, England 🇬🇧</p>
+      <div class="hero__actions hero-in" style="--hero-delay: 200ms">
         <a class="button button--primary" href="#projects">See my projects</a>
         <a class="button" href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer">GitHub</a>
       </div>
     </section>
 
-    <section id="about" class="wrapper section">
+    <section id="about" class="wrapper section" data-reveal>
       <p class="eyebrow mono">about</p>
       <h2>A little about me</h2>
       <p>
@@ -51,20 +62,25 @@ const languages = [...new Set(projects.map((project) => project.language))].sort
         ))}
       </div>
 
-      <div class="grid">
+      <div class="grid" data-category-group>
         {featured.map((project) => (
           <ProjectCard project={project} />
         ))}
       </div>
 
-      {more.length > 0 && (
+      {categories.length > 0 && (
         <>
-          <h3 class="more-heading mono">// more projects</h3>
-          <div class="grid">
-            {more.map((project) => (
-              <ProjectCard project={project} />
-            ))}
-          </div>
+          <h3 class="more-heading mono">// more, by type</h3>
+          {categories.map((group) => (
+            <div class="category-group" data-category-group>
+              <p class="category-heading mono">// {group.name.toLowerCase()}</p>
+              <div class="grid">
+                {group.items.map((project) => (
+                  <ProjectCard project={project} />
+                ))}
+              </div>
+            </div>
+          ))}
         </>
       )}
 
@@ -75,7 +91,7 @@ const languages = [...new Set(projects.map((project) => project.language))].sort
       </p>
     </section>
 
-    <section id="contact" class="wrapper section">
+    <section id="contact" class="wrapper section" data-reveal>
       <p class="eyebrow mono">contact</p>
       <h2>Get in touch</h2>
       <p>
@@ -91,7 +107,12 @@ const languages = [...new Set(projects.map((project) => project.language))].sort
 
   <script>
     import { initProjectFilter } from '../scripts/project-filter';
+    import { initThemeToggle } from '../scripts/theme-toggle';
+    import { initScrollReveal } from '../scripts/scroll-reveal';
+
     initProjectFilter();
+    initThemeToggle();
+    initScrollReveal();
   </script>
 </Layout>
 
@@ -133,12 +154,18 @@ const languages = [...new Set(projects.map((project) => project.language))].sort
     font-weight: 600;
     border: 1px solid var(--color-border);
     color: var(--color-text);
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+      transform 0.1s ease;
+  }
+
+  .button:active {
+    transform: scale(0.97);
   }
 
   .button--primary {
     background: var(--color-accent);
     border-color: var(--color-accent);
-    color: #14171d;
+    color: var(--color-on-accent);
   }
 
   .button--primary:hover {
@@ -147,8 +174,8 @@ const languages = [...new Set(projects.map((project) => project.language))].sort
   }
 
   .button:not(.button--primary):hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent-strong);
+    border-color: var(--color-pink);
+    color: var(--color-pink);
   }
 
   .section {
@@ -184,6 +211,12 @@ const languages = [...new Set(projects.map((project) => project.language))].sort
     border-radius: 999px;
     padding: 0.3rem 0.85rem;
     cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease,
+      transform 0.1s ease;
+  }
+
+  .filter-bar button:active {
+    transform: scale(0.94);
   }
 
   .filter-bar button::before {
@@ -200,11 +233,11 @@ const languages = [...new Set(projects.map((project) => project.language))].sort
   .filter-bar button[aria-pressed='true'] {
     background: var(--color-accent);
     border-color: var(--color-accent);
-    color: #14171d;
+    color: var(--color-on-accent);
   }
 
   .filter-bar button[aria-pressed='true']::before {
-    color: #14171d;
+    color: var(--color-on-accent);
   }
 
   .more-heading {
@@ -214,10 +247,29 @@ const languages = [...new Set(projects.map((project) => project.language))].sort
     color: var(--color-comment);
   }
 
+  .category-group {
+    margin-bottom: 2rem;
+  }
+
+  .category-group.is-empty {
+    display: none;
+  }
+
+  .category-heading {
+    color: var(--color-pink);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0 0 1rem;
+  }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     gap: 1.25rem;
+  }
+
+  .grid[data-category-group].is-empty {
+    display: none;
   }
 
   .see-more {
@@ -228,6 +280,11 @@ const languages = [...new Set(projects.map((project) => project.language))].sort
     text-decoration: none;
     font-weight: 600;
     color: var(--color-accent-strong);
+    transition: color 0.15s ease;
+  }
+
+  .see-more a:hover {
+    color: var(--color-pink);
   }
 
   #contact p {
@@ -239,5 +296,10 @@ const languages = [...new Set(projects.map((project) => project.language))].sort
     color: var(--color-accent-strong);
     font-weight: 600;
     text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  #contact a:hover {
+    color: var(--color-pink);
   }
 </style>
