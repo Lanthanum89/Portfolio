@@ -1,3 +1,5 @@
+export type Category = 'Data & ML' | 'Games' | 'Tools & Apps';
+
 export interface Project {
   name: string;
   slug: string;
@@ -6,6 +8,7 @@ export interface Project {
   language: string;
   ext: string;
   tools: string[];
+  category: Category;
   featured?: boolean;
 }
 
@@ -21,6 +24,7 @@ export const projects: Project[] = [
     language: 'Jupyter Notebook',
     ext: 'ipynb',
     tools: ['Machine Learning', 'f1'],
+    category: 'Data & ML',
     featured: true,
   },
   {
@@ -32,6 +36,7 @@ export const projects: Project[] = [
     language: 'Jupyter Notebook',
     ext: 'ipynb',
     tools: ['Machine Learning', 'Gaming Analytics'],
+    category: 'Data & ML',
     featured: true,
   },
   {
@@ -43,6 +48,7 @@ export const projects: Project[] = [
     language: 'JavaScript',
     ext: 'js',
     tools: ['Spotify API'],
+    category: 'Tools & Apps',
     featured: true,
   },
   {
@@ -54,6 +60,7 @@ export const projects: Project[] = [
     language: 'JavaScript',
     ext: 'js',
     tools: ['PWA', 'Game Design'],
+    category: 'Games',
     featured: true,
   },
   {
@@ -65,6 +72,7 @@ export const projects: Project[] = [
     language: 'HTML',
     ext: 'html',
     tools: ['PWA', 'Fitness Tracker'],
+    category: 'Tools & Apps',
     featured: true,
   },
   {
@@ -76,6 +84,7 @@ export const projects: Project[] = [
     language: 'Python',
     ext: 'py',
     tools: ['tkinter', 'London Underground'],
+    category: 'Tools & Apps',
     featured: true,
   },
   {
@@ -87,6 +96,7 @@ export const projects: Project[] = [
     language: 'TypeScript',
     ext: 'ts',
     tools: ['Education'],
+    category: 'Tools & Apps',
   },
   {
     name: 'The Little Garden Arcade',
@@ -97,6 +107,7 @@ export const projects: Project[] = [
     language: 'JavaScript',
     ext: 'js',
     tools: ['Accessibility', 'Game Design'],
+    category: 'Games',
   },
   {
     name: 'Spotify Analysis',
@@ -107,6 +118,7 @@ export const projects: Project[] = [
     language: 'Jupyter Notebook',
     ext: 'ipynb',
     tools: ['Data Analysis', 'Spotify'],
+    category: 'Data & ML',
   },
   {
     name: 'Turbo Tackle',
@@ -117,6 +129,7 @@ export const projects: Project[] = [
     language: 'JavaScript',
     ext: 'js',
     tools: ['PWA', 'Node.js', 'Game Design'],
+    category: 'Games',
   },
   {
     name: 'The Bindicator',
@@ -127,5 +140,8 @@ export const projects: Project[] = [
     language: 'HTML',
     ext: 'html',
     tools: ['Utility'],
+    category: 'Tools & Apps',
   },
 ];
+
+export const categoryOrder: Category[] = ['Data & ML', 'Games', 'Tools & Apps'];
