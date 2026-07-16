@@ -144,4 +144,4 @@ export const projects: Project[] = [
   },
 ];
 
-export const categoryOrder: Category[] = ['Data & ML', 'Games', 'Tools & Apps'];
+export const categoryOrder: Category[] = ['Data & ML', 'Tools & Apps', 'Games'];
