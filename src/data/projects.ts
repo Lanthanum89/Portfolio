@@ -110,14 +110,14 @@ export const projects: Project[] = [
     category: 'Games',
   },
   {
-    name: 'Spotify Analysis',
-    slug: 'spotify-analysis',
+    name: 'Premier League 2003/04: The Invincibles',
+    slug: 'premier-league-2003-2004-data-analysis',
     description:
-      'A Python analysis of Spotify Extended Streaming History data, digging into listening patterns, musical evolution, and behavioural trends over time.',
-    url: 'https://github.com/Lanthanum89/spotify-analysis',
+      "An in-depth analysis of Arsenal's unbeaten \"Invincibles\" title-winning 2003/04 Premier League season, exploring team and match statistics and visualising performance trends with pandas and matplotlib.",
+    url: 'https://github.com/Lanthanum89/Premier-League-2003-2004-Data-Analysis',
     language: 'Jupyter Notebook',
     ext: 'ipynb',
-    tools: ['Data Analysis', 'Spotify'],
+    tools: ['Data Analysis', 'pandas'],
     category: 'Data & ML',
   },
   {
