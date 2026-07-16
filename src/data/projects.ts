@@ -389,8 +389,8 @@ export const projects: Project[] = [
     description:
       'A darts checkout calculator that suggests optimal finishing combinations for any score between 2 and 170 — CLI, GUI, and web versions.',
     url: 'https://github.com/Lanthanum89/darts-calculator',
-    language: 'HTML',
-    ext: 'html',
+    language: 'Python',
+    ext: 'py',
     tools: ['CLI', 'GUI', 'Web'],
     category: 'Sport',
     pushedAt: '2026-07-09T01:58:51Z',
