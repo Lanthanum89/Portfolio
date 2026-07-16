@@ -84,6 +84,7 @@ const Tag = filterable ? 'button' : 'span';
     width: 0.6rem;
     height: 0.6rem;
     border-radius: 50%;
+    flex-shrink: 0;
   }
 
   .dot--red {
@@ -102,6 +103,8 @@ const Tag = filterable ? 'button' : 'span';
     margin-left: 0.5rem;
     font-size: 0.75rem;
     color: var(--color-text-muted);
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .card__body {
