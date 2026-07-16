@@ -1,16 +1,16 @@
 ---
 const links = [
-  { href: '#about', label: 'About' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#about', label: 'about' },
+  { href: '#projects', label: 'projects' },
+  { href: '#contact', label: 'contact' },
 ];
 ---
 
 <header class="nav">
   <div class="wrapper nav__inner">
-    <a href="#top" class="nav__brand">Laura Norwood</a>
+    <a href="#top" class="nav__brand mono">&lt;LauraNorwood /&gt;</a>
     <nav aria-label="Primary">
-      <ul class="nav__links">
+      <ul class="nav__links mono">
         {links.map((link) => (
           <li><a href={link.href}>{link.label}</a></li>
         ))}
@@ -24,7 +24,7 @@ const links = [
     position: sticky;
     top: 0;
     z-index: 10;
-    background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+    background: color-mix(in srgb, var(--color-bg) 85%, transparent);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--color-border);
   }
@@ -37,9 +37,14 @@ const links = [
   }
 
   .nav__brand {
-    font-weight: 700;
+    font-weight: 600;
+    font-size: 0.95rem;
     text-decoration: none;
-    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  .nav__brand:hover {
+    color: var(--color-accent);
   }
 
   .nav__links {
@@ -48,12 +53,19 @@ const links = [
     list-style: none;
     margin: 0;
     padding: 0;
+    font-size: 0.9rem;
   }
 
   .nav__links a {
     text-decoration: none;
     color: var(--color-text-muted);
     font-weight: 500;
+  }
+
+  .nav__links a::before {
+    content: '#';
+    color: var(--color-comment);
+    margin-right: 0.2em;
   }
 
   .nav__links a:hover {
