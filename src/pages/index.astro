@@ -8,7 +8,10 @@ import { projects, categoryOrder } from '../data/projects';
 const featured = projects.filter((project) => project.featured);
 const more = projects
   .filter((project) => !project.featured)
-  .sort((a, b) => new Date(b.pushedAt).getTime() - new Date(a.pushedAt).getTime());
+  .sort((a, b) => {
+    if (Boolean(a.spotlight) !== Boolean(b.spotlight)) return a.spotlight ? -1 : 1;
+    return new Date(b.pushedAt).getTime() - new Date(a.pushedAt).getTime();
+  });
 const languages = [...new Set(projects.map((project) => project.language))].sort();
 
 const categories = categoryOrder
@@ -59,7 +62,7 @@ const categories = categoryOrder
 
       <div class="grid">
         {featured.map((project) => (
-          <ProjectCard project={project} />
+          <ProjectCard project={project} filterable={false} />
         ))}
       </div>
     </section>
@@ -68,8 +71,8 @@ const categories = categoryOrder
       <p class="eyebrow mono">all projects</p>
       <h2>Browse by type</h2>
       <p class="section__hint">
-        Three most recent per category by default — pick a language to see the full,
-        most-recent-first list for it.
+        Three most recent per category by default — pick a language above, or click any badge
+        on a card, to see the full, most-recent-first list for it.
       </p>
 
       <div class="filter-bar mono" data-filter-bar role="group" aria-label="Filter projects by language">
@@ -78,6 +81,11 @@ const categories = categoryOrder
           <button type="button" data-filter={language} aria-pressed="false">{language.toLowerCase()}</button>
         ))}
       </div>
+
+      <p class="active-filter mono" data-active-filter hidden>
+        filtering by <span data-active-filter-label></span>
+        <button type="button" data-clear-filter>&times; clear</button>
+      </p>
 
       {categories.map((group) => (
         <div class="category-group" data-category-group>
@@ -244,6 +252,39 @@ const categories = categoryOrder
 
   .filter-bar button[aria-pressed='true']::before {
     color: var(--color-on-accent);
+  }
+
+  .active-filter {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin: -0.75rem 0 1.75rem;
+  }
+
+  .active-filter[hidden] {
+    display: none;
+  }
+
+  .active-filter span {
+    color: var(--color-pink);
+    font-weight: 600;
+  }
+
+  .active-filter button {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+  }
+
+  .active-filter button:hover {
+    color: var(--color-pink);
   }
 
   .category-group {

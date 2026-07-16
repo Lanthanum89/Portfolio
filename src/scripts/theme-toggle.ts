@@ -5,9 +5,10 @@ export function initThemeToggle(): void {
   if (!button) return;
 
   const setLabel = (theme: Theme): void => {
-    button.textContent = theme === 'light' ? '[light]' : '[dark]';
+    const next: Theme = theme === 'light' ? 'dark' : 'light';
+    button.textContent = `[${next}]`;
     button.setAttribute('aria-pressed', String(theme === 'light'));
-    button.setAttribute('aria-label', `Switch to ${theme === 'light' ? 'dark' : 'light'} theme`);
+    button.setAttribute('aria-label', `Switch to ${next} theme`);
   };
 
   const current = (document.documentElement.dataset.theme as Theme) ?? 'dark';
