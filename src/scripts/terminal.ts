@@ -82,11 +82,11 @@ export function initTerminal(): void {
         printLines(HELP_TEXT);
         break;
       case 'whoami':
-        printLines(['Laura Norwood — developer who loves data, game design, and making cool things.']);
+        printLines(['Laura Norwood: developer who loves data, game design, and making cool things.']);
         break;
       case 'about':
         printLines([
-          'I build small, purposeful software — accessibility-minded games for my kids,',
+          'I build small, purposeful software: accessibility-minded games for my kids,',
           "data-driven analysis tools, and everyday utilities. Scrolling to 'about'...",
         ]);
         scrollToSection('#about');

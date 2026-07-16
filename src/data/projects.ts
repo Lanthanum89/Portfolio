@@ -114,7 +114,7 @@ export const projects: Project[] = [
     name: 'The Little Garden Arcade',
     slug: 'the-little-garden-arcade',
     description:
-      'A hub of gentle, tap-to-play garden mini-games with no drag-and-drop, ever — every interaction is tap-to-select then tap-to-place, so it stays accessible regardless of fine motor control.',
+      'A hub of gentle, tap-to-play garden mini-games with no drag-and-drop, ever. Every interaction is tap-to-select then tap-to-place, so it stays accessible regardless of fine motor control.',
     url: 'https://github.com/Lanthanum89/The-Little-Garden-Arcade',
     languages: ['JavaScript', 'HTML', 'CSS'],
     ext: 'js',
@@ -138,7 +138,7 @@ export const projects: Project[] = [
     name: 'Turbo Tackle',
     slug: 'turbo-tackle',
     description:
-      'A retro pixel-art racer for kids — dodge the footballs. Built as a PWA with Node.js and hosted on GitHub Pages.',
+      'A retro pixel-art racer for kids: dodge the footballs. Built as a PWA with Node.js and hosted on GitHub Pages.',
     url: 'https://github.com/Lanthanum89/turbo-tackle',
     languages: ['JavaScript', 'CSS', 'HTML'],
     ext: 'js',
@@ -234,7 +234,7 @@ export const projects: Project[] = [
     name: 'Bohemian Rhapsody Visualiser',
     slug: 'bohemian-rhapsody',
     description:
-      'A MIDI-driven music visualiser inspired by Queen\'s "Bohemian Rhapsody" — geometric particle bursts, sparkle effects for dramatic moments, and a playful ML model that predicts whether the next note will be high or low.',
+      'A MIDI-driven music visualiser inspired by Queen\'s "Bohemian Rhapsody", with geometric particle bursts, sparkle effects for dramatic moments, and a playful ML model that predicts whether the next note will be high or low.',
     url: 'https://github.com/Lanthanum89/bohemian-rhapsody',
     languages: ['Python'],
     ext: 'py',
@@ -258,7 +258,7 @@ export const projects: Project[] = [
     name: 'Dobble Algorithm',
     slug: 'dobble-algorithm',
     description:
-      "A work-in-progress generator built around the Dobble (Spot It!) card game's symbol-matching puzzle — actively evolving, so check back for updates.",
+      "A work-in-progress generator built around the Dobble (Spot It!) card game's symbol-matching puzzle. Actively evolving, so check back for updates.",
     url: 'https://github.com/Lanthanum89/dobble-algorithm',
     languages: ['HTML'],
     ext: 'html',
@@ -282,7 +282,7 @@ export const projects: Project[] = [
     name: 'Word Cloud Generator',
     slug: 'word-cloud',
     description:
-      'A GUI app that generates a word cloud from any website — enter a URL and it fetches, processes, and visualises the content.',
+      'A GUI app that generates a word cloud from any website: enter a URL and it fetches, processes, and visualises the content.',
     url: 'https://github.com/Lanthanum89/word-cloud',
     languages: ['Python'],
     ext: 'py',
@@ -291,10 +291,10 @@ export const projects: Project[] = [
     pushedAt: '2026-07-09T02:03:07Z',
   },
   {
-    name: 'Video Gaming Hub — Database',
+    name: 'Video Gaming Hub: Database',
     slug: 'video-gaming-hub-db',
     description:
-      'A MySQL database for a fictional video game store — platforms, customers, games, and purchases, with example data, queries, and stored procedures for sales analysis and loyalty schemes.',
+      'A MySQL database for a fictional video game store: platforms, customers, games, and purchases, with example data, queries, and stored procedures for sales analysis and loyalty schemes.',
     url: 'https://github.com/Lanthanum89/Video-Gaming-Hub_DB',
     languages: ['SQL'],
     ext: 'sql',
@@ -303,10 +303,10 @@ export const projects: Project[] = [
     pushedAt: '2026-07-09T02:02:49Z',
   },
   {
-    name: 'Video Gaming Hub — API',
+    name: 'Video Gaming Hub: API',
     slug: 'video-gaming-hub-api',
     description:
-      'A Flask REST API for managing a video game lending system — games, customers, and loans, backed by a MySQL database.',
+      'A Flask REST API for managing a video game lending system: games, customers, and loans, backed by a MySQL database.',
     url: 'https://github.com/Lanthanum89/Video-Gaming-Hub_API',
     languages: ['Python'],
     ext: 'py',
@@ -318,7 +318,7 @@ export const projects: Project[] = [
     name: 'Spotify Stats (Desktop)',
     slug: 'spotify-stats',
     description:
-      'A Python GUI showing your Spotify listening stats — top artists, tracks, and genres — over different time periods.',
+      'A Python GUI showing your Spotify listening stats: top artists, tracks, and genres, over different time periods.',
     url: 'https://github.com/Lanthanum89/spotify-stats',
     languages: ['Python', 'PowerShell', 'Batchfile'],
     ext: 'py',
@@ -388,7 +388,7 @@ export const projects: Project[] = [
     name: 'Darts Calculator',
     slug: 'darts-calculator',
     description:
-      'A darts checkout calculator that suggests optimal finishing combinations for any score between 2 and 170 — CLI, GUI, and web versions.',
+      'A darts checkout calculator that suggests optimal finishing combinations for any score between 2 and 170. Available as CLI, GUI, and web versions.',
     url: 'https://github.com/Lanthanum89/darts-calculator',
     languages: ['HTML', 'Python'],
     ext: 'py',
@@ -425,7 +425,7 @@ export const projects: Project[] = [
     name: 'Budget Tracker (Console)',
     slug: 'budget-tracker-app',
     description:
-      'A console-based budget tracker built with C# and .NET 9 — fixed expenses and variable spending across categories.',
+      'A console-based budget tracker built with C# and .NET 9, tracking fixed expenses and variable spending across categories.',
     url: 'https://github.com/Lanthanum89/BudgetTrackerApp',
     languages: ['C#'],
     ext: 'cs',
