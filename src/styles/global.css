@@ -29,17 +29,17 @@
 :root[data-theme='light'] {
   color-scheme: light;
 
-  --color-bg: #faf7f2;
+  --color-bg: #f6f7f9;
   --color-bg-alt: #ffffff;
-  --color-bg-raised: #f1ece3;
-  --color-text: #201c26;
-  --color-text-muted: #665f6c;
-  --color-border: #e3dccf;
+  --color-bg-raised: #edeff3;
+  --color-text: #1a1d24;
+  --color-text-muted: #5b616e;
+  --color-border: #dde1e8;
 
-  --color-accent: #c9861f;
-  --color-accent-strong: #a8681a;
-  --color-on-accent: #fffaf4;
-  --color-comment: #227a52;
+  --color-accent: #b8790f;
+  --color-accent-strong: #96650f;
+  --color-on-accent: #ffffff;
+  --color-comment: #1f7a52;
   --color-string: #2857b0;
   --color-pink: #c93b72;
   --color-pink-strong: #a52a5c;
