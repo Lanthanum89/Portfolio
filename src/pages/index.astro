@@ -6,7 +6,9 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { projects, categoryOrder } from '../data/projects';
 
 const featured = projects.filter((project) => project.featured);
-const more = projects.filter((project) => !project.featured);
+const more = projects
+  .filter((project) => !project.featured)
+  .sort((a, b) => new Date(b.pushedAt).getTime() - new Date(a.pushedAt).getTime());
 const languages = [...new Set(projects.map((project) => project.language))].sort();
 
 const categories = categoryOrder
@@ -50,10 +52,25 @@ const categories = categoryOrder
       </p>
     </section>
 
-    <section id="projects" class="wrapper section">
+    <section id="projects" class="wrapper section" data-reveal>
       <p class="eyebrow mono">projects</p>
       <h2>Featured projects</h2>
       <p class="section__hint">Mirrors the pinned repos on my GitHub profile.</p>
+
+      <div class="grid">
+        {featured.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+    </section>
+
+    <section id="all-projects" class="wrapper section" data-projects-root>
+      <p class="eyebrow mono">all projects</p>
+      <h2>Browse by type</h2>
+      <p class="section__hint">
+        Three most recent per category by default — pick a language to see the full,
+        most-recent-first list for it.
+      </p>
 
       <div class="filter-bar mono" data-filter-bar role="group" aria-label="Filter projects by language">
         <button type="button" data-filter="all" aria-pressed="true">all</button>
@@ -62,27 +79,16 @@ const categories = categoryOrder
         ))}
       </div>
 
-      <div class="grid" data-category-group>
-        {featured.map((project) => (
-          <ProjectCard project={project} />
-        ))}
-      </div>
-
-      {categories.length > 0 && (
-        <>
-          <h3 class="more-heading mono">// more, by type</h3>
-          {categories.map((group) => (
-            <div class="category-group" data-category-group>
-              <p class="category-heading mono">// {group.name.toLowerCase()}</p>
-              <div class="grid">
-                {group.items.map((project) => (
-                  <ProjectCard project={project} />
-                ))}
-              </div>
-            </div>
-          ))}
-        </>
-      )}
+      {categories.map((group) => (
+        <div class="category-group" data-category-group>
+          <p class="category-heading mono">// {group.name.toLowerCase()}</p>
+          <div class="grid">
+            {group.items.map((project, index) => (
+              <ProjectCard project={project} rank={index} />
+            ))}
+          </div>
+        </div>
+      ))}
 
       <p class="see-more">
         <a href="https://github.com/Lanthanum89?tab=repositories" target="_blank" rel="noreferrer">
@@ -240,13 +246,6 @@ const categories = categoryOrder
     color: var(--color-on-accent);
   }
 
-  .more-heading {
-    margin: 2.5rem 0 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-comment);
-  }
-
   .category-group {
     margin-bottom: 2rem;
   }
@@ -266,10 +265,6 @@ const categories = categoryOrder
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     gap: 1.25rem;
-  }
-
-  .grid[data-category-group].is-empty {
-    display: none;
   }
 
   .see-more {

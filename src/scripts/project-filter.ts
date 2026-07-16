@@ -1,18 +1,23 @@
 const ALL = 'all';
 
 export function initProjectFilter(): void {
+  const root = document.querySelector<HTMLElement>('[data-projects-root]');
   const bar = document.querySelector<HTMLElement>('[data-filter-bar]');
-  const cards = document.querySelectorAll<HTMLElement>('[data-language]');
 
-  if (!bar || cards.length === 0) return;
+  if (!root || !bar) return;
 
+  const cards = root.querySelectorAll<HTMLElement>('[data-language]');
+  const groups = root.querySelectorAll<HTMLElement>('[data-category-group]');
   const buttons = bar.querySelectorAll<HTMLButtonElement>('button[data-filter]');
-  const groups = document.querySelectorAll<HTMLElement>('[data-category-group]');
+
+  if (cards.length === 0) return;
 
   const applyFilter = (language: string): void => {
     cards.forEach((card) => {
-      const matches = language === ALL || card.dataset.language === language;
-      card.classList.toggle('is-hidden', !matches);
+      const matchesLanguage = language === ALL || card.dataset.language === language;
+      const rank = Number(card.dataset.previewRank ?? '0');
+      const withinPreviewCap = language !== ALL || rank < 3;
+      card.classList.toggle('is-hidden', !(matchesLanguage && withinPreviewCap));
     });
 
     groups.forEach((group) => {
@@ -31,4 +36,6 @@ export function initProjectFilter(): void {
       applyFilter(button.dataset.filter ?? ALL);
     });
   });
+
+  applyFilter(ALL);
 }

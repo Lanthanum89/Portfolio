@@ -9,11 +9,13 @@ export interface Project {
   ext: string;
   tools: string[];
   category: Category;
+  /** ISO timestamp of the repo's last push, used to sort the "all projects" list. */
+  pushedAt: string;
   featured?: boolean;
 }
 
 // Featured projects mirror the pinned repos on github.com/Lanthanum89, in the same order.
-// Everything else is sourced from the same account, most-recently-pushed first.
+// Everything else is sourced from the same account.
 export const projects: Project[] = [
   {
     name: 'F1 2025 ML Champion Predictor',
@@ -25,6 +27,7 @@ export const projects: Project[] = [
     ext: 'ipynb',
     tools: ['Machine Learning', 'f1'],
     category: 'Data & ML',
+    pushedAt: '2026-07-09T01:59:21Z',
     featured: true,
   },
   {
@@ -37,6 +40,7 @@ export const projects: Project[] = [
     ext: 'ipynb',
     tools: ['Machine Learning', 'Gaming Analytics'],
     category: 'Data & ML',
+    pushedAt: '2026-07-09T02:00:13Z',
     featured: true,
   },
   {
@@ -49,6 +53,7 @@ export const projects: Project[] = [
     ext: 'js',
     tools: ['Spotify API'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T02:00:59Z',
     featured: true,
   },
   {
@@ -61,6 +66,7 @@ export const projects: Project[] = [
     ext: 'js',
     tools: ['PWA', 'Game Design'],
     category: 'Games',
+    pushedAt: '2026-07-15T09:26:37Z',
     featured: true,
   },
   {
@@ -73,6 +79,7 @@ export const projects: Project[] = [
     ext: 'html',
     tools: ['PWA', 'Fitness Tracker'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T02:01:13Z',
     featured: true,
   },
   {
@@ -85,6 +92,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['tkinter', 'London Underground'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T02:01:17Z',
     featured: true,
   },
   {
@@ -97,6 +105,7 @@ export const projects: Project[] = [
     ext: 'ts',
     tools: ['Education'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-10T22:08:37Z',
   },
   {
     name: 'The Little Garden Arcade',
@@ -108,6 +117,7 @@ export const projects: Project[] = [
     ext: 'js',
     tools: ['Accessibility', 'Game Design'],
     category: 'Games',
+    pushedAt: '2026-07-09T02:52:54Z',
   },
   {
     name: 'Premier League 2003/04: The Invincibles',
@@ -119,6 +129,7 @@ export const projects: Project[] = [
     ext: 'ipynb',
     tools: ['Data Analysis', 'pandas'],
     category: 'Data & ML',
+    pushedAt: '2026-07-09T02:00:23Z',
   },
   {
     name: 'Turbo Tackle',
@@ -130,6 +141,7 @@ export const projects: Project[] = [
     ext: 'js',
     tools: ['PWA', 'Node.js', 'Game Design'],
     category: 'Games',
+    pushedAt: '2026-07-09T02:01:30Z',
   },
   {
     name: 'The Bindicator',
@@ -141,6 +153,7 @@ export const projects: Project[] = [
     ext: 'html',
     tools: ['Utility'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T02:01:21Z',
   },
   {
     name: 'Lewis Hamilton: 2020 Season Review',
@@ -152,6 +165,7 @@ export const projects: Project[] = [
     ext: 'ipynb',
     tools: ['Data Analysis', 'FastF1'],
     category: 'Data & ML',
+    pushedAt: '2026-07-09T01:59:22Z',
   },
   {
     name: 'F1 Lap Time Analyser',
@@ -163,6 +177,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['Data Analysis', 'FastF1'],
     category: 'Data & ML',
+    pushedAt: '2026-07-09T01:59:25Z',
   },
   {
     name: 'Wolves History',
@@ -174,6 +189,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['Data Analysis', 'Football APIs'],
     category: 'Data & ML',
+    pushedAt: '2026-07-09T02:03:04Z',
   },
   {
     name: 'FPL Analyser',
@@ -185,6 +201,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['Data Analysis', 'FPL'],
     category: 'Data & ML',
+    pushedAt: '2026-07-09T01:59:33Z',
   },
   {
     name: 'Instagram Analytics',
@@ -196,6 +213,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['Data Analysis', 'Meta Graph API'],
     category: 'Data & ML',
+    pushedAt: '2026-07-09T01:59:50Z',
   },
   {
     name: 'Snake',
@@ -207,6 +225,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['Pygame', 'Game Design'],
     category: 'Games',
+    pushedAt: '2026-07-09T02:00:46Z',
   },
   {
     name: 'Emerald City',
@@ -218,6 +237,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['Turtle Graphics', 'Game Design'],
     category: 'Games',
+    pushedAt: '2026-07-09T01:59:15Z',
   },
   {
     name: 'Bohemian Rhapsody Visualiser',
@@ -229,6 +249,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['MIDI', 'Creative Coding'],
     category: 'Games',
+    pushedAt: '2026-07-09T01:58:31Z',
   },
   {
     name: 'Roblox Experience',
@@ -240,6 +261,7 @@ export const projects: Project[] = [
     ext: 'lua',
     tools: ['Roblox', 'Game Design'],
     category: 'Games',
+    pushedAt: '2026-07-09T02:00:40Z',
   },
   {
     name: 'Dobble Algorithm',
@@ -251,6 +273,7 @@ export const projects: Project[] = [
     ext: 'html',
     tools: ['Puzzle Generation'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T01:59:11Z',
   },
   {
     name: 'Console Cocktails',
@@ -262,6 +285,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['API Integration'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T02:24:12Z',
   },
   {
     name: 'Word Cloud Generator',
@@ -273,6 +297,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['Data Visualisation'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T02:03:07Z',
   },
   {
     name: 'Video Gaming Hub — Database',
@@ -284,6 +309,7 @@ export const projects: Project[] = [
     ext: 'sql',
     tools: ['MySQL', 'Database Design'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T02:02:49Z',
   },
   {
     name: 'Video Gaming Hub — API',
@@ -295,6 +321,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['Flask', 'REST API'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T02:02:47Z',
   },
   {
     name: 'Spotify Stats (Desktop)',
@@ -306,6 +333,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['Spotify API', 'Tkinter'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T02:00:57Z',
   },
   {
     name: 'Calculator',
@@ -316,6 +344,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['Tkinter'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T02:00:32Z',
   },
   {
     name: 'JavaScript Grocery Store',
@@ -327,6 +356,7 @@ export const projects: Project[] = [
     ext: 'js',
     tools: ['Web App'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T01:59:52Z',
   },
   {
     name: 'GitHub–Notion Sync',
@@ -338,6 +368,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['Notion API', 'Automation'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T01:59:41Z',
   },
   {
     name: 'Get Repos',
@@ -348,6 +379,7 @@ export const projects: Project[] = [
     ext: 'py',
     tools: ['GitHub API'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T01:59:39Z',
   },
   {
     name: 'Gaming Backlog',
@@ -359,6 +391,7 @@ export const projects: Project[] = [
     ext: 'html',
     tools: ['ASP.NET Core', 'C#'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T01:59:38Z',
   },
   {
     name: 'Darts Calculator',
@@ -370,6 +403,7 @@ export const projects: Project[] = [
     ext: 'html',
     tools: ['CLI', 'GUI', 'Web'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T01:58:51Z',
   },
   {
     name: 'Binary Clock',
@@ -381,6 +415,7 @@ export const projects: Project[] = [
     ext: 'css',
     tools: ['Cross-platform'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T01:58:29Z',
   },
   {
     name: 'Budget Tracker (Web)',
@@ -392,6 +427,7 @@ export const projects: Project[] = [
     ext: 'html',
     tools: ['ASP.NET Core', 'Razor Pages'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T01:58:35Z',
   },
   {
     name: 'Budget Tracker (Console)',
@@ -403,7 +439,11 @@ export const projects: Project[] = [
     ext: 'cs',
     tools: ['.NET'],
     category: 'Tools & Apps',
+    pushedAt: '2026-07-09T01:58:33Z',
   },
 ];
 
 export const categoryOrder: Category[] = ['Data & ML', 'Tools & Apps', 'Games'];
+
+/** How many projects to show per category before a language filter is applied. */
+export const CATEGORY_PREVIEW_LIMIT = 3;
