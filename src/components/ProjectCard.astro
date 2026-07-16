@@ -15,7 +15,7 @@ const Tag = filterable ? 'button' : 'span';
 
 <article
   class="card"
-  data-language={project.language}
+  data-languages={project.languages.join('|')}
   data-tools={project.tools.join('|')}
   data-preview-rank={rank ?? undefined}
   data-reveal
@@ -33,13 +33,15 @@ const Tag = filterable ? 'button' : 'span';
 
     <div class="card__meta">
       {project.featured && <span class="badge badge--pinned mono">★ pinned</span>}
-      <Tag
-        type={filterable ? 'button' : undefined}
-        class="badge badge--language mono"
-        data-filter-tag={filterable ? project.language : undefined}
-      >
-        {project.language}
-      </Tag>
+      {project.languages.map((language, index) => (
+        <Tag
+          type={filterable ? 'button' : undefined}
+          class:list={['badge', 'mono', index === 0 ? 'badge--language' : 'badge--language-secondary']}
+          data-filter-tag={filterable ? language : undefined}
+        >
+          {language}
+        </Tag>
+      ))}
       {project.tools.map((tool) => (
         <Tag type={filterable ? 'button' : undefined} class="badge mono" data-filter-tag={filterable ? tool : undefined}>
           {tool}
@@ -177,6 +179,18 @@ const Tag = filterable ? 'button' : 'span';
     color: var(--color-on-accent);
     border-color: var(--color-pink);
     background: var(--color-pink);
+  }
+
+  .badge--language-secondary {
+    color: var(--color-accent-strong);
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    border-color: var(--color-accent);
+  }
+
+  button.badge--language-secondary:hover {
+    color: var(--color-pink);
+    border-color: var(--color-pink);
+    background: color-mix(in srgb, var(--color-pink) 12%, transparent);
   }
 
   .badge--pinned {
