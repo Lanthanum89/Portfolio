@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../data/projects';
+
+const featured = projects.filter((project) => project.featured);
+const more = projects.filter((project) => !project.featured);
+---
+
+<Layout
+  title="Laura Norwood — Developer"
+  description="Developer with a love of data, game design, and making cool things."
+>
+  <Nav />
+
+  <main id="top">
+    <section class="hero wrapper">
+      <p class="hero__eyebrow">Hi, I'm</p>
+      <h1>Laura Norwood</h1>
+      <p class="hero__tagline">Developer with a love of data, game design, and making cool things.</p>
+      <p class="hero__location">Reading, England 🇬🇧</p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="#projects">See my projects</a>
+        <a class="button" href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </section>
+
+    <section id="about" class="wrapper section">
+      <h2>About</h2>
+      <p>
+        I build small, purposeful software — from accessibility-minded games for my kids to
+        data-driven analysis tools and everyday utilities. I care about making things that are
+        genuinely easy and pleasant to use, whether that's a tap-only interface for tiny fingers
+        or a clear dashboard for exploring a dataset.
+      </p>
+    </section>
+
+    <section id="projects" class="wrapper section">
+      <h2>Featured projects</h2>
+      <div class="grid">
+        {featured.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+
+      {more.length > 0 && (
+        <>
+          <h3 class="more-heading">More projects</h3>
+          <div class="grid">
+            {more.map((project) => (
+              <ProjectCard project={project} />
+            ))}
+          </div>
+        </>
+      )}
+
+      <p class="see-more">
+        <a href="https://github.com/Lanthanum89?tab=repositories" target="_blank" rel="noreferrer">
+          See everything on GitHub &rarr;
+        </a>
+      </p>
+    </section>
+
+    <section id="contact" class="wrapper section">
+      <h2>Get in touch</h2>
+      <p>
+        Open to hearing about interesting projects and opportunities. Find me on{' '}
+        <a href="https://www.instagram.com/codermumuk/" target="_blank" rel="noreferrer">Instagram</a>,{' '}
+        <a href="https://www.linkedin.com/in/laura-norwood/" target="_blank" rel="noreferrer">LinkedIn</a>,{' '}
+        or <a href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer">GitHub</a>.
+      </p>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .hero {
+    padding-block: 5rem 3rem;
+  }
+
+  .hero__eyebrow {
+    color: var(--color-accent-strong);
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin: 0 0 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__tagline {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    max-width: 40rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .hero__location {
+    color: var(--color-text-muted);
+    margin: 0 0 2rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 0.65rem 1.4rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+
+  .button--primary {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+  }
+
+  .button--primary:hover {
+    background: var(--color-accent-strong);
+    border-color: var(--color-accent-strong);
+  }
+
+  .section {
+    padding-block: 3rem;
+  }
+
+  .section h2 {
+    font-size: 1.75rem;
+    margin: 0 0 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .more-heading {
+    margin: 2.5rem 0 1.5rem;
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1.25rem;
+  }
+
+  .see-more {
+    margin-top: 2rem;
+  }
+
+  .see-more a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--color-accent-strong);
+  }
+
+  #contact p {
+    max-width: 36rem;
+    color: var(--color-text-muted);
+  }
+
+  #contact a {
+    color: var(--color-accent-strong);
+    font-weight: 600;
+    text-decoration: none;
+  }
+</style>

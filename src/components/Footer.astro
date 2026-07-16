@@ -1,0 +1,36 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrapper footer__inner">
+    <p>&copy; {year} Laura Norwood. Built with Astro &amp; TypeScript, hosted on GitHub Pages.</p>
+    <a href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer">github.com/Lanthanum89</a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    margin-top: 4rem;
+  }
+
+  .footer__inner {
+    padding-block: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    justify-content: space-between;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .footer__inner a {
+    text-decoration: none;
+    color: var(--color-text-muted);
+  }
+
+  .footer__inner a:hover {
+    color: var(--color-accent-strong);
+  }
+</style>

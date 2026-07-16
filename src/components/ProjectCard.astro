@@ -1,0 +1,70 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="card">
+  <h3><a href={project.url} target="_blank" rel="noreferrer">{project.name}</a></h3>
+  <p>{project.description}</p>
+  <ul class="card__tags">
+    {project.tags.map((tag) => (
+      <li>{tag}</li>
+    ))}
+  </ul>
+</article>
+
+<style>
+  .card {
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 100%;
+  }
+
+  .card h3 {
+    margin: 0;
+    font-size: 1.15rem;
+  }
+
+  .card h3 a {
+    text-decoration: none;
+  }
+
+  .card h3 a:hover {
+    color: var(--color-accent-strong);
+  }
+
+  .card p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    flex-grow: 1;
+  }
+
+  .card__tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .card__tags li {
+    background: var(--color-tag-bg);
+    color: var(--color-tag-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+  }
+</style>
