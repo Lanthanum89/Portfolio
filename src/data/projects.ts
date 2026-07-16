@@ -1,4 +1,4 @@
-export type Category = 'Data & ML' | 'Games' | 'Tools & Apps';
+export type Category = 'Data & ML' | 'Sport' | 'Games' | 'Tools & Apps';
 
 export interface Project {
   name: string;
@@ -12,6 +12,8 @@ export interface Project {
   /** ISO timestamp of the repo's last push, used to sort the "all projects" list. */
   pushedAt: string;
   featured?: boolean;
+  /** Always sorts first within its category, ahead of more recently pushed projects. */
+  spotlight?: boolean;
 }
 
 // Featured projects mirror the pinned repos on github.com/Lanthanum89, in the same order.
@@ -26,7 +28,7 @@ export const projects: Project[] = [
     language: 'Jupyter Notebook',
     ext: 'ipynb',
     tools: ['Machine Learning', 'f1'],
-    category: 'Data & ML',
+    category: 'Sport',
     pushedAt: '2026-07-09T01:59:21Z',
     featured: true,
   },
@@ -128,7 +130,7 @@ export const projects: Project[] = [
     language: 'Jupyter Notebook',
     ext: 'ipynb',
     tools: ['Data Analysis', 'pandas'],
-    category: 'Data & ML',
+    category: 'Sport',
     pushedAt: '2026-07-09T02:00:23Z',
   },
   {
@@ -164,7 +166,7 @@ export const projects: Project[] = [
     language: 'Jupyter Notebook',
     ext: 'ipynb',
     tools: ['Data Analysis', 'FastF1'],
-    category: 'Data & ML',
+    category: 'Sport',
     pushedAt: '2026-07-09T01:59:22Z',
   },
   {
@@ -176,20 +178,8 @@ export const projects: Project[] = [
     language: 'Python',
     ext: 'py',
     tools: ['Data Analysis', 'FastF1'],
-    category: 'Data & ML',
+    category: 'Sport',
     pushedAt: '2026-07-09T01:59:25Z',
-  },
-  {
-    name: 'Wolves History',
-    slug: 'wolves-history',
-    description:
-      'A Python GUI for exploring Wolverhampton Wanderers stats, fixtures, results, and player information via free football APIs.',
-    url: 'https://github.com/Lanthanum89/wolves-history',
-    language: 'Python',
-    ext: 'py',
-    tools: ['Data Analysis', 'Football APIs'],
-    category: 'Data & ML',
-    pushedAt: '2026-07-09T02:03:04Z',
   },
   {
     name: 'FPL Analyser',
@@ -200,7 +190,7 @@ export const projects: Project[] = [
     language: 'Python',
     ext: 'py',
     tools: ['Data Analysis', 'FPL'],
-    category: 'Data & ML',
+    category: 'Sport',
     pushedAt: '2026-07-09T01:59:33Z',
   },
   {
@@ -402,7 +392,7 @@ export const projects: Project[] = [
     language: 'HTML',
     ext: 'html',
     tools: ['CLI', 'GUI', 'Web'],
-    category: 'Tools & Apps',
+    category: 'Sport',
     pushedAt: '2026-07-09T01:58:51Z',
   },
   {
@@ -416,6 +406,7 @@ export const projects: Project[] = [
     tools: ['Cross-platform'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T01:58:29Z',
+    spotlight: true,
   },
   {
     name: 'Budget Tracker (Web)',
@@ -443,7 +434,7 @@ export const projects: Project[] = [
   },
 ];
 
-export const categoryOrder: Category[] = ['Data & ML', 'Tools & Apps', 'Games'];
+export const categoryOrder: Category[] = ['Data & ML', 'Sport', 'Tools & Apps', 'Games'];
 
 /** How many projects to show per category before a language filter is applied. */
 export const CATEGORY_PREVIEW_LIMIT = 3;

@@ -8,16 +8,25 @@ export function initProjectFilter(): void {
 
   const cards = root.querySelectorAll<HTMLElement>('[data-language]');
   const groups = root.querySelectorAll<HTMLElement>('[data-category-group]');
-  const buttons = bar.querySelectorAll<HTMLButtonElement>('button[data-filter]');
+  const barButtons = bar.querySelectorAll<HTMLButtonElement>('button[data-filter]');
+  const tagButtons = root.querySelectorAll<HTMLButtonElement>('button[data-filter-tag]');
+  const status = root.querySelector<HTMLElement>('[data-active-filter]');
+  const statusLabel = status?.querySelector<HTMLElement>('[data-active-filter-label]');
 
   if (cards.length === 0) return;
 
-  const applyFilter = (language: string): void => {
+  const cardMatches = (card: HTMLElement, value: string): boolean => {
+    if (card.dataset.language === value) return true;
+    const tools = card.dataset.tools?.split('|') ?? [];
+    return tools.includes(value);
+  };
+
+  const applyFilter = (value: string): void => {
     cards.forEach((card) => {
-      const matchesLanguage = language === ALL || card.dataset.language === language;
+      const matches = value === ALL || cardMatches(card, value);
       const rank = Number(card.dataset.previewRank ?? '0');
-      const withinPreviewCap = language !== ALL || rank < 3;
-      card.classList.toggle('is-hidden', !(matchesLanguage && withinPreviewCap));
+      const withinPreviewCap = value !== ALL || rank < 3;
+      card.classList.toggle('is-hidden', !(matches && withinPreviewCap));
     });
 
     groups.forEach((group) => {
@@ -25,16 +34,38 @@ export function initProjectFilter(): void {
       group.classList.toggle('is-empty', !hasVisibleCard);
     });
 
-    buttons.forEach((button) => {
-      const isActive = button.dataset.filter === language;
-      button.setAttribute('aria-pressed', String(isActive));
+    barButtons.forEach((button) => {
+      button.setAttribute('aria-pressed', String(button.dataset.filter === value));
     });
+
+    if (status && statusLabel) {
+      if (value === ALL) {
+        status.hidden = true;
+      } else {
+        statusLabel.textContent = value;
+        status.hidden = false;
+      }
+    }
   };
 
-  buttons.forEach((button) => {
+  barButtons.forEach((button) => {
     button.addEventListener('click', () => {
       applyFilter(button.dataset.filter ?? ALL);
     });
+  });
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  tagButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const value = button.dataset.filterTag ?? ALL;
+      applyFilter(value);
+      bar.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
+    });
+  });
+
+  status?.querySelector('[data-clear-filter]')?.addEventListener('click', () => {
+    applyFilter(ALL);
   });
 
   applyFilter(ALL);

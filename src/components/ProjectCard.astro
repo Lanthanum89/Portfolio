@@ -5,14 +5,18 @@ interface Props {
   project: Project;
   /** Position within its category after sorting recent-to-oldest; drives the preview cap. */
   rank?: number;
+  /** Whether language/tool badges act as filter buttons. Off for the static Featured section. */
+  filterable?: boolean;
 }
 
-const { project, rank } = Astro.props;
+const { project, rank, filterable = true } = Astro.props;
+const Tag = filterable ? 'button' : 'span';
 ---
 
 <article
   class="card"
   data-language={project.language}
+  data-tools={project.tools.join('|')}
   data-preview-rank={rank ?? undefined}
   data-reveal
 >
@@ -29,9 +33,17 @@ const { project, rank } = Astro.props;
 
     <div class="card__meta">
       {project.featured && <span class="badge badge--pinned mono">★ pinned</span>}
-      <span class="badge badge--language mono">{project.language}</span>
+      <Tag
+        type={filterable ? 'button' : undefined}
+        class="badge badge--language mono"
+        data-filter-tag={filterable ? project.language : undefined}
+      >
+        {project.language}
+      </Tag>
       {project.tools.map((tool) => (
-        <span class="badge mono">{tool}</span>
+        <Tag type={filterable ? 'button' : undefined} class="badge mono" data-filter-tag={filterable ? tool : undefined}>
+          {tool}
+        </Tag>
       ))}
     </div>
   </div>
@@ -127,6 +139,7 @@ const { project, rank } = Astro.props;
   }
 
   .badge {
+    font-family: var(--font-mono);
     font-size: 0.72rem;
     font-weight: 600;
     padding: 0.2rem 0.55rem;
@@ -134,12 +147,33 @@ const { project, rank } = Astro.props;
     background: var(--color-bg-raised);
     color: var(--color-string);
     border: 1px solid var(--color-border);
+    line-height: 1.4;
+  }
+
+  button.badge {
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  }
+
+  button.badge:hover {
+    border-color: var(--color-pink);
+    color: var(--color-pink);
+  }
+
+  button.badge:active {
+    transform: scale(0.94);
   }
 
   .badge--language {
     color: var(--color-on-accent);
     background: var(--color-accent);
     border-color: var(--color-accent);
+  }
+
+  button.badge--language:hover {
+    color: var(--color-on-accent);
+    border-color: var(--color-pink);
+    background: var(--color-pink);
   }
 
   .badge--pinned {
