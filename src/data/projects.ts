@@ -152,8 +152,8 @@ export const projects: Project[] = [
     description:
       'Never miss bin day again. A neighbourhood-shareable bin day checker with colour-coded bin icons and a full browsable calendar.',
     url: 'https://github.com/Lanthanum89/the-Bindicator',
-    languages: ['HTML', 'JavaScript'],
-    ext: 'html',
+    languages: ['JavaScript', 'HTML'],
+    ext: 'js',
     tools: ['Utility'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T02:01:21Z',
