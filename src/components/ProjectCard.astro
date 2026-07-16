@@ -3,12 +3,19 @@ import type { Project } from '../data/projects';
 
 interface Props {
   project: Project;
+  /** Position within its category after sorting recent-to-oldest; drives the preview cap. */
+  rank?: number;
 }
 
-const { project } = Astro.props;
+const { project, rank } = Astro.props;
 ---
 
-<article class="card" data-language={project.language} data-reveal>
+<article
+  class="card"
+  data-language={project.language}
+  data-preview-rank={rank ?? undefined}
+  data-reveal
+>
   <div class="card__titlebar">
     <span class="dot dot--red"></span>
     <span class="dot dot--yellow"></span>
