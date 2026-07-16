@@ -12,7 +12,7 @@ const more = projects
     if (Boolean(a.spotlight) !== Boolean(b.spotlight)) return a.spotlight ? -1 : 1;
     return new Date(b.pushedAt).getTime() - new Date(a.pushedAt).getTime();
   });
-const languages = [...new Set(projects.map((project) => project.language))].sort();
+const languages = [...new Set(projects.flatMap((project) => project.languages))].sort();
 
 const categories = categoryOrder
   .map((category) => ({

@@ -6,7 +6,7 @@ export function initProjectFilter(): void {
 
   if (!root || !bar) return;
 
-  const cards = root.querySelectorAll<HTMLElement>('[data-language]');
+  const cards = root.querySelectorAll<HTMLElement>('[data-languages]');
   const groups = root.querySelectorAll<HTMLElement>('[data-category-group]');
   const barButtons = bar.querySelectorAll<HTMLButtonElement>('button[data-filter]');
   const tagButtons = root.querySelectorAll<HTMLButtonElement>('button[data-filter-tag]');
@@ -16,7 +16,8 @@ export function initProjectFilter(): void {
   if (cards.length === 0) return;
 
   const cardMatches = (card: HTMLElement, value: string): boolean => {
-    if (card.dataset.language === value) return true;
+    const languages = card.dataset.languages?.split('|') ?? [];
+    if (languages.includes(value)) return true;
     const tools = card.dataset.tools?.split('|') ?? [];
     return tools.includes(value);
   };
@@ -30,7 +31,7 @@ export function initProjectFilter(): void {
     });
 
     groups.forEach((group) => {
-      const hasVisibleCard = group.querySelector('[data-language]:not(.is-hidden)');
+      const hasVisibleCard = group.querySelector('[data-languages]:not(.is-hidden)');
       group.classList.toggle('is-empty', !hasVisibleCard);
     });
 
