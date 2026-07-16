@@ -17,9 +17,9 @@
   --dot-yellow: #f2c14e;
   --dot-green: #6cc48a;
 
-  --font-sans: 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Menlo, Consolas,
-    'Liberation Mono', monospace;
+  --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Menlo,
+    Consolas, 'Liberation Mono', monospace;
   --max-width: 68rem;
 }
 
