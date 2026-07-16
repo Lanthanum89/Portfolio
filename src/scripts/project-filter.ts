@@ -11,22 +11,27 @@ export function initProjectFilter(): void {
   const barButtons = bar.querySelectorAll<HTMLButtonElement>('button[data-filter]');
   const tagButtons = root.querySelectorAll<HTMLButtonElement>('button[data-filter-tag]');
   const status = root.querySelector<HTMLElement>('[data-active-filter]');
-  const statusLabel = status?.querySelector<HTMLElement>('[data-active-filter-label]');
 
   if (cards.length === 0) return;
 
-  const cardMatches = (card: HTMLElement, value: string): boolean => {
+  const selected = new Set<string>();
+
+  const cardMatchesAny = (card: HTMLElement): boolean => {
     const languages = card.dataset.languages?.split('|') ?? [];
-    if (languages.includes(value)) return true;
     const tools = card.dataset.tools?.split('|') ?? [];
-    return tools.includes(value);
+    for (const value of selected) {
+      if (languages.includes(value) || tools.includes(value)) return true;
+    }
+    return false;
   };
 
-  const applyFilter = (value: string): void => {
+  const render = (): void => {
+    const isDefault = selected.size === 0;
+
     cards.forEach((card) => {
-      const matches = value === ALL || cardMatches(card, value);
+      const matches = isDefault || cardMatchesAny(card);
       const rank = Number(card.dataset.previewRank ?? '0');
-      const withinPreviewCap = value !== ALL || rank < 3;
+      const withinPreviewCap = !isDefault || rank < 3;
       card.classList.toggle('is-hidden', !(matches && withinPreviewCap));
     });
 
@@ -36,22 +41,62 @@ export function initProjectFilter(): void {
     });
 
     barButtons.forEach((button) => {
-      button.setAttribute('aria-pressed', String(button.dataset.filter === value));
+      const value = button.dataset.filter ?? ALL;
+      const isActive = value === ALL ? isDefault : selected.has(value);
+      button.setAttribute('aria-pressed', String(isActive));
     });
 
-    if (status && statusLabel) {
-      if (value === ALL) {
-        status.hidden = true;
-      } else {
-        statusLabel.textContent = value;
-        status.hidden = false;
-      }
+    if (!status) return;
+
+    status.innerHTML = '';
+    if (isDefault) {
+      status.hidden = true;
+      return;
     }
+    status.hidden = false;
+
+    const label = document.createElement('span');
+    label.className = 'active-filter__label';
+    label.textContent = 'filtering by';
+    status.appendChild(label);
+
+    selected.forEach((value) => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'active-filter__chip';
+      chip.textContent = `${value} ×`;
+      chip.addEventListener('click', () => {
+        selected.delete(value);
+        render();
+      });
+      status.appendChild(chip);
+    });
+
+    const clearAll = document.createElement('button');
+    clearAll.type = 'button';
+    clearAll.className = 'active-filter__clear';
+    clearAll.textContent = 'clear all';
+    clearAll.addEventListener('click', () => {
+      selected.clear();
+      render();
+    });
+    status.appendChild(clearAll);
+  };
+
+  const toggle = (value: string): void => {
+    if (value === ALL) {
+      selected.clear();
+    } else if (selected.has(value)) {
+      selected.delete(value);
+    } else {
+      selected.add(value);
+    }
+    render();
   };
 
   barButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      applyFilter(button.dataset.filter ?? ALL);
+      toggle(button.dataset.filter ?? ALL);
     });
   });
 
@@ -59,15 +104,10 @@ export function initProjectFilter(): void {
 
   tagButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      const value = button.dataset.filterTag ?? ALL;
-      applyFilter(value);
+      toggle(button.dataset.filterTag ?? ALL);
       bar.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
     });
   });
 
-  status?.querySelector('[data-clear-filter]')?.addEventListener('click', () => {
-    applyFilter(ALL);
-  });
-
-  applyFilter(ALL);
+  render();
 }
