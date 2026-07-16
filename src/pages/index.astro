@@ -7,6 +7,7 @@ import { projects } from '../data/projects';
 
 const featured = projects.filter((project) => project.featured);
 const more = projects.filter((project) => !project.featured);
+const languages = [...new Set(projects.map((project) => project.language))].sort();
 ---
 
 <Layout
@@ -17,10 +18,10 @@ const more = projects.filter((project) => !project.featured);
 
   <main id="top">
     <section class="hero wrapper">
-      <p class="hero__eyebrow">Hi, I'm</p>
-      <h1>Laura Norwood</h1>
+      <p class="eyebrow mono">hi, i'm</p>
+      <h1 class="mono">Laura Norwood<span class="cursor" aria-hidden="true"></span></h1>
       <p class="hero__tagline">Developer with a love of data, game design, and making cool things.</p>
-      <p class="hero__location">Reading, England 🇬🇧</p>
+      <p class="hero__location mono">Reading, England 🇬🇧</p>
       <div class="hero__actions">
         <a class="button button--primary" href="#projects">See my projects</a>
         <a class="button" href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer">GitHub</a>
@@ -28,7 +29,8 @@ const more = projects.filter((project) => !project.featured);
     </section>
 
     <section id="about" class="wrapper section">
-      <h2>About</h2>
+      <p class="eyebrow mono">about</p>
+      <h2>A little about me</h2>
       <p>
         I build small, purposeful software — from accessibility-minded games for my kids to
         data-driven analysis tools and everyday utilities. I care about making things that are
@@ -38,7 +40,17 @@ const more = projects.filter((project) => !project.featured);
     </section>
 
     <section id="projects" class="wrapper section">
+      <p class="eyebrow mono">projects</p>
       <h2>Featured projects</h2>
+      <p class="section__hint">Mirrors the pinned repos on my GitHub profile.</p>
+
+      <div class="filter-bar mono" data-filter-bar role="group" aria-label="Filter projects by language">
+        <button type="button" data-filter="all" aria-pressed="true">all</button>
+        {languages.map((language) => (
+          <button type="button" data-filter={language} aria-pressed="false">{language.toLowerCase()}</button>
+        ))}
+      </div>
+
       <div class="grid">
         {featured.map((project) => (
           <ProjectCard project={project} />
@@ -47,7 +59,7 @@ const more = projects.filter((project) => !project.featured);
 
       {more.length > 0 && (
         <>
-          <h3 class="more-heading">More projects</h3>
+          <h3 class="more-heading mono">// more projects</h3>
           <div class="grid">
             {more.map((project) => (
               <ProjectCard project={project} />
@@ -64,6 +76,7 @@ const more = projects.filter((project) => !project.featured);
     </section>
 
     <section id="contact" class="wrapper section">
+      <p class="eyebrow mono">contact</p>
       <h2>Get in touch</h2>
       <p>
         Open to hearing about interesting projects and opportunities. Find me on{' '}
@@ -75,30 +88,26 @@ const more = projects.filter((project) => !project.featured);
   </main>
 
   <Footer />
+
+  <script>
+    import { initProjectFilter } from '../scripts/project-filter';
+    initProjectFilter();
+  </script>
 </Layout>
 
 <style>
   .hero {
-    padding-block: 5rem 3rem;
-  }
-
-  .hero__eyebrow {
-    color: var(--color-accent-strong);
-    font-weight: 600;
-    margin: 0 0 0.25rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.85rem;
+    padding-block: 6rem 3rem;
   }
 
   .hero h1 {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
     margin: 0 0 0.75rem;
     letter-spacing: -0.02em;
   }
 
   .hero__tagline {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: var(--color-text-muted);
     max-width: 40rem;
     margin: 0 0 0.5rem;
@@ -106,6 +115,7 @@ const more = projects.filter((project) => !project.featured);
 
   .hero__location {
     color: var(--color-text-muted);
+    font-size: 0.9rem;
     margin: 0 0 2rem;
   }
 
@@ -118,7 +128,7 @@ const more = projects.filter((project) => !project.featured);
   .button {
     display: inline-block;
     padding: 0.65rem 1.4rem;
-    border-radius: 999px;
+    border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
     border: 1px solid var(--color-border);
@@ -128,7 +138,7 @@ const more = projects.filter((project) => !project.featured);
   .button--primary {
     background: var(--color-accent);
     border-color: var(--color-accent);
-    color: #fff;
+    color: #14171d;
   }
 
   .button--primary:hover {
@@ -136,20 +146,72 @@ const more = projects.filter((project) => !project.featured);
     border-color: var(--color-accent-strong);
   }
 
+  .button:not(.button--primary):hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent-strong);
+  }
+
   .section {
     padding-block: 3rem;
+    border-top: 1px solid var(--color-border);
   }
 
   .section h2 {
-    font-size: 1.75rem;
-    margin: 0 0 1.5rem;
+    font-size: 1.6rem;
+    margin: 0 0 0.5rem;
     letter-spacing: -0.01em;
+  }
+
+  .section__hint {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .filter-bar button {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: var(--color-bg-alt);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
+    cursor: pointer;
+  }
+
+  .filter-bar button::before {
+    content: '#';
+    color: var(--color-comment);
+    margin-right: 0.15em;
+  }
+
+  .filter-bar button:hover {
+    border-color: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .filter-bar button[aria-pressed='true'] {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #14171d;
+  }
+
+  .filter-bar button[aria-pressed='true']::before {
+    color: #14171d;
   }
 
   .more-heading {
     margin: 2.5rem 0 1.5rem;
-    font-size: 1.1rem;
-    color: var(--color-text-muted);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-comment);
   }
 
   .grid {
