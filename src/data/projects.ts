@@ -78,8 +78,8 @@ export const projects: Project[] = [
     description:
       'A mobile-friendly swim progress tracker built for a friend. Log each swim and watch cumulative distance move along real-world routes, with milestone celebrations.',
     url: 'https://github.com/Lanthanum89/Swim-Progression-App',
-    languages: ['HTML', 'JavaScript'],
-    ext: 'html',
+    languages: ['JavaScript', 'HTML'],
+    ext: 'js',
     tools: ['PWA', 'Fitness Tracker'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T02:01:13Z',
