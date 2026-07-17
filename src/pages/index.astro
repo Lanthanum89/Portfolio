@@ -24,7 +24,7 @@ const categories = categoryOrder
   }))
   .filter((group) => group.items.length > 0);
 
-const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`);
+const terminalFiles = projects.map((project) => `${project.slug}/`);
 ---
 
 <Layout
@@ -102,7 +102,7 @@ const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`
     <section id="projects" class="wrapper section" data-reveal>
       <p class="eyebrow mono">projects</p>
       <h2>Featured projects</h2>
-      <p class="section__hint">Mirrors the pinned repos on my GitHub profile.</p>
+      <p class="section__hint">A handful of projects I'm most proud of.</p>
 
       <div class="grid">
         {featured.map((project) => (
@@ -167,7 +167,7 @@ const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`
       <button type="button" class="story-modal__close" data-story-close aria-label="Close">&times;</button>
     </div>
     <div class="story-modal__body">
-      <p class="story-modal__eyebrow mono">// the story</p>
+      <p class="story-modal__eyebrow mono">// build log</p>
       <h2 id="story-modal-name" data-story-name></h2>
       <p class="story-modal__description" data-story-description></p>
 
