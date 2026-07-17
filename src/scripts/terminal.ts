@@ -1,14 +1,28 @@
 const HELP_TEXT = [
   'available commands:',
-  '  help          show this list',
-  '  whoami        who am I?',
-  '  about         a bit more about me',
-  '  projects      jump to featured projects',
-  '  ls            list project files',
-  '  contact       how to reach me',
-  '  github        open my GitHub profile',
-  '  theme         toggle light/dark theme',
-  '  clear         clear this terminal',
+  '  help              show this list',
+  '  whoami            who am I?',
+  '  about             a bit more about me',
+  '  projects          jump to featured projects',
+  '  ls                list project files',
+  '  today-i-learned   a few recent, small lessons',
+  '  ui-critiques      things I notice about interfaces',
+  '  contact           how to reach me',
+  '  github            open my GitHub profile',
+  '  theme             toggle light/dark theme',
+  '  clear             clear this terminal',
+];
+
+const TODAY_I_LEARNED = [
+  '- Power Apps delegation limits are usually a data modelling problem in disguise.',
+  '- A five-year-old will find the one button in your UI that isn\'t actually clickable.',
+  '- "Just add a loading spinner" is rarely the fix. The wait is the bug.',
+];
+
+const UI_CRITIQUES = [
+  '- Drag-and-drop looks impressive in a demo and fails the first user with shaky hands.',
+  '- If a form needs a tooltip to explain a label, the label is wrong.',
+  '- Accessible does not mean beige. Constraints are a design input, not an excuse.',
 ];
 
 export function initTerminal(): void {
@@ -82,7 +96,7 @@ export function initTerminal(): void {
         printLines(HELP_TEXT);
         break;
       case 'whoami':
-        printLines(['Laura Norwood: developer with a love of data, games, and making genuinely useful (or delightfully pointless) things.']);
+        printLines(['Laura Norwood: developer who builds with data and games in mind. Sometimes genuinely useful, sometimes delightfully pointless.']);
         break;
       case 'about':
         printLines([
@@ -97,6 +111,12 @@ export function initTerminal(): void {
         break;
       case 'ls':
         printLines([files.join('  ')]);
+        break;
+      case 'today-i-learned':
+        printLines(TODAY_I_LEARNED);
+        break;
+      case 'ui-critiques':
+        printLines(UI_CRITIQUES);
         break;
       case 'contact':
         printLines([
