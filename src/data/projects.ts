@@ -15,6 +15,13 @@ export interface Project {
   featured?: boolean;
   /** Always sorts first within its category, ahead of more recently pushed projects. */
   spotlight?: boolean;
+  /** Optional narrative shown behind a "the story" disclosure on the card. DRAFT copy, not yet fact-checked. */
+  story?: {
+    problem: string;
+    attempts: string[];
+    challenge?: string;
+    next?: string;
+  };
 }
 
 // Featured projects mirror the pinned repos on github.com/Lanthanum89, in the same order.
@@ -71,6 +78,15 @@ export const projects: Project[] = [
     category: 'Games',
     pushedAt: '2026-07-15T09:26:37Z',
     featured: true,
+    story: {
+      problem: 'My daughter wanted a game that was just enjoyable: nothing to lose, no fail state, nothing stressful.',
+      attempts: [
+        'Started with a simple pop mechanic and a pastel palette.',
+        'Added blind-box collectibles and a collect-em-all album so there was a reason to keep coming back.',
+      ],
+      challenge: 'Making a PWA that felt like a real, polished app on a small screen rather than a browser toy, for a five-year-old\'s attention span.',
+      next: 'More collectible sets, and an in-game shop.',
+    },
   },
   {
     name: 'Swim Progression App',
@@ -157,6 +173,15 @@ export const projects: Project[] = [
     tools: ['Utility'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T02:01:21Z',
+    story: {
+      problem: 'My street kept missing bin day, mine included. Everyone had their own half-working way of remembering it.',
+      attempts: [
+        'Started as a reminder just for myself.',
+        'Realised the real fix was making it something the whole street could glance at, so it became a shareable page with colour-coded bin icons and a full browsable calendar.',
+      ],
+      challenge: 'Keeping it dead simple. A bin tracker that takes more effort than remembering bin day defeats the point.',
+      next: 'Push notifications, so it reaches you instead of you having to remember to open it.',
+    },
   },
   {
     name: 'Lewis Hamilton: 2020 Season Review',
