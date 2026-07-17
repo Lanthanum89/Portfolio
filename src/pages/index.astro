@@ -17,6 +17,8 @@ const more = projects
   });
 const languages = [...new Set(projects.flatMap((project) => project.languages))].sort();
 
+// A project tagged with more than one category (e.g. an F1 ML model is both Sport and
+// Data & ML) shows in every matching section.
 const categories = categoryOrder
   .map((category) => ({
     name: category,
