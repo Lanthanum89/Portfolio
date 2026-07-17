@@ -11,9 +11,10 @@ const aliasBanner = figlet.textSync('LANTHANUM89', { font: 'ANSI Shadow' }).repl
       <pre class="footer__banner" aria-hidden="true">{banner}</pre>
     </div>
     <p class="footer__banner-label mono">// aka</p>
-    <div class="footer__banner-scroll">
+    <div class="footer__banner-scroll footer__banner-scroll--alias">
       <pre class="footer__banner footer__banner--alias" aria-hidden="true">{aliasBanner}</pre>
     </div>
+    <p class="footer__banner-alias-text mono" aria-hidden="true">LANTHANUM89</p>
     <div class="footer__inner">
       <p class="mono">
         <span class="prompt">laura@portfolio:~$</span> echo "thanks for stopping by"
@@ -54,6 +55,25 @@ const aliasBanner = figlet.textSync('LANTHANUM89', { font: 'ANSI Shadow' }).repl
 
   .footer__banner--alias {
     color: var(--color-accent);
+  }
+
+  .footer__banner-alias-text {
+    display: none;
+    margin: 0;
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 30rem) {
+    .footer__banner-scroll--alias {
+      display: none;
+    }
+
+    .footer__banner-alias-text {
+      display: block;
+    }
   }
 
   .footer__inner {
