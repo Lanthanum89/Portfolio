@@ -32,7 +32,7 @@ export const projects: Project[] = [
     name: 'F1 2025 ML Champion Predictor',
     slug: 'f1-2025-ml-champion-predictor',
     description:
-      'A machine learning system that predicts the Formula 1 2025 World Championship winner from historical race data, driver performance metrics, and feature engineering.',
+      'Can historical race data actually predict next year\'s champion? A machine learning system using driver performance metrics and feature engineering to find out.',
     url: 'https://github.com/Lanthanum89/F1-2025-ML-Champion-Predictor',
     languages: ['Jupyter Notebook', 'Python'],
     tools: ['Machine Learning', 'f1'],
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     name: 'ML: Predicting Gamer Behaviour',
     slug: 'ml-predicting-gamer-behaviour',
     description:
-      'Machine learning for player segmentation and engagement prediction, using a synthetic dataset of 30,000 simulated players modelled on real-world gaming analytics.',
+      'I wanted to practice real player-segmentation techniques without real player data. Machine learning for engagement prediction, trained on a synthetic dataset of 30,000 simulated players.',
     url: 'https://github.com/Lanthanum89/ML-predicting-gamer-behaviour',
     languages: ['Jupyter Notebook'],
     tools: ['Machine Learning', 'Gaming Analytics'],
@@ -78,7 +78,7 @@ export const projects: Project[] = [
     name: 'SoundTracks (Spotify Stats App)',
     slug: 'spotify-stats-app',
     description:
-      'A locally hosted web app that connects to your Spotify account to display personalised listening statistics, top tracks, top artists, genre distributions, and recent history.',
+      'Spotify Wrapped only happens once a year. I wanted my listening data all year round. A locally hosted web app showing top tracks, artists, genres, and recent history.',
     url: 'https://github.com/Lanthanum89/spotify-stats-app',
     languages: ['JavaScript', 'CSS', 'HTML'],
     tools: ['Spotify API'],
@@ -101,7 +101,7 @@ export const projects: Project[] = [
     name: 'Squish Pop',
     slug: 'squish-pop',
     description:
-      'A kawaii balloon-popping PWA built for my daughter, with a pastel palette, blind-box collectibles, and a collect-em-all album.',
+      'Built because my daughter wanted a balloon game she couldn\'t lose. A kawaii popping PWA with a pastel palette, blind-box collectibles, and a collect-em-all album.',
     url: 'https://github.com/Lanthanum89/squish-pop',
     languages: ['JavaScript', 'CSS', 'HTML'],
     tools: ['PWA', 'Game Design'],
@@ -124,7 +124,7 @@ export const projects: Project[] = [
     name: 'Swim Progression App',
     slug: 'swim-progression-app',
     description:
-      'A mobile-friendly swim progress tracker built for a friend. Log each swim and watch cumulative distance move along real-world routes, with milestone celebrations.',
+      'A friend wanted her swim distance to add up to something more than a number in a spreadsheet. A mobile-friendly tracker that maps cumulative distance onto real-world routes, with milestone celebrations.',
     url: 'https://github.com/Lanthanum89/Swim-Progression-App',
     languages: ['JavaScript', 'HTML'],
     tools: ['PWA', 'Fitness Tracker'],
@@ -147,7 +147,7 @@ export const projects: Project[] = [
     name: 'TFL Route Planner',
     slug: 'tfl-route-planner',
     description:
-      'An offline GUI app built with Python and tkinter to plan routes on the London Underground, ready to be extended with live TfL APIs.',
+      'Why call a live API for something as static as the tube map? An offline GUI built with Python and tkinter to plan London Underground routes.',
     url: 'https://github.com/Lanthanum89/TFL-route-planner',
     languages: ['Python'],
     tools: ['tkinter', 'London Underground'],
@@ -169,7 +169,7 @@ export const projects: Project[] = [
     name: 'Sound Stars',
     slug: 'sound-stars',
     description:
-      'A phonics flashcard app built for the UK Year 1 national phonics screening check, designed to make revision playful for early readers.',
+      'Phonics revision for the Year 1 screening check is important, and deeply boring for a six-year-old. A flashcard app designed to make it playful for early readers.',
     url: 'https://github.com/Lanthanum89/Sound-Stars',
     languages: ['TypeScript', 'CSS', 'HTML', 'JavaScript'],
     tools: ['Education'],
@@ -191,7 +191,7 @@ export const projects: Project[] = [
     name: 'The Little Garden Arcade',
     slug: 'the-little-garden-arcade',
     description:
-      'A hub of gentle, tap-to-play garden mini-games with no drag-and-drop, ever. Every interaction is tap-to-select then tap-to-place, so it stays accessible regardless of fine motor control.',
+      'Drag-and-drop looks great in a demo and fails the first child without precise fine motor control. A hub of gentle, tap-to-play garden mini-games, accessible by design.',
     url: 'https://github.com/Lanthanum89/The-Little-Garden-Arcade',
     languages: ['JavaScript', 'HTML', 'CSS'],
     tools: ['Accessibility', 'Game Design'],
@@ -213,7 +213,7 @@ export const projects: Project[] = [
     name: 'Premier League 2003/04: The Invincibles',
     slug: 'premier-league-2003-2004-data-analysis',
     description:
-      "An in-depth analysis of Arsenal's unbeaten \"Invincibles\" title-winning 2003/04 Premier League season, exploring team and match statistics and visualising performance trends with pandas and matplotlib.",
+      "What does an unbeaten Premier League season actually look like in the numbers? An in-depth analysis of Arsenal's Invincibles season with pandas and matplotlib.",
     url: 'https://github.com/Lanthanum89/Premier-League-2003-2004-Data-Analysis',
     languages: ['Jupyter Notebook'],
     tools: ['Data Analysis', 'pandas'],
@@ -235,7 +235,7 @@ export const projects: Project[] = [
     name: 'Turbo Tackle',
     slug: 'turbo-tackle',
     description:
-      'A retro pixel-art racer for kids: dodge the footballs. Built as a PWA with Node.js and hosted on GitHub Pages.',
+      'Wanted a game for kids that didn\'t need an app store install. A retro pixel-art racer built as a PWA, hosted on GitHub Pages.',
     url: 'https://github.com/Lanthanum89/turbo-tackle',
     languages: ['JavaScript', 'CSS', 'HTML'],
     tools: ['PWA', 'Node.js', 'Game Design'],
@@ -257,7 +257,7 @@ export const projects: Project[] = [
     name: 'The Bindicator',
     slug: 'the-bindicator',
     description:
-      'Never miss bin day again. A neighbourhood-shareable bin day checker with colour-coded bin icons and a full browsable calendar.',
+      'Never miss bin day again. My street kept forgetting, mine included. A neighbourhood-shareable checker with colour-coded bin icons and a full browsable calendar.',
     url: 'https://github.com/Lanthanum89/the-Bindicator',
     languages: ['JavaScript', 'HTML'],
     tools: ['Utility'],
@@ -280,7 +280,7 @@ export const projects: Project[] = [
     name: 'Lewis Hamilton: 2020 Season Review',
     slug: 'f1-analysis',
     description:
-      "A FastF1-powered analysis of Lewis Hamilton's race wins across the 2020 Formula 1 season.",
+      "What actually won Hamilton each race in 2020, beyond the final standings? A FastF1-powered breakdown of his race wins across the season.",
     url: 'https://github.com/Lanthanum89/f1-analysis',
     languages: ['Jupyter Notebook'],
     tools: ['Data Analysis', 'FastF1'],
@@ -302,7 +302,7 @@ export const projects: Project[] = [
     name: 'F1 Lap Time Analyser',
     slug: 'f1-lap-time-analyser',
     description:
-      'A Formula 1 session analysis tool with both a CLI and an interactive web GUI, built on FastF1 data.',
+      'Wanted to explore F1 lap time data properly, not just from a terminal. A session analysis tool with both a CLI and an interactive web GUI, built on FastF1 data.',
     url: 'https://github.com/Lanthanum89/f1-lap-time-analyser',
     languages: ['Python'],
     tools: ['Data Analysis', 'FastF1'],
@@ -324,7 +324,7 @@ export const projects: Project[] = [
     name: 'FPL Analyser',
     slug: 'fpl-analyser',
     description:
-      'A GUI for Fantasy Premier League that displays player statistics and suggests optimal teams based on current form and value.',
+      'Fantasy Premier League team selection is really an optimisation problem wearing a football shirt. A GUI that displays player statistics and suggests teams based on form and value.',
     url: 'https://github.com/Lanthanum89/fpl-analyser',
     languages: ['Python'],
     tools: ['Data Analysis', 'FPL'],
@@ -346,7 +346,7 @@ export const projects: Project[] = [
     name: 'Instagram Analytics',
     slug: 'instagram-analytics',
     description:
-      'A Python GUI for analysing Instagram account performance using the Meta Graph API.',
+      'Wanted a clearer view of account performance than Instagram\'s own stats give you. A Python GUI for analysing performance using the Meta Graph API.',
     url: 'https://github.com/Lanthanum89/instagram-analytics',
     languages: ['Python', 'Batchfile'],
     tools: ['Data Analysis', 'Meta Graph API'],
@@ -367,7 +367,7 @@ export const projects: Project[] = [
     name: 'Snake',
     slug: 'snake',
     description:
-      'A classic Snake game with a nostalgic Nokia 3310 aesthetic, built with Python and Pygame.',
+      'Wanted a proper project to learn Pygame, not another to-do list app. A classic Snake game with a nostalgic Nokia 3310 aesthetic.',
     url: 'https://github.com/Lanthanum89/Snake',
     languages: ['Python'],
     tools: ['Pygame', 'Game Design'],
@@ -389,7 +389,7 @@ export const projects: Project[] = [
     name: 'Emerald City',
     slug: 'emerald-city',
     description:
-      'A whimsical turtle-graphics adventure following a wandering yellow brick road through a pixel-art Emerald City to find the Wizard.',
+      'How far can Python\'s turtle graphics really be pushed? A whimsical adventure following a yellow brick road through a pixel-art Emerald City.',
     url: 'https://github.com/Lanthanum89/emerald-city',
     languages: ['Python'],
     tools: ['Turtle Graphics', 'Game Design'],
@@ -411,7 +411,7 @@ export const projects: Project[] = [
     name: 'Bohemian Rhapsody Visualiser',
     slug: 'bohemian-rhapsody',
     description:
-      'A MIDI-driven music visualiser inspired by Queen\'s "Bohemian Rhapsody", with geometric particle bursts, sparkle effects for dramatic moments, and a playful ML model that predicts whether the next note will be high or low.',
+      'Wanted a music visualiser that reacted to a song\'s structure, not just its volume. A MIDI-driven visualiser with particle bursts and an ML model predicting the next note.',
     url: 'https://github.com/Lanthanum89/bohemian-rhapsody',
     languages: ['Python'],
     tools: ['MIDI', 'Creative Coding'],
@@ -433,7 +433,7 @@ export const projects: Project[] = [
     name: 'Dobble Algorithm',
     slug: 'dobble-algorithm',
     description:
-      "A work-in-progress generator built around the Dobble (Spot It!) card game's symbol-matching puzzle. Actively evolving, so check back for updates.",
+      "How do you even generate a valid Dobble deck, where any two cards share exactly one symbol? A work-in-progress generator built around the game's symbol-matching puzzle. Actively evolving.",
     url: 'https://github.com/Lanthanum89/dobble-algorithm',
     languages: ['HTML'],
     tools: ['Puzzle Generation'],
@@ -444,7 +444,7 @@ export const projects: Project[] = [
     name: 'Console Cocktails',
     slug: 'console-cocktails',
     description:
-      'A Python console app that fetches a random cocktail recipe from TheCocktailDB API, displays it, and saves it as JSON.',
+      'Wanted a quick, low-stakes excuse to try a public API end to end. A console app that fetches a random cocktail recipe and saves it as JSON.',
     url: 'https://github.com/Lanthanum89/Console_Cocktails',
     languages: ['Python'],
     tools: ['API Integration'],
@@ -466,7 +466,7 @@ export const projects: Project[] = [
     name: 'Word Cloud Generator',
     slug: 'word-cloud',
     description:
-      'A GUI app that generates a word cloud from any website: enter a URL and it fetches, processes, and visualises the content.',
+      'Wanted a faster way to see what a page was about before reading the whole thing. A GUI that fetches, processes, and visualises any website\'s content as a word cloud.',
     url: 'https://github.com/Lanthanum89/word-cloud',
     languages: ['Python'],
     tools: ['Data Visualisation'],
@@ -488,7 +488,7 @@ export const projects: Project[] = [
     name: 'Video Gaming Hub: Database',
     slug: 'video-gaming-hub-db',
     description:
-      'A MySQL database for a fictional video game store: platforms, customers, games, and purchases, with example data, queries, and stored procedures for sales analysis and loyalty schemes.',
+      'Wanted a proper multi-table schema to practice on, not another single-table tutorial. A MySQL database for a fictional game store, with stored procedures for sales analysis and loyalty schemes.',
     url: 'https://github.com/Lanthanum89/Video-Gaming-Hub_DB',
     languages: ['SQL'],
     tools: ['MySQL', 'Database Design'],
@@ -510,7 +510,7 @@ export const projects: Project[] = [
     name: 'Video Gaming Hub: API',
     slug: 'video-gaming-hub-api',
     description:
-      'A Flask REST API for managing a video game lending system: games, customers, and loans, backed by a MySQL database.',
+      'Wanted to build a REST API against a real relational schema, not an in-memory list. A Flask API for a game lending system, backed by a MySQL database.',
     url: 'https://github.com/Lanthanum89/Video-Gaming-Hub_API',
     languages: ['Python'],
     tools: ['Flask', 'REST API'],
@@ -532,7 +532,7 @@ export const projects: Project[] = [
     name: 'Spotify Stats (Desktop)',
     slug: 'spotify-stats',
     description:
-      'A Python GUI showing your Spotify listening stats: top artists, tracks, and genres, over different time periods.',
+      'The desktop version of the idea, before SoundTracks became the web app I actually use. A Python GUI showing top artists, tracks, and genres over different time periods.',
     url: 'https://github.com/Lanthanum89/spotify-stats',
     languages: ['Python', 'PowerShell', 'Batchfile'],
     tools: ['Spotify API', 'Tkinter'],
@@ -553,7 +553,8 @@ export const projects: Project[] = [
   {
     name: 'Calculator',
     slug: 'python-gui-calculator',
-    description: 'A modern, feature-rich calculator built with Python and Tkinter.',
+    description:
+      'Wanted a Tkinter project that went past the tutorial four-function calculator. A modern, feature-rich calculator built with Python and Tkinter.',
     url: 'https://github.com/Lanthanum89/Python_GUI-Calculator',
     languages: ['Python'],
     tools: ['Tkinter'],
@@ -575,7 +576,7 @@ export const projects: Project[] = [
     name: 'JavaScript Grocery Store',
     slug: 'javascript-grocery-store',
     description:
-      'A client-side grocery store app with a product catalog, shopping cart, wishlist, and order history.',
+      'Wanted to understand state management before reaching for a framework to do it for me. A client-side store app with a product catalog, shopping cart, wishlist, and order history.',
     url: 'https://github.com/Lanthanum89/javascript-grocery-store',
     languages: ['JavaScript', 'CSS', 'HTML'],
     tools: ['Web App'],
@@ -597,7 +598,7 @@ export const projects: Project[] = [
     name: 'GitHub–Notion Sync',
     slug: 'github-notion-sync-files',
     description:
-      'A simple, free way to keep a Notion database in sync with GitHub repos tagged with the "portfolio" topic.',
+      'Kept manually copying repo details into Notion, and kept forgetting. A script that keeps a Notion database in sync with GitHub repos tagged "portfolio".',
     url: 'https://github.com/Lanthanum89/github-notion-sync-files',
     languages: ['Python'],
     tools: ['Notion API', 'Automation'],
@@ -618,7 +619,8 @@ export const projects: Project[] = [
   {
     name: 'Get Repos',
     slug: 'get-repos',
-    description: 'A GUI app to fetch and display GitHub repositories for any user.',
+    description:
+      'Wanted a faster way to browse someone\'s GitHub repos than clicking through the website. A GUI app to fetch and display GitHub repositories for any user.',
     url: 'https://github.com/Lanthanum89/get-repos',
     languages: ['Python', 'Batchfile'],
     tools: ['GitHub API'],
@@ -639,7 +641,7 @@ export const projects: Project[] = [
     name: 'Gaming Backlog',
     slug: 'gaming-backlog-web-app',
     description:
-      'A full-stack web app built with ASP.NET Core 9 to track, manage, and visualise a personal gaming backlog.',
+      'My actual gaming backlog lived in my head, and it was getting embarrassingly long. A full-stack ASP.NET Core 9 app to track, manage, and visualise it.',
     url: 'https://github.com/Lanthanum89/GamingBacklogWebApp',
     languages: ['HTML', 'C#', 'CSS', 'JavaScript'],
     tools: ['ASP.NET Core', 'C#'],
@@ -661,7 +663,7 @@ export const projects: Project[] = [
     name: 'Darts Calculator',
     slug: 'darts-calculator',
     description:
-      'A darts checkout calculator that suggests optimal finishing combinations for any score between 2 and 170. Available as CLI, GUI, and web versions.',
+      'Wanted to stop doing checkout maths in my head mid-game. A calculator that suggests optimal finishes for any score between 2 and 170, as CLI, GUI, and web.',
     url: 'https://github.com/Lanthanum89/darts-calculator',
     languages: ['HTML', 'Python'],
     tools: ['CLI', 'GUI', 'Web'],
@@ -683,7 +685,7 @@ export const projects: Project[] = [
     name: 'Binary Clock',
     slug: 'binary-clock',
     description:
-      'A binary clock available as a web app, PowerShell widget, and native Windows and Android apps.',
+      'A normal clock felt like a boring project. A clock you have to decode felt more interesting. Available as a web app, PowerShell widget, and native Windows and Android apps.',
     url: 'https://github.com/Lanthanum89/binary-clock',
     languages: ['CSS', 'JavaScript', 'PowerShell', 'HTML', 'Kotlin', 'Batchfile', 'C#'],
     tools: ['Cross-platform'],
@@ -706,7 +708,7 @@ export const projects: Project[] = [
     name: 'Budget Tracker (Web)',
     slug: 'budget-tracker-web-app',
     description:
-      'An ASP.NET Core Razor Pages app to track expenses, set a budget, and stay on target.',
+      'Wanted an honest view of whether I was on budget, without a finance app trying to sell me something. An ASP.NET Core Razor Pages app to track expenses and stay on target.',
     url: 'https://github.com/Lanthanum89/BudgetTrackerWebApp',
     languages: ['HTML', 'C#', 'CSS', 'JavaScript'],
     tools: ['ASP.NET Core', 'Razor Pages'],
@@ -728,7 +730,7 @@ export const projects: Project[] = [
     name: 'Budget Tracker (Console)',
     slug: 'budget-tracker-app',
     description:
-      'A console-based budget tracker built with C# and .NET 9, tracking fixed expenses and variable spending across categories.',
+      'The console version of the idea, before the web app became the one I actually use. Built with C# and .NET 9, tracking fixed expenses and variable spending across categories.',
     url: 'https://github.com/Lanthanum89/BudgetTrackerApp',
     languages: ['C#'],
     tools: ['.NET'],
