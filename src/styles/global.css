@@ -29,12 +29,12 @@
 :root[data-theme='light'] {
   color-scheme: light;
 
-  --color-bg: #f6f7f9;
-  --color-bg-alt: #ffffff;
-  --color-bg-raised: #edeff3;
+  --color-bg: #f8f6f3;
+  --color-bg-alt: #eef1f5;
+  --color-bg-raised: #e2e6ee;
   --color-text: #1a1d24;
   --color-text-muted: #5b616e;
-  --color-border: #dde1e8;
+  --color-border: #c9cedb;
 
   --color-accent: #b8790f;
   --color-accent-strong: #96650f;
@@ -68,6 +68,13 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+:root[data-theme='light'] body {
+  background-image:
+    radial-gradient(circle at 15% 0%, color-mix(in srgb, var(--color-accent) 6%, transparent), transparent 40%),
+    radial-gradient(circle, color-mix(in srgb, var(--color-text) 10%, transparent) 1px, transparent 1px);
+  background-size: auto, 24px 24px;
 }
 
 img {

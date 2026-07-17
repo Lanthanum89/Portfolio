@@ -42,7 +42,7 @@ const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`
       <p class="hero__tagline hero-in" style="--hero-delay: 120ms">
         I build software that either solves a real problem or just makes someone smile.
       </p>
-      <p class="hero__location mono hero-in" style="--hero-delay: 160ms">Based in Reading, England 🇬🇧</p>
+      <p class="hero__location mono hero-in" style="--hero-delay: 160ms">Based in Reading, England</p>
       <div class="hero__actions hero-in" style="--hero-delay: 200ms">
         <a class="button button--primary" href="#projects">View projects</a>
         <a class="button" href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer">View GitHub</a>
@@ -61,7 +61,9 @@ const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`
           <span class="terminal__filename mono">laura@portfolio: ~</span>
         </div>
         <div class="terminal__output mono" data-terminal-output role="log" aria-live="polite">
-          <pre class="terminal__banner" aria-hidden="true">{banner}</pre>
+          <div class="terminal__banner-scroll">
+            <pre class="terminal__banner" aria-hidden="true">{banner}</pre>
+          </div>
           <p class="terminal__line">Type <code>help</code> to see what this does.</p>
         </div>
         <div class="terminal__input-row mono">
@@ -170,23 +172,33 @@ const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`
       <p class="story-modal__description" data-story-description></p>
 
       <section class="story-modal__section">
-        <h3 class="mono">problem</h3>
+        <h3 class="mono">// the problem</h3>
         <p data-story-problem></p>
       </section>
 
       <section class="story-modal__section">
-        <h3 class="mono">attempts</h3>
+        <h3 class="mono">// attempts</h3>
         <ol class="story-modal__attempts" data-story-attempts></ol>
       </section>
 
       <section class="story-modal__section" data-story-challenge-section hidden>
-        <h3 class="mono">the interesting challenge</h3>
+        <h3 class="mono">// the technical challenge</h3>
         <p data-story-challenge></p>
       </section>
 
+      <section class="story-modal__section" data-story-tradeoffs-section hidden>
+        <h3 class="mono">// trade-offs</h3>
+        <p data-story-tradeoffs></p>
+      </section>
+
       <section class="story-modal__section" data-story-next-section hidden>
-        <h3 class="mono">what's next</h3>
+        <h3 class="mono">// what's next</h3>
         <p data-story-next></p>
+      </section>
+
+      <section class="story-modal__section" data-story-hindsight-section hidden>
+        <h3 class="mono">// if i built it again</h3>
+        <p data-story-hindsight></p>
       </section>
 
       <a class="story-modal__cta" data-story-cta target="_blank" rel="noreferrer">
@@ -251,6 +263,11 @@ const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`
     overflow: hidden;
   }
 
+  :root[data-theme='light'] .terminal {
+    border-color: transparent;
+    box-shadow: 0 1px 2px rgba(30, 34, 44, 0.05), 0 12px 32px -18px rgba(30, 34, 44, 0.22);
+  }
+
   .terminal__titlebar {
     display: flex;
     align-items: center;
@@ -293,12 +310,17 @@ const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`
     line-height: 1.6;
   }
 
-  .terminal__banner {
+  .terminal__banner-scroll {
+    overflow-x: auto;
     margin: 0 0 0.6rem;
+  }
+
+  .terminal__banner {
+    margin: 0;
     color: var(--color-pink);
     font-size: clamp(0.34rem, 1.6vw, 0.62rem);
-    line-height: 1.15;
-    overflow-x: auto;
+    line-height: 1.3;
+    width: fit-content;
   }
 
   .terminal__output :global(.terminal__line) {
@@ -571,14 +593,19 @@ const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`
   }
 
   .story-modal {
-    width: min(90vw, 38rem);
-    max-height: min(85vh, 40rem);
+    width: min(92vw, 50rem);
+    max-height: min(85vh, 42rem);
     padding: 0;
     border: 1px solid var(--color-border);
     border-radius: 0.6rem;
     background: var(--color-bg-alt);
     color: var(--color-text);
     overflow: hidden;
+  }
+
+  :root[data-theme='light'] .story-modal {
+    border-color: transparent;
+    box-shadow: 0 1px 2px rgba(30, 34, 44, 0.05), 0 24px 48px -20px rgba(30, 34, 44, 0.3);
   }
 
   .story-modal::backdrop {
@@ -647,7 +674,7 @@ const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`
   .story-modal__body {
     padding: 1.5rem 1.5rem 1.75rem;
     overflow-y: auto;
-    max-height: calc(min(85vh, 40rem) - 2.8rem);
+    max-height: calc(min(85vh, 42rem) - 2.8rem);
   }
 
   .story-modal__eyebrow {

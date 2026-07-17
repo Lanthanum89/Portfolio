@@ -20,8 +20,12 @@ export interface Project {
     problem: string;
     attempts: string[];
     challenge?: string;
+    tradeoffs?: string;
     next?: string;
+    hindsight?: string;
   };
+  /** Renders larger in its grid, spanning two columns on wide screens. Only one project should use this. */
+  flagship?: boolean;
 }
 
 // Featured projects mirror the pinned repos on github.com/Lanthanum89, in the same order.
@@ -46,7 +50,9 @@ export const projects: Project[] = [
         'Layered in historical race data and driver performance metrics, then spent most of the time on feature engineering rather than the model itself.',
       ],
       challenge: 'Getting from "a model that runs" to a model whose predictions you\'d actually trust, given how noisy a single F1 season is.',
+      tradeoffs: 'Chose feature engineering over a more complex model architecture, since better inputs mattered more than a fancier algorithm for a single season of data.',
       next: 'Feed in live 2025 race results as the season progresses, instead of a one-shot prediction.',
+      hindsight: 'I\'d hold out a proper validation set from the start instead of eyeballing predictions against results as they came in.',
     },
   },
   {
@@ -68,7 +74,9 @@ export const projects: Project[] = [
         'Used it to test segmentation and engagement-prediction approaches end to end.',
       ],
       challenge: 'Making the synthetic data realistic enough that the patterns the model finds would actually generalise.',
+      tradeoffs: 'Chose a synthetic dataset over scraping real platforms, trading realism for something I could legally and ethically use end to end.',
       next: 'Try the same pipeline against a real, messier dataset.',
+      hindsight: 'I\'d introduce more deliberate noise and edge cases into the synthetic data, real player behaviour is messier than anything I modelled.',
     },
   },
   {
@@ -90,7 +98,9 @@ export const projects: Project[] = [
         'Grew into a full locally hosted web app with genre distributions and recent history, once top tracks alone wasn\'t enough.',
       ],
       challenge: 'Working within Spotify\'s API and auth flow for something that was only ever going to run on my own machine.',
+      tradeoffs: 'Chose to run it locally rather than deploy it, since a personal listening-stats tool doesn\'t need to be reachable from anywhere but my own machine.',
       next: 'A hosted version that doesn\'t need to run locally.',
+      hindsight: 'I\'d build the OAuth handling as a separate module from day one, it ended up tangled with the rest of the app.',
     },
   },
   {
@@ -112,7 +122,9 @@ export const projects: Project[] = [
         'Added blind-box collectibles and a collect-em-all album so there was a reason to keep coming back.',
       ],
       challenge: 'Making a PWA that felt like a real, polished app on a small screen rather than a browser toy, for a five-year-old\'s attention span.',
+      tradeoffs: 'Chose a fixed set of collectibles over a random-generation system, so my daughter could realistically complete the album instead of chasing an endless list.',
       next: 'More collectible sets, and an in-game shop.',
+      hindsight: 'I\'d add save-state syncing earlier. Losing progress on a cleared browser cache was the first real bug she found.',
     },
   },
   {
@@ -134,7 +146,9 @@ export const projects: Project[] = [
         'Mapped cumulative distance onto real-world routes so every swim visibly moved her further along, with milestone celebrations to mark the distance.',
       ],
       challenge: 'Making the progress feel motivating rather than just a bigger number, on a screen she\'d actually check after a swim.',
+      tradeoffs: 'Chose a fixed route over letting her pick her own, trading flexibility for something I could ship quickly and she could start using straight away.',
       next: 'Let her pick her own route, instead of a fixed one.',
+      hindsight: 'I\'d ask what would actually motivate her to keep logging swims before building the milestone system, not after.',
     },
   },
   {
@@ -155,7 +169,9 @@ export const projects: Project[] = [
         'Built the core routing logic and a Python and tkinter GUI to work entirely offline.',
       ],
       challenge: 'Modelling the Underground network in a way that was simple enough to reason about but still gave correct routes.',
+      tradeoffs: 'Chose to model the network as static offline data rather than call a live API, trading real-time accuracy for something that works without a connection.',
       next: 'Wire it up to live TfL APIs for real-time disruptions.',
+      hindsight: 'I\'d design the data model to plug in live TfL APIs from the start, rather than needing to retrofit it later.',
     },
   },
   {
@@ -176,7 +192,9 @@ export const projects: Project[] = [
         'Reworked them to be playful rather than test-like, so revision didn\'t feel like revision.',
       ],
       challenge: 'Keeping it genuinely playful without losing the actual phonics structure the screening check tests.',
+      tradeoffs: 'Chose flashcards over a full game, since the actual phonics screening check tests recall, not gameplay skill.',
       next: 'More sound sets covering the full phonics phases.',
+      hindsight: 'I\'d build in a simple progress view for a parent to check, rather than just for the child using it.',
     },
   },
   {
@@ -197,7 +215,9 @@ export const projects: Project[] = [
         'Rebuilt the whole interaction model around tap-to-select then tap-to-place instead, and made it the rule for every game in the hub, not just a workaround for one.',
       ],
       challenge: 'Making tap-to-select feel as immediate as drag-and-drop, instead of like a compromise.',
+      tradeoffs: 'Chose tap-to-select over drag-and-drop everywhere, even where drag-and-drop would have been faster to build, because accessibility was the actual point of the project.',
       next: 'More mini-games under the same no-drag-and-drop rule.',
+      hindsight: 'I\'d user-test the tap targets with an actual small child earlier. What feels obviously tappable to an adult isn\'t always obvious to a five-year-old.',
     },
   },
   {
@@ -218,7 +238,9 @@ export const projects: Project[] = [
         'Used pandas and matplotlib to visualise the performance trends behind the unbeaten run.',
       ],
       challenge: 'Finding the stats that actually explained the Invincibles run, rather than just restating that they won a lot.',
+      tradeoffs: 'Chose a single historic season over building a general-purpose football analysis tool, trading reusability for depth on one specific story.',
       next: 'Compare the season against other unbeaten runs in Europe.',
+      hindsight: 'I\'d pull in more contextual data, like injuries and fixture congestion, rather than relying on match statistics alone.',
     },
   },
   {
@@ -239,7 +261,9 @@ export const projects: Project[] = [
         'Packaged it as a PWA with Node.js so it installs straight from GitHub Pages.',
       ],
       challenge: 'Keeping the difficulty curve fair for a young player without making it boring after five minutes.',
+      tradeoffs: 'Chose a single simple mechanic over multiple game modes, trading variety for something that felt polished and finished rather than half-built.',
       next: 'More levels and a couple more obstacle types.',
+      hindsight: 'I\'d add difficulty settings from the start. Right now it\'s tuned for roughly one skill level.',
     },
   },
   {
@@ -261,7 +285,9 @@ export const projects: Project[] = [
         'Realised the real fix was making it something the whole street could glance at, so it became a shareable page with colour-coded bin icons and a full browsable calendar.',
       ],
       challenge: 'Keeping it dead simple. A bin tracker that takes more effort than remembering bin day defeats the point.',
+      tradeoffs: 'Chose a shareable static page over a full account system, since a bin day checker doesn\'t need logins to be useful, just something to glance at.',
       next: 'Push notifications, so it reaches you instead of you having to remember to open it.',
+      hindsight: 'I\'d add push notifications in the first version rather than treating them as a nice-to-have, they\'re really the whole point of a reminder tool.',
     },
   },
   {
@@ -282,7 +308,9 @@ export const projects: Project[] = [
         'Broke down each win individually rather than just summarising the season as a whole.',
       ],
       challenge: 'Working with FastF1\'s raw telemetry data cleanly enough to make the analysis readable rather than a wall of numbers.',
+      tradeoffs: 'Chose to analyse one driver\'s season in depth over a broader multi-driver comparison, trading breadth for a clearer, more focused story.',
       next: 'Extend the same analysis to another driver\'s season.',
+      hindsight: 'I\'d structure the notebook so the per-race breakdown could be reused for a different driver without rewriting most of it.',
     },
   },
   {
@@ -303,7 +331,9 @@ export const projects: Project[] = [
         'Added an interactive web GUI once the CLI proved the data pipeline worked.',
       ],
       challenge: 'Keeping both interfaces sharing the same core analysis logic instead of drifting apart.',
+      tradeoffs: 'Chose to build both a CLI and a web GUI on the same core logic, trading extra effort for flexibility over picking one interface and committing to it.',
       next: 'Add session-to-session comparison.',
+      hindsight: 'I\'d write the core analysis as a proper library from the start, instead of extracting it out of the CLI after the GUI needed it too.',
     },
   },
   {
@@ -324,7 +354,9 @@ export const projects: Project[] = [
         'Added team suggestions based on current form and value once browsing the raw stats wasn\'t enough on its own.',
       ],
       challenge: 'Balancing "optimal on paper" against picks that actually make sense given price and form volatility.',
+      tradeoffs: 'Chose current form and value over more advanced projections, trading sophistication for something simple enough to trust and actually use weekly.',
       next: 'Factor in fixture difficulty, not just current form.',
+      hindsight: 'I\'d weight recent form more heavily than season-long averages, form matters more in Fantasy Premier League than the stats suggested.',
     },
   },
   {
@@ -344,7 +376,9 @@ export const projects: Project[] = [
         'Built a Python GUI on top of the Meta Graph API to pull the underlying data directly.',
       ],
       challenge: 'Working within the Meta Graph API\'s constraints and rate limits for something meant to be checked casually.',
+      tradeoffs: 'Chose the official Meta Graph API over scraping, trading some data completeness for something that wouldn\'t break the moment Instagram changed their site.',
       next: 'Track trends over time instead of a single snapshot.',
+      hindsight: 'I\'d cache API responses locally from the start, instead of hitting rate limits partway through a session.',
     },
   },
   {
@@ -365,7 +399,9 @@ export const projects: Project[] = [
         'Styled it with a Nokia 3310 aesthetic to make a well-worn tutorial project feel like mine.',
       ],
       challenge: 'Getting the movement and collision feel right, which is most of what makes Snake actually fun.',
+      tradeoffs: 'Chose to stick close to the classic ruleset rather than add new mechanics, since the point was learning Pygame properly, not reinventing the game.',
       next: 'A couple of alternate modes, like a speed-up mode.',
+      hindsight: 'I\'d separate the game loop from the rendering earlier, they ended up more tangled than they needed to be.',
     },
   },
   {
@@ -386,7 +422,9 @@ export const projects: Project[] = [
         'Built it out into a full pixel-art Emerald City with a yellow brick road to follow.',
       ],
       challenge: 'Getting genuinely pixel-art visuals out of a tool designed for simple line drawing.',
+      tradeoffs: 'Chose turtle graphics over a proper 2D engine, trading performance and polish for the challenge of pushing a genuinely simple tool further than usual.',
       next: 'More scenes along the road.',
+      hindsight: 'I\'d plan the scene layout on paper first. A lot of the turtle-path code was trial and error I could have avoided.',
     },
   },
   {
@@ -407,28 +445,9 @@ export const projects: Project[] = [
         'Added sparkle effects for the song\'s dramatic moments, then a playful ML model that predicts whether the next note will be high or low, just to see if it could.',
       ],
       challenge: 'Getting the visuals to land on the song\'s actual dramatic beats instead of just reacting to loudness.',
+      tradeoffs: 'Chose MIDI over raw audio analysis, trading the ability to visualise any song for much more reliable, structured note data to work with.',
       next: 'Try it against a second song to see how well it generalises.',
-    },
-  },
-  {
-    name: 'Roblox Experience',
-    slug: 'roblox-dev',
-    description:
-      'A complete Roblox mini-experience showcasing modular Lua scripting, data persistence, and gameplay mechanics.',
-    url: 'https://github.com/Lanthanum89/roblox-dev',
-    languages: ['Lua'],
-    ext: 'lua',
-    tools: ['Roblox', 'Game Design'],
-    category: 'Games',
-    pushedAt: '2026-07-09T02:00:40Z',
-    story: {
-      problem: 'Wanted to understand how a "real" Roblox experience is actually structured, not just a single script.',
-      attempts: [
-        'Built out modular Lua scripting so systems didn\'t all live in one file.',
-        'Added data persistence and core gameplay mechanics on top of that structure.',
-      ],
-      challenge: 'Keeping the Lua modules cleanly separated as the experience grew, instead of everything becoming one script.',
-      next: 'More gameplay mechanics on top of the same persistence layer.',
+      hindsight: 'I\'d build the ML high/low note predictor as a genuinely separate, testable component instead of bolting it onto the visualiser code.',
     },
   },
   {
@@ -461,7 +480,9 @@ export const projects: Project[] = [
         'Added saving each recipe as JSON so it wasn\'t just a one-off lookup.',
       ],
       challenge: 'Handling the API\'s inconsistent recipe data cleanly enough to save it reliably.',
+      tradeoffs: 'Chose a console app over a GUI, since the whole point was practicing the API integration itself, not building an interface around it.',
       next: 'A simple way to browse saved recipes back.',
+      hindsight: 'I\'d validate the API\'s data more defensively from the start, a few recipes had fields that didn\'t match what I expected.',
     },
   },
   {
@@ -482,7 +503,9 @@ export const projects: Project[] = [
         'Visualised the result as a word cloud rather than a table of word counts.',
       ],
       challenge: 'Cleaning up fetched web content enough that the word cloud reflected the article, not the site\'s navigation and boilerplate.',
+      tradeoffs: 'Chose simple frequency-based word clouds over more advanced NLP techniques, trading nuance for something fast and easy to reason about.',
       next: 'Let it summarise multiple URLs into one comparison cloud.',
+      hindsight: 'I\'d filter out site navigation and boilerplate text at the fetch stage, rather than cleaning it up after the fact.',
     },
   },
   {
@@ -503,7 +526,9 @@ export const projects: Project[] = [
         'Added stored procedures for sales analysis and loyalty schemes on top of the base schema.',
       ],
       challenge: 'Designing relationships that supported real queries, like loyalty schemes, without over-normalising the schema into uselessness.',
+      tradeoffs: 'Chose a fictional store over modelling a real one, trading realism for full control over the schema and data without worrying about privacy.',
       next: 'Pair it with the Video Gaming Hub API as a live backend.',
+      hindsight: 'I\'d write the stored procedures before finishing the schema, a couple of the query patterns I actually needed changed how I\'d design the tables.',
     },
   },
   {
@@ -524,7 +549,9 @@ export const projects: Project[] = [
         'Backed it with a MySQL database rather than mocking the data.',
       ],
       challenge: 'Modelling loans so the API can\'t return a game as both available and out on loan at the same time.',
+      tradeoffs: 'Chose Flask over a heavier framework, since a lending system with three entities didn\'t need much more than clean routing and a database connection.',
       next: 'Connect it to the Video Gaming Hub database project properly and add auth.',
+      hindsight: 'I\'d add authentication from the start rather than as a follow-up, it changes how you design every endpoint.',
     },
   },
   {
@@ -545,7 +572,9 @@ export const projects: Project[] = [
         'Added different time periods so it wasn\'t just a single fixed snapshot.',
       ],
       challenge: 'Working with Spotify\'s OAuth flow inside a desktop app rather than a browser.',
+      tradeoffs: 'Chose Tkinter over a web stack for the desktop version, trading a more modern interface for something that didn\'t need a browser or a server.',
       next: 'Superseded by the web version, SoundTracks, which is where the active work is now.',
+      hindsight: 'Looking back, I\'d have gone straight to a web app. The desktop version taught me the idea worked, but SoundTracks is where I\'d actually invest more effort now.',
     },
   },
   {
@@ -565,7 +594,9 @@ export const projects: Project[] = [
         'Kept adding features until it was a genuinely modern, feature-rich calculator rather than the tutorial version.',
       ],
       challenge: 'Handling calculator edge cases, like chained operations and invalid input, without the logic turning to spaghetti.',
+      tradeoffs: 'Chose to keep expanding the tutorial project rather than start from scratch, so I could see clearly how each feature changed the existing code.',
       next: 'Add a history of previous calculations.',
+      hindsight: 'I\'d design the operation-chaining logic properly from the start rather than patching it in as edge cases came up.',
     },
   },
   {
@@ -586,7 +617,9 @@ export const projects: Project[] = [
         'Added a wishlist and order history once the core cart state was solid.',
       ],
       challenge: 'Keeping cart, wishlist, and order history in sync without a framework doing it for me.',
+      tradeoffs: 'Chose plain JavaScript over a framework on purpose, trading convenience for actually understanding what a framework\'s state management would be doing for me.',
       next: 'Persist state properly instead of resetting on refresh.',
+      hindsight: 'I\'d reach for a simple state pattern, like a single store object, from the start rather than passing state between functions.',
     },
   },
   {
@@ -607,7 +640,9 @@ export const projects: Project[] = [
         'Synced them straight into a Notion database, so the manual copying step just stopped happening.',
       ],
       challenge: 'Keeping the sync idempotent so re-running it doesn\'t create duplicate Notion entries.',
+      tradeoffs: 'Chose topic-tag based syncing over a manually maintained list, trading a bit of setup for never having to remember to update Notion again.',
       next: 'Run it on a schedule instead of manually.',
+      hindsight: 'I\'d make the sync idempotent from the very first version. I only added that safeguard after it duplicated a few entries.',
     },
   },
   {
@@ -626,7 +661,9 @@ export const projects: Project[] = [
         'Built a GUI that fetches and displays repositories for any given username.',
       ],
       challenge: 'Handling the GitHub API\'s rate limits gracefully for something meant to be used casually.',
+      tradeoffs: 'Chose a simple GUI over a full dashboard, since the actual need was just browsing repos quickly, not analysing them.',
       next: 'Add filtering by language or last-updated date.',
+      hindsight: 'I\'d add basic caching so repeated lookups for the same username didn\'t eat into the API rate limit as fast.',
     },
   },
   {
@@ -647,7 +684,9 @@ export const projects: Project[] = [
         'Added visualisation on top of the raw tracking, so the backlog was something I could actually look at, not just a list.',
       ],
       challenge: 'Learning ASP.NET Core 9\'s newer patterns properly rather than defaulting to older tutorials.',
+      tradeoffs: 'Chose ASP.NET Core over a framework I already knew well, trading speed of delivery for the chance to actually learn its newer patterns properly.',
       next: 'Add a "what should I play next" suggestion based on the backlog.',
+      hindsight: 'I\'d design the visualisation views before the data model, I ended up reshaping the schema once I knew what I actually wanted to see.',
     },
   },
   {
@@ -668,7 +707,9 @@ export const projects: Project[] = [
         'Shipped it three ways, as a CLI, a GUI, and a web version, once the core logic worked.',
       ],
       challenge: 'Covering every valid checkout combination correctly, including the finishes that have to end on a double.',
+      tradeoffs: 'Chose to ship three interfaces on one core logic module, trading extra build time for not having to maintain three separate checkout calculators.',
       next: 'Track real games and checkout success rate over time.',
+      hindsight: 'I\'d write tests for the checkout combinations first. I found edge cases by playing real games that I should have caught earlier.',
     },
   },
   {
@@ -683,6 +724,7 @@ export const projects: Project[] = [
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T01:58:29Z',
     spotlight: true,
+    flagship: true,
     story: {
       problem: 'A normal clock felt like a boring project. A clock you have to decode felt more interesting.',
       attempts: [
@@ -690,7 +732,9 @@ export const projects: Project[] = [
         'Ported the same idea to a PowerShell widget, then native Windows and Android apps, mostly to see how the same small idea held up across four very different platforms.',
       ],
       challenge: 'Keeping the actual binary-time logic consistent across four completely different platforms and languages.',
+      tradeoffs: 'Chose to rebuild the same idea natively on each platform rather than wrap one codebase, trading reuse for actually learning each platform\'s basics properly.',
       next: 'A watch face version.',
+      hindsight: 'I\'d define the binary-time logic as a shared spec up front, each platform ended up with a slightly different interpretation of it that I had to reconcile.',
     },
   },
   {
@@ -711,7 +755,9 @@ export const projects: Project[] = [
         'Kept the feature set deliberately small: log expenses, set a budget, see if you\'re on target.',
       ],
       challenge: 'Resisting the urge to add every finance-app feature and keeping it to what I\'d actually use.',
+      tradeoffs: 'Chose Razor Pages over a full SPA framework, since a small budget tracker didn\'t need client-side routing or a heavy JavaScript build step.',
       next: 'Add simple month-to-month comparison.',
+      hindsight: 'I\'d add basic category tagging from the start rather than one flat list of expenses, categories are the first thing I wanted once I was using it for real.',
     },
   },
   {
@@ -731,7 +777,9 @@ export const projects: Project[] = [
         'Built it in C# and .NET 9, tracking fixed expenses and variable spending across categories.',
       ],
       challenge: 'Separating fixed expenses from variable spending in a way that was actually useful to look at, not just two lists.',
+      tradeoffs: 'Chose a console app first over building the web version straight away, so I could get the actual expense-tracking logic right before worrying about any interface.',
       next: 'Superseded by the web version, which is where the active work is now.',
+      hindsight: 'Looking back, I\'d have gone straight to the web version. The console app was a useful stepping stone, but it\'s not the one I actually use now.',
     },
   },
 ];

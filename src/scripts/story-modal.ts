@@ -5,7 +5,14 @@ interface StoryData {
   problem: string;
   attempts: string[];
   challenge?: string;
+  tradeoffs?: string;
   next?: string;
+  hindsight?: string;
+}
+
+interface OptionalField {
+  section: HTMLElement;
+  text: HTMLElement;
 }
 
 export function initStoryModal(): void {
@@ -17,12 +24,15 @@ export function initStoryModal(): void {
   const descriptionEl = dialog.querySelector<HTMLElement>('[data-story-description]');
   const problemEl = dialog.querySelector<HTMLElement>('[data-story-problem]');
   const attemptsEl = dialog.querySelector<HTMLOListElement>('[data-story-attempts]');
-  const challengeSection = dialog.querySelector<HTMLElement>('[data-story-challenge-section]');
-  const challengeEl = dialog.querySelector<HTMLElement>('[data-story-challenge]');
-  const nextSection = dialog.querySelector<HTMLElement>('[data-story-next-section]');
-  const nextEl = dialog.querySelector<HTMLElement>('[data-story-next]');
   const cta = dialog.querySelector<HTMLAnchorElement>('[data-story-cta]');
   const closeButton = dialog.querySelector<HTMLButtonElement>('[data-story-close]');
+
+  const optionalFields: Record<'challenge' | 'tradeoffs' | 'next' | 'hindsight', OptionalField | null> = {
+    challenge: getOptionalField(dialog, 'challenge'),
+    tradeoffs: getOptionalField(dialog, 'tradeoffs'),
+    next: getOptionalField(dialog, 'next'),
+    hindsight: getOptionalField(dialog, 'hindsight'),
+  };
 
   if (
     !filename ||
@@ -30,15 +40,22 @@ export function initStoryModal(): void {
     !descriptionEl ||
     !problemEl ||
     !attemptsEl ||
-    !challengeSection ||
-    !challengeEl ||
-    !nextSection ||
-    !nextEl ||
     !cta ||
-    !closeButton
+    !closeButton ||
+    Object.values(optionalFields).some((field) => field === null)
   ) {
     return;
   }
+
+  const setOptional = (field: OptionalField | null, value: string | undefined): void => {
+    if (!field) return;
+    if (value) {
+      field.text.textContent = value;
+      field.section.hidden = false;
+    } else {
+      field.section.hidden = true;
+    }
+  };
 
   const openWith = (data: StoryData): void => {
     filename.textContent = `${data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.story`;
@@ -51,26 +68,17 @@ export function initStoryModal(): void {
       const li = document.createElement('li');
       const label = document.createElement('span');
       label.className = 'story-modal__attempt-label mono';
-      label.textContent = `attempt ${index + 1}`;
+      label.textContent = `version ${index + 1}`;
       const p = document.createElement('p');
       p.textContent = attempt;
       li.append(label, p);
       attemptsEl.appendChild(li);
     });
 
-    if (data.challenge) {
-      challengeEl.textContent = data.challenge;
-      challengeSection.hidden = false;
-    } else {
-      challengeSection.hidden = true;
-    }
-
-    if (data.next) {
-      nextEl.textContent = data.next;
-      nextSection.hidden = false;
-    } else {
-      nextSection.hidden = true;
-    }
+    setOptional(optionalFields.challenge, data.challenge);
+    setOptional(optionalFields.tradeoffs, data.tradeoffs);
+    setOptional(optionalFields.next, data.next);
+    setOptional(optionalFields.hindsight, data.hindsight);
 
     cta.href = data.url;
     dialog.showModal();
@@ -90,4 +98,11 @@ export function initStoryModal(): void {
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
   });
+}
+
+function getOptionalField(dialog: HTMLDialogElement, name: string): OptionalField | null {
+  const section = dialog.querySelector<HTMLElement>(`[data-story-${name}-section]`);
+  const text = dialog.querySelector<HTMLElement>(`[data-story-${name}]`);
+  if (!section || !text) return null;
+  return { section, text };
 }
