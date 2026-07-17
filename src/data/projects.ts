@@ -8,7 +8,8 @@ export interface Project {
   /** All languages GitHub reports for the repo, ordered by share of code. */
   languages: string[];
   tools: string[];
-  category: Category;
+  /** A project can belong to more than one category, e.g. an F1 ML model is both Sport and Data & ML. */
+  categories: Category[];
   /** ISO timestamp of the repo's last push, used to sort the "all projects" list. */
   pushedAt: string;
   featured?: boolean;
@@ -36,7 +37,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/F1-2025-ML-Champion-Predictor',
     languages: ['Jupyter Notebook', 'Python'],
     tools: ['Machine Learning', 'f1'],
-    category: 'Sport',
+    categories: ['Sport', 'Data & ML'],
     pushedAt: '2026-07-09T01:59:21Z',
     featured: true,
     story: {
@@ -59,7 +60,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/ML-predicting-gamer-behaviour',
     languages: ['Jupyter Notebook'],
     tools: ['Machine Learning', 'Gaming Analytics'],
-    category: 'Data & ML',
+    categories: ['Data & ML'],
     pushedAt: '2026-07-09T02:00:13Z',
     featured: true,
     story: {
@@ -82,7 +83,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/spotify-stats-app',
     languages: ['JavaScript', 'CSS', 'HTML'],
     tools: ['Spotify API'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T02:00:59Z',
     featured: true,
     story: {
@@ -105,7 +106,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/squish-pop',
     languages: ['JavaScript', 'CSS', 'HTML'],
     tools: ['PWA', 'Game Design'],
-    category: 'Games',
+    categories: ['Games'],
     pushedAt: '2026-07-15T09:26:37Z',
     featured: true,
     story: {
@@ -128,7 +129,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/Swim-Progression-App',
     languages: ['JavaScript', 'HTML'],
     tools: ['PWA', 'Fitness Tracker'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T02:01:13Z',
     featured: true,
     story: {
@@ -151,7 +152,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/TFL-route-planner',
     languages: ['Python'],
     tools: ['tkinter', 'London Underground'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T02:01:17Z',
     featured: true,
     story: {
@@ -173,7 +174,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/Sound-Stars',
     languages: ['TypeScript', 'CSS', 'HTML', 'JavaScript'],
     tools: ['Education'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-10T22:08:37Z',
     story: {
       problem: 'Phonics revision for the Year 1 screening check is important and, for a five or six-year-old, deeply boring.',
@@ -195,7 +196,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/The-Little-Garden-Arcade',
     languages: ['JavaScript', 'HTML', 'CSS'],
     tools: ['Accessibility', 'Game Design'],
-    category: 'Games',
+    categories: ['Games'],
     pushedAt: '2026-07-09T02:52:54Z',
     story: {
       problem: 'Drag-and-drop looks great in a demo and fails the first small child, or anyone without precise fine motor control, who tries to use it.',
@@ -217,7 +218,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/Premier-League-2003-2004-Data-Analysis',
     languages: ['Jupyter Notebook'],
     tools: ['Data Analysis', 'pandas'],
-    category: 'Sport',
+    categories: ['Sport', 'Data & ML'],
     pushedAt: '2026-07-09T02:00:23Z',
     story: {
       problem: 'Wanted to know what an unbeaten Premier League season actually looks like in the numbers, not just the highlight reel.',
@@ -239,7 +240,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/turbo-tackle',
     languages: ['JavaScript', 'CSS', 'HTML'],
     tools: ['PWA', 'Node.js', 'Game Design'],
-    category: 'Games',
+    categories: ['Games'],
     pushedAt: '2026-07-09T02:01:30Z',
     story: {
       problem: 'Wanted a simple, fast game for kids that didn\'t need an app store install.',
@@ -261,7 +262,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/the-Bindicator',
     languages: ['JavaScript', 'HTML'],
     tools: ['Utility'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T02:01:21Z',
     spotlight: true,
     story: {
@@ -284,7 +285,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/f1-analysis',
     languages: ['Jupyter Notebook'],
     tools: ['Data Analysis', 'FastF1'],
-    category: 'Sport',
+    categories: ['Sport', 'Data & ML'],
     pushedAt: '2026-07-09T01:59:22Z',
     story: {
       problem: 'Wanted to look past the final standings and see what actually won Hamilton each race in 2020.',
@@ -306,7 +307,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/f1-lap-time-analyser',
     languages: ['Python'],
     tools: ['Data Analysis', 'FastF1'],
-    category: 'Sport',
+    categories: ['Sport', 'Data & ML'],
     pushedAt: '2026-07-09T01:59:25Z',
     story: {
       problem: 'Wanted to explore F1 lap time data properly, on the couch, not just from a terminal.',
@@ -328,7 +329,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/fpl-analyser',
     languages: ['Python'],
     tools: ['Data Analysis', 'FPL'],
-    category: 'Sport',
+    categories: ['Sport', 'Data & ML'],
     pushedAt: '2026-07-09T01:59:33Z',
     story: {
       problem: 'Fantasy Premier League team selection is really a small optimisation problem wearing a football shirt.',
@@ -350,7 +351,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/instagram-analytics',
     languages: ['Python', 'Batchfile'],
     tools: ['Data Analysis', 'Meta Graph API'],
-    category: 'Data & ML',
+    categories: ['Data & ML'],
     pushedAt: '2026-07-09T01:59:50Z',
     story: {
       problem: 'Wanted a clearer view of account performance than Instagram\'s own in-app stats give you.',
@@ -371,7 +372,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/Snake',
     languages: ['Python'],
     tools: ['Pygame', 'Game Design'],
-    category: 'Games',
+    categories: ['Games'],
     pushedAt: '2026-07-09T02:00:46Z',
     story: {
       problem: 'Wanted a small, complete project to properly learn Pygame, not another to-do list app.',
@@ -393,7 +394,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/emerald-city',
     languages: ['Python'],
     tools: ['Turtle Graphics', 'Game Design'],
-    category: 'Games',
+    categories: ['Games'],
     pushedAt: '2026-07-09T01:59:15Z',
     story: {
       problem: 'Wanted to see how far Python\'s turtle graphics could be pushed past the usual square-and-circle tutorials.',
@@ -415,7 +416,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/bohemian-rhapsody',
     languages: ['Python'],
     tools: ['MIDI', 'Creative Coding'],
-    category: 'Games',
+    categories: ['Games'],
     pushedAt: '2026-07-09T01:58:31Z',
     story: {
       problem: 'Wanted a music visualiser that reacted to the actual structure of a song, not just its volume.',
@@ -437,7 +438,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/dobble-algorithm',
     languages: ['HTML'],
     tools: ['Puzzle Generation'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T01:59:11Z',
   },
   {
@@ -448,7 +449,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/Console_Cocktails',
     languages: ['Python'],
     tools: ['API Integration'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T02:24:12Z',
     story: {
       problem: 'Wanted a quick, low-stakes excuse to try out a public API end to end.',
@@ -470,7 +471,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/word-cloud',
     languages: ['Python'],
     tools: ['Data Visualisation'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T02:03:07Z',
     story: {
       problem: 'Wanted a fast, visual way to see what a page was actually about before reading the whole thing.',
@@ -492,7 +493,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/Video-Gaming-Hub_DB',
     languages: ['SQL'],
     tools: ['MySQL', 'Database Design'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T02:02:49Z',
     story: {
       problem: 'Wanted a proper multi-table schema to practice on, not another single-table tutorial database.',
@@ -514,7 +515,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/Video-Gaming-Hub_API',
     languages: ['Python'],
     tools: ['Flask', 'REST API'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T02:02:47Z',
     story: {
       problem: 'Wanted to build a REST API against a real relational schema instead of an in-memory list.',
@@ -536,7 +537,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/spotify-stats',
     languages: ['Python', 'PowerShell', 'Batchfile'],
     tools: ['Spotify API', 'Tkinter'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T02:00:57Z',
     story: {
       problem: 'Built before SoundTracks, when I wanted the same idea as a desktop app rather than a web one.',
@@ -558,7 +559,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/Python_GUI-Calculator',
     languages: ['Python'],
     tools: ['Tkinter'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T02:00:32Z',
     story: {
       problem: 'Wanted a proper Tkinter project that went beyond the tutorial four-function calculator.',
@@ -580,7 +581,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/javascript-grocery-store',
     languages: ['JavaScript', 'CSS', 'HTML'],
     tools: ['Web App'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T01:59:52Z',
     story: {
       problem: 'Wanted to practice state management in plain JavaScript before reaching for a framework.',
@@ -602,7 +603,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/github-notion-sync-files',
     languages: ['Python'],
     tools: ['Notion API', 'Automation'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T01:59:41Z',
     story: {
       problem: 'Kept manually copying repo details into Notion every time I started a new project, and kept forgetting.',
@@ -624,7 +625,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/get-repos',
     languages: ['Python', 'Batchfile'],
     tools: ['GitHub API'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T01:59:39Z',
     story: {
       problem: 'Wanted a quicker way to browse someone\'s GitHub repos than clicking through the website.',
@@ -645,7 +646,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/GamingBacklogWebApp',
     languages: ['HTML', 'C#', 'CSS', 'JavaScript'],
     tools: ['ASP.NET Core', 'C#'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T01:59:38Z',
     story: {
       problem: 'My actual gaming backlog lived in my head and was getting embarrassingly long.',
@@ -667,7 +668,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/darts-calculator',
     languages: ['HTML', 'Python'],
     tools: ['CLI', 'GUI', 'Web'],
-    category: 'Sport',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T01:58:51Z',
     story: {
       problem: 'Wanted to stop doing checkout maths in my head mid-game.',
@@ -689,7 +690,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/binary-clock',
     languages: ['CSS', 'JavaScript', 'PowerShell', 'HTML', 'Kotlin', 'Batchfile', 'C#'],
     tools: ['Cross-platform'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T01:58:29Z',
     spotlight: true,
     story: {
@@ -712,7 +713,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/BudgetTrackerWebApp',
     languages: ['HTML', 'C#', 'CSS', 'JavaScript'],
     tools: ['ASP.NET Core', 'Razor Pages'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T01:58:35Z',
     story: {
       problem: 'Wanted an honest, simple view of whether I was on budget, without a finance app trying to sell me something.',
@@ -734,7 +735,7 @@ export const projects: Project[] = [
     url: 'https://github.com/Lanthanum89/BudgetTrackerApp',
     languages: ['C#'],
     tools: ['.NET'],
-    category: 'Tools & Apps',
+    categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T01:58:33Z',
     story: {
       problem: 'Wanted the same budget tracking idea as a console app first, before building the web version.',

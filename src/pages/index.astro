@@ -20,7 +20,7 @@ const languages = [...new Set(projects.flatMap((project) => project.languages))]
 const categories = categoryOrder
   .map((category) => ({
     name: category,
-    items: more.filter((project) => project.category === category),
+    items: more.filter((project) => project.categories.includes(category)),
   }))
   .filter((group) => group.items.length > 0);
 
