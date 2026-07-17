@@ -7,7 +7,7 @@ const aliasBanner = figlet.textSync('LANTHANUM89', { font: 'ANSI Shadow' }).repl
 
 <footer class="footer">
   <div class="wrapper">
-    <div class="footer__banner-scroll">
+    <div class="footer__banner-scroll footer__banner-scroll--first">
       <pre class="footer__banner" aria-hidden="true">{banner}</pre>
     </div>
     <p class="footer__banner-label mono">// aka</p>
@@ -31,6 +31,9 @@ const aliasBanner = figlet.textSync('LANTHANUM89', { font: 'ANSI Shadow' }).repl
 
   .footer__banner-scroll {
     overflow-x: auto;
+  }
+
+  .footer__banner-scroll--first {
     padding-top: 2rem;
   }
 
@@ -44,7 +47,7 @@ const aliasBanner = figlet.textSync('LANTHANUM89', { font: 'ANSI Shadow' }).repl
   }
 
   .footer__banner-label {
-    margin: 0.5rem 0 0;
+    margin: 0.6rem 0;
     color: var(--color-comment);
     font-size: 0.75rem;
   }
@@ -54,7 +57,7 @@ const aliasBanner = figlet.textSync('LANTHANUM89', { font: 'ANSI Shadow' }).repl
   }
 
   .footer__inner {
-    padding-block: 1rem 2rem;
+    padding-block: 1.5rem 2rem;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem 1.5rem;
