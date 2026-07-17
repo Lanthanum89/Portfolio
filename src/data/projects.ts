@@ -24,8 +24,6 @@ export interface Project {
     next?: string;
     hindsight?: string;
   };
-  /** Renders larger in its grid, spanning two columns on wide screens. Only one project should use this. */
-  flagship?: boolean;
 }
 
 // Featured projects mirror the pinned repos on github.com/Lanthanum89, in the same order.
@@ -724,7 +722,6 @@ export const projects: Project[] = [
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T01:58:29Z',
     spotlight: true,
-    flagship: true,
     story: {
       problem: 'A normal clock felt like a boring project. A clock you have to decode felt more interesting.',
       attempts: [

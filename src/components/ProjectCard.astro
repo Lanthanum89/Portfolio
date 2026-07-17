@@ -14,7 +14,7 @@ const Tag = filterable ? 'button' : 'span';
 ---
 
 <article
-  class:list={['card', project.flagship && 'card--flagship']}
+  class="card"
   data-languages={project.languages.join('|')}
   data-tools={project.tools.join('|')}
   data-preview-rank={rank ?? undefined}
@@ -102,24 +102,6 @@ const Tag = filterable ? 'button' : 'span';
 
   .card.is-hidden {
     display: none;
-  }
-
-  .card--flagship {
-    grid-column: span 2;
-  }
-
-  .card--flagship h3 {
-    font-size: 1.3rem;
-  }
-
-  .card--flagship .card p {
-    font-size: 1rem;
-  }
-
-  @media (max-width: 40rem) {
-    .card--flagship {
-      grid-column: span 1;
-    }
   }
 
   .card__titlebar {
