@@ -10,6 +10,7 @@ const HELP_TEXT = [
   '  contact           how to reach me',
   '  github            open my GitHub profile',
   '  theme             toggle light/dark theme',
+  '  guess             play a quick number-guessing game',
   '  clear             clear this terminal',
 ];
 
@@ -41,6 +42,8 @@ export function initTerminal(): void {
 
   const history: string[] = [];
   let historyIndex = -1;
+
+  const guessGame = { active: false, target: 0, attempts: 0 };
 
   const scrollToBottom = (): void => {
     output.scrollTop = output.scrollHeight;
@@ -77,6 +80,44 @@ export function initTerminal(): void {
     }
   };
 
+  const startGuessGame = (): void => {
+    guessGame.active = true;
+    guessGame.target = Math.floor(Math.random() * 100) + 1;
+    guessGame.attempts = 0;
+    printLines([
+      "I'm thinking of a number between 1 and 100.",
+      "Type a number to guess, or 'quit' to give up.",
+    ]);
+  };
+
+  const handleGuess = (raw: string): void => {
+    const trimmed = raw.trim().toLowerCase();
+
+    if (trimmed === 'quit' || trimmed === 'exit') {
+      printLines([`Gave up. It was ${guessGame.target}.`]);
+      guessGame.active = false;
+      return;
+    }
+
+    const value = Number(trimmed);
+    if (!trimmed || Number.isNaN(value)) {
+      printLines(["Type a number, or 'quit' to give up."]);
+      return;
+    }
+
+    guessGame.attempts += 1;
+
+    if (value === guessGame.target) {
+      const guesses = guessGame.attempts === 1 ? 'guess' : 'guesses';
+      printLines([`That's it! ${guessGame.target}, in ${guessGame.attempts} ${guesses}.`]);
+      guessGame.active = false;
+    } else if (value < guessGame.target) {
+      printLines(['Higher.']);
+    } else {
+      printLines(['Lower.']);
+    }
+  };
+
   const run = (raw: string): void => {
     const command = raw.trim();
     printLines([`laura@portfolio:~$ ${command}`], 'echo');
@@ -86,10 +127,18 @@ export function initTerminal(): void {
       historyIndex = history.length;
     }
 
+    if (guessGame.active) {
+      handleGuess(command);
+      return;
+    }
+
     const [name, ...rest] = command.toLowerCase().split(/\s+/).filter(Boolean);
     const arg = rest.join(' ');
 
     switch (name) {
+      case 'guess':
+        startGuessGame();
+        break;
       case undefined:
         break;
       case 'help':
