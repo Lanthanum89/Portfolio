@@ -39,6 +39,15 @@ export const projects: Project[] = [
     category: 'Sport',
     pushedAt: '2026-07-09T01:59:21Z',
     featured: true,
+    story: {
+      problem: 'Predicting an F1 champion from gut feel is fun at the pub, not so convincing as an engineer.',
+      attempts: [
+        'Started with a simple model on raw championship standings.',
+        'Layered in historical race data and driver performance metrics, then spent most of the time on feature engineering rather than the model itself.',
+      ],
+      challenge: 'Getting from "a model that runs" to a model whose predictions you\'d actually trust, given how noisy a single F1 season is.',
+      next: 'Feed in live 2025 race results as the season progresses, instead of a one-shot prediction.',
+    },
   },
   {
     name: 'ML: Predicting Gamer Behaviour',
@@ -52,6 +61,15 @@ export const projects: Project[] = [
     category: 'Data & ML',
     pushedAt: '2026-07-09T02:00:13Z',
     featured: true,
+    story: {
+      problem: 'Wanted to practice real player-segmentation techniques without access to an actual studio\'s live data.',
+      attempts: [
+        'Built a synthetic dataset of 30,000 simulated players modelled on real-world gaming analytics.',
+        'Used it to test segmentation and engagement-prediction approaches end to end.',
+      ],
+      challenge: 'Making the synthetic data realistic enough that the patterns the model finds would actually generalise.',
+      next: 'Try the same pipeline against a real, messier dataset.',
+    },
   },
   {
     name: 'SoundTracks (Spotify Stats App)',
@@ -65,6 +83,15 @@ export const projects: Project[] = [
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T02:00:59Z',
     featured: true,
+    story: {
+      problem: 'Spotify Wrapped only happens once a year, and I wanted to see my stats whenever I felt like it.',
+      attempts: [
+        'Started as a script that just pulled top tracks.',
+        'Grew into a full locally hosted web app with genre distributions and recent history, once top tracks alone wasn\'t enough.',
+      ],
+      challenge: 'Working within Spotify\'s API and auth flow for something that was only ever going to run on my own machine.',
+      next: 'A hosted version that doesn\'t need to run locally.',
+    },
   },
   {
     name: 'Squish Pop',
@@ -100,6 +127,15 @@ export const projects: Project[] = [
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T02:01:13Z',
     featured: true,
+    story: {
+      problem: 'A friend wanted to see her swim distance add up to something real, not just a number in a spreadsheet.',
+      attempts: [
+        'Started with a simple distance log.',
+        'Mapped cumulative distance onto real-world routes so every swim visibly moved her further along, with milestone celebrations to mark the distance.',
+      ],
+      challenge: 'Making the progress feel motivating rather than just a bigger number, on a screen she\'d actually check after a swim.',
+      next: 'Let her pick her own route, instead of a fixed one.',
+    },
   },
   {
     name: 'TFL Route Planner',
@@ -113,6 +149,14 @@ export const projects: Project[] = [
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T02:01:17Z',
     featured: true,
+    story: {
+      problem: 'Wanted a route planner that didn\'t need a live API call for something as static as the tube map.',
+      attempts: [
+        'Built the core routing logic and a Python and tkinter GUI to work entirely offline.',
+      ],
+      challenge: 'Modelling the Underground network in a way that was simple enough to reason about but still gave correct routes.',
+      next: 'Wire it up to live TfL APIs for real-time disruptions.',
+    },
   },
   {
     name: 'Sound Stars',
@@ -125,6 +169,15 @@ export const projects: Project[] = [
     tools: ['Education'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-10T22:08:37Z',
+    story: {
+      problem: 'Phonics revision for the Year 1 screening check is important and, for a five or six-year-old, deeply boring.',
+      attempts: [
+        'Started with plain digital flashcards.',
+        'Reworked them to be playful rather than test-like, so revision didn\'t feel like revision.',
+      ],
+      challenge: 'Keeping it genuinely playful without losing the actual phonics structure the screening check tests.',
+      next: 'More sound sets covering the full phonics phases.',
+    },
   },
   {
     name: 'The Little Garden Arcade',
@@ -137,6 +190,15 @@ export const projects: Project[] = [
     tools: ['Accessibility', 'Game Design'],
     category: 'Games',
     pushedAt: '2026-07-09T02:52:54Z',
+    story: {
+      problem: 'Drag-and-drop looks great in a demo and fails the first small child, or anyone without precise fine motor control, who tries to use it.',
+      attempts: [
+        'Started with one drag-based mini-game, the usual approach.',
+        'Rebuilt the whole interaction model around tap-to-select then tap-to-place instead, and made it the rule for every game in the hub, not just a workaround for one.',
+      ],
+      challenge: 'Making tap-to-select feel as immediate as drag-and-drop, instead of like a compromise.',
+      next: 'More mini-games under the same no-drag-and-drop rule.',
+    },
   },
   {
     name: 'Premier League 2003/04: The Invincibles',
@@ -149,6 +211,15 @@ export const projects: Project[] = [
     tools: ['Data Analysis', 'pandas'],
     category: 'Sport',
     pushedAt: '2026-07-09T02:00:23Z',
+    story: {
+      problem: 'Wanted to know what an unbeaten Premier League season actually looks like in the numbers, not just the highlight reel.',
+      attempts: [
+        'Pulled together team and match statistics for the season.',
+        'Used pandas and matplotlib to visualise the performance trends behind the unbeaten run.',
+      ],
+      challenge: 'Finding the stats that actually explained the Invincibles run, rather than just restating that they won a lot.',
+      next: 'Compare the season against other unbeaten runs in Europe.',
+    },
   },
   {
     name: 'Turbo Tackle',
@@ -161,6 +232,15 @@ export const projects: Project[] = [
     tools: ['PWA', 'Node.js', 'Game Design'],
     category: 'Games',
     pushedAt: '2026-07-09T02:01:30Z',
+    story: {
+      problem: 'Wanted a simple, fast game for kids that didn\'t need an app store install.',
+      attempts: [
+        'Built it as a retro pixel-art racer with a single dodge-the-footballs mechanic.',
+        'Packaged it as a PWA with Node.js so it installs straight from GitHub Pages.',
+      ],
+      challenge: 'Keeping the difficulty curve fair for a young player without making it boring after five minutes.',
+      next: 'More levels and a couple more obstacle types.',
+    },
   },
   {
     name: 'The Bindicator',
@@ -173,6 +253,7 @@ export const projects: Project[] = [
     tools: ['Utility'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T02:01:21Z',
+    spotlight: true,
     story: {
       problem: 'My street kept missing bin day, mine included. Everyone had their own half-working way of remembering it.',
       attempts: [
@@ -194,6 +275,15 @@ export const projects: Project[] = [
     tools: ['Data Analysis', 'FastF1'],
     category: 'Sport',
     pushedAt: '2026-07-09T01:59:22Z',
+    story: {
+      problem: 'Wanted to look past the final standings and see what actually won Hamilton each race in 2020.',
+      attempts: [
+        'Pulled race data with FastF1.',
+        'Broke down each win individually rather than just summarising the season as a whole.',
+      ],
+      challenge: 'Working with FastF1\'s raw telemetry data cleanly enough to make the analysis readable rather than a wall of numbers.',
+      next: 'Extend the same analysis to another driver\'s season.',
+    },
   },
   {
     name: 'F1 Lap Time Analyser',
@@ -206,6 +296,15 @@ export const projects: Project[] = [
     tools: ['Data Analysis', 'FastF1'],
     category: 'Sport',
     pushedAt: '2026-07-09T01:59:25Z',
+    story: {
+      problem: 'Wanted to explore F1 lap time data properly, on the couch, not just from a terminal.',
+      attempts: [
+        'Started as a CLI tool on top of FastF1 data.',
+        'Added an interactive web GUI once the CLI proved the data pipeline worked.',
+      ],
+      challenge: 'Keeping both interfaces sharing the same core analysis logic instead of drifting apart.',
+      next: 'Add session-to-session comparison.',
+    },
   },
   {
     name: 'FPL Analyser',
@@ -218,6 +317,15 @@ export const projects: Project[] = [
     tools: ['Data Analysis', 'FPL'],
     category: 'Sport',
     pushedAt: '2026-07-09T01:59:33Z',
+    story: {
+      problem: 'Fantasy Premier League team selection is really a small optimisation problem wearing a football shirt.',
+      attempts: [
+        'Pulled player statistics into a GUI.',
+        'Added team suggestions based on current form and value once browsing the raw stats wasn\'t enough on its own.',
+      ],
+      challenge: 'Balancing "optimal on paper" against picks that actually make sense given price and form volatility.',
+      next: 'Factor in fixture difficulty, not just current form.',
+    },
   },
   {
     name: 'Instagram Analytics',
@@ -230,6 +338,14 @@ export const projects: Project[] = [
     tools: ['Data Analysis', 'Meta Graph API'],
     category: 'Data & ML',
     pushedAt: '2026-07-09T01:59:50Z',
+    story: {
+      problem: 'Wanted a clearer view of account performance than Instagram\'s own in-app stats give you.',
+      attempts: [
+        'Built a Python GUI on top of the Meta Graph API to pull the underlying data directly.',
+      ],
+      challenge: 'Working within the Meta Graph API\'s constraints and rate limits for something meant to be checked casually.',
+      next: 'Track trends over time instead of a single snapshot.',
+    },
   },
   {
     name: 'Snake',
@@ -242,6 +358,15 @@ export const projects: Project[] = [
     tools: ['Pygame', 'Game Design'],
     category: 'Games',
     pushedAt: '2026-07-09T02:00:46Z',
+    story: {
+      problem: 'Wanted a small, complete project to properly learn Pygame, not another to-do list app.',
+      attempts: [
+        'Built the classic Snake mechanic first.',
+        'Styled it with a Nokia 3310 aesthetic to make a well-worn tutorial project feel like mine.',
+      ],
+      challenge: 'Getting the movement and collision feel right, which is most of what makes Snake actually fun.',
+      next: 'A couple of alternate modes, like a speed-up mode.',
+    },
   },
   {
     name: 'Emerald City',
@@ -254,6 +379,15 @@ export const projects: Project[] = [
     tools: ['Turtle Graphics', 'Game Design'],
     category: 'Games',
     pushedAt: '2026-07-09T01:59:15Z',
+    story: {
+      problem: 'Wanted to see how far Python\'s turtle graphics could be pushed past the usual square-and-circle tutorials.',
+      attempts: [
+        'Started with a basic path-drawing turtle script.',
+        'Built it out into a full pixel-art Emerald City with a yellow brick road to follow.',
+      ],
+      challenge: 'Getting genuinely pixel-art visuals out of a tool designed for simple line drawing.',
+      next: 'More scenes along the road.',
+    },
   },
   {
     name: 'Bohemian Rhapsody Visualiser',
@@ -266,6 +400,15 @@ export const projects: Project[] = [
     tools: ['MIDI', 'Creative Coding'],
     category: 'Games',
     pushedAt: '2026-07-09T01:58:31Z',
+    story: {
+      problem: 'Wanted a music visualiser that reacted to the actual structure of a song, not just its volume.',
+      attempts: [
+        'Started with basic MIDI-driven particle bursts.',
+        'Added sparkle effects for the song\'s dramatic moments, then a playful ML model that predicts whether the next note will be high or low, just to see if it could.',
+      ],
+      challenge: 'Getting the visuals to land on the song\'s actual dramatic beats instead of just reacting to loudness.',
+      next: 'Try it against a second song to see how well it generalises.',
+    },
   },
   {
     name: 'Roblox Experience',
@@ -278,6 +421,15 @@ export const projects: Project[] = [
     tools: ['Roblox', 'Game Design'],
     category: 'Games',
     pushedAt: '2026-07-09T02:00:40Z',
+    story: {
+      problem: 'Wanted to understand how a "real" Roblox experience is actually structured, not just a single script.',
+      attempts: [
+        'Built out modular Lua scripting so systems didn\'t all live in one file.',
+        'Added data persistence and core gameplay mechanics on top of that structure.',
+      ],
+      challenge: 'Keeping the Lua modules cleanly separated as the experience grew, instead of everything becoming one script.',
+      next: 'More gameplay mechanics on top of the same persistence layer.',
+    },
   },
   {
     name: 'Dobble Algorithm',
@@ -302,6 +454,15 @@ export const projects: Project[] = [
     tools: ['API Integration'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T02:24:12Z',
+    story: {
+      problem: 'Wanted a quick, low-stakes excuse to try out a public API end to end.',
+      attempts: [
+        'Built a console app that fetches a random cocktail recipe from TheCocktailDB API.',
+        'Added saving each recipe as JSON so it wasn\'t just a one-off lookup.',
+      ],
+      challenge: 'Handling the API\'s inconsistent recipe data cleanly enough to save it reliably.',
+      next: 'A simple way to browse saved recipes back.',
+    },
   },
   {
     name: 'Word Cloud Generator',
@@ -314,6 +475,15 @@ export const projects: Project[] = [
     tools: ['Data Visualisation'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T02:03:07Z',
+    story: {
+      problem: 'Wanted a fast, visual way to see what a page was actually about before reading the whole thing.',
+      attempts: [
+        'Built a GUI that takes a URL, fetches the page, and processes the text.',
+        'Visualised the result as a word cloud rather than a table of word counts.',
+      ],
+      challenge: 'Cleaning up fetched web content enough that the word cloud reflected the article, not the site\'s navigation and boilerplate.',
+      next: 'Let it summarise multiple URLs into one comparison cloud.',
+    },
   },
   {
     name: 'Video Gaming Hub: Database',
@@ -326,6 +496,15 @@ export const projects: Project[] = [
     tools: ['MySQL', 'Database Design'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T02:02:49Z',
+    story: {
+      problem: 'Wanted a proper multi-table schema to practice on, not another single-table tutorial database.',
+      attempts: [
+        'Modelled platforms, customers, games, and purchases as a fictional video game store.',
+        'Added stored procedures for sales analysis and loyalty schemes on top of the base schema.',
+      ],
+      challenge: 'Designing relationships that supported real queries, like loyalty schemes, without over-normalising the schema into uselessness.',
+      next: 'Pair it with the Video Gaming Hub API as a live backend.',
+    },
   },
   {
     name: 'Video Gaming Hub: API',
@@ -338,6 +517,15 @@ export const projects: Project[] = [
     tools: ['Flask', 'REST API'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T02:02:47Z',
+    story: {
+      problem: 'Wanted to build a REST API against a real relational schema instead of an in-memory list.',
+      attempts: [
+        'Built a Flask API for a game lending system: games, customers, and loans.',
+        'Backed it with a MySQL database rather than mocking the data.',
+      ],
+      challenge: 'Modelling loans so the API can\'t return a game as both available and out on loan at the same time.',
+      next: 'Connect it to the Video Gaming Hub database project properly and add auth.',
+    },
   },
   {
     name: 'Spotify Stats (Desktop)',
@@ -350,6 +538,15 @@ export const projects: Project[] = [
     tools: ['Spotify API', 'Tkinter'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T02:00:57Z',
+    story: {
+      problem: 'Built before SoundTracks, when I wanted the same idea as a desktop app rather than a web one.',
+      attempts: [
+        'Built a Python GUI showing top artists, tracks, and genres.',
+        'Added different time periods so it wasn\'t just a single fixed snapshot.',
+      ],
+      challenge: 'Working with Spotify\'s OAuth flow inside a desktop app rather than a browser.',
+      next: 'Superseded by the web version, SoundTracks, which is where the active work is now.',
+    },
   },
   {
     name: 'Calculator',
@@ -361,6 +558,15 @@ export const projects: Project[] = [
     tools: ['Tkinter'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T02:00:32Z',
+    story: {
+      problem: 'Wanted a proper Tkinter project that went beyond the tutorial four-function calculator.',
+      attempts: [
+        'Started from the standard four-function calculator tutorial.',
+        'Kept adding features until it was a genuinely modern, feature-rich calculator rather than the tutorial version.',
+      ],
+      challenge: 'Handling calculator edge cases, like chained operations and invalid input, without the logic turning to spaghetti.',
+      next: 'Add a history of previous calculations.',
+    },
   },
   {
     name: 'JavaScript Grocery Store',
@@ -373,6 +579,15 @@ export const projects: Project[] = [
     tools: ['Web App'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T01:59:52Z',
+    story: {
+      problem: 'Wanted to practice state management in plain JavaScript before reaching for a framework.',
+      attempts: [
+        'Started with a product catalog and shopping cart.',
+        'Added a wishlist and order history once the core cart state was solid.',
+      ],
+      challenge: 'Keeping cart, wishlist, and order history in sync without a framework doing it for me.',
+      next: 'Persist state properly instead of resetting on refresh.',
+    },
   },
   {
     name: 'GitHub–Notion Sync',
@@ -385,6 +600,15 @@ export const projects: Project[] = [
     tools: ['Notion API', 'Automation'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T01:59:41Z',
+    story: {
+      problem: 'Kept manually copying repo details into Notion every time I started a new project, and kept forgetting.',
+      attempts: [
+        'Built a script to pull repos tagged with the "portfolio" topic from GitHub.',
+        'Synced them straight into a Notion database, so the manual copying step just stopped happening.',
+      ],
+      challenge: 'Keeping the sync idempotent so re-running it doesn\'t create duplicate Notion entries.',
+      next: 'Run it on a schedule instead of manually.',
+    },
   },
   {
     name: 'Get Repos',
@@ -396,6 +620,14 @@ export const projects: Project[] = [
     tools: ['GitHub API'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T01:59:39Z',
+    story: {
+      problem: 'Wanted a quicker way to browse someone\'s GitHub repos than clicking through the website.',
+      attempts: [
+        'Built a GUI that fetches and displays repositories for any given username.',
+      ],
+      challenge: 'Handling the GitHub API\'s rate limits gracefully for something meant to be used casually.',
+      next: 'Add filtering by language or last-updated date.',
+    },
   },
   {
     name: 'Gaming Backlog',
@@ -408,6 +640,15 @@ export const projects: Project[] = [
     tools: ['ASP.NET Core', 'C#'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T01:59:38Z',
+    story: {
+      problem: 'My actual gaming backlog lived in my head and was getting embarrassingly long.',
+      attempts: [
+        'Built a full-stack ASP.NET Core 9 app to track and manage it properly.',
+        'Added visualisation on top of the raw tracking, so the backlog was something I could actually look at, not just a list.',
+      ],
+      challenge: 'Learning ASP.NET Core 9\'s newer patterns properly rather than defaulting to older tutorials.',
+      next: 'Add a "what should I play next" suggestion based on the backlog.',
+    },
   },
   {
     name: 'Darts Calculator',
@@ -420,6 +661,15 @@ export const projects: Project[] = [
     tools: ['CLI', 'GUI', 'Web'],
     category: 'Sport',
     pushedAt: '2026-07-09T01:58:51Z',
+    story: {
+      problem: 'Wanted to stop doing checkout maths in my head mid-game.',
+      attempts: [
+        'Built the core checkout logic for scores between 2 and 170 first.',
+        'Shipped it three ways, as a CLI, a GUI, and a web version, once the core logic worked.',
+      ],
+      challenge: 'Covering every valid checkout combination correctly, including the finishes that have to end on a double.',
+      next: 'Track real games and checkout success rate over time.',
+    },
   },
   {
     name: 'Binary Clock',
@@ -433,6 +683,15 @@ export const projects: Project[] = [
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T01:58:29Z',
     spotlight: true,
+    story: {
+      problem: 'A normal clock felt like a boring project. A clock you have to decode felt more interesting.',
+      attempts: [
+        'Built it first as a web app.',
+        'Ported the same idea to a PowerShell widget, then native Windows and Android apps, mostly to see how the same small idea held up across four very different platforms.',
+      ],
+      challenge: 'Keeping the actual binary-time logic consistent across four completely different platforms and languages.',
+      next: 'A watch face version.',
+    },
   },
   {
     name: 'Budget Tracker (Web)',
@@ -445,6 +704,15 @@ export const projects: Project[] = [
     tools: ['ASP.NET Core', 'Razor Pages'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T01:58:35Z',
+    story: {
+      problem: 'Wanted an honest, simple view of whether I was on budget, without a finance app trying to sell me something.',
+      attempts: [
+        'Built it with ASP.NET Core Razor Pages to track expenses and set a budget.',
+        'Kept the feature set deliberately small: log expenses, set a budget, see if you\'re on target.',
+      ],
+      challenge: 'Resisting the urge to add every finance-app feature and keeping it to what I\'d actually use.',
+      next: 'Add simple month-to-month comparison.',
+    },
   },
   {
     name: 'Budget Tracker (Console)',
@@ -457,6 +725,14 @@ export const projects: Project[] = [
     tools: ['.NET'],
     category: 'Tools & Apps',
     pushedAt: '2026-07-09T01:58:33Z',
+    story: {
+      problem: 'Wanted the same budget tracking idea as a console app first, before building the web version.',
+      attempts: [
+        'Built it in C# and .NET 9, tracking fixed expenses and variable spending across categories.',
+      ],
+      challenge: 'Separating fixed expenses from variable spending in a way that was actually useful to look at, not just two lists.',
+      next: 'Superseded by the web version, which is where the active work is now.',
+    },
   },
 ];
 

@@ -25,6 +25,21 @@ const Tag = filterable ? 'button' : 'span';
     <span class="dot dot--yellow"></span>
     <span class="dot dot--green"></span>
     <span class="card__filename mono">{project.slug}.{project.ext}</span>
+    {project.story && (
+      <button
+        type="button"
+        class="card__story-trigger mono"
+        data-story-trigger
+        data-story={JSON.stringify({
+          name: project.name,
+          description: project.description,
+          url: project.url,
+          ...project.story,
+        })}
+      >
+        [story]
+      </button>
+    )}
   </div>
 
   <div class="card__body">
@@ -53,12 +68,6 @@ const Tag = filterable ? 'button' : 'span';
         </Tag>
       ))}
     </div>
-
-    {project.story && (
-      <a class="card__story-link mono" href={`${import.meta.env.BASE_URL}projects/${project.slug}/`}>
-        Read the story <span aria-hidden="true">&rarr;</span>
-      </a>
-    )}
   </div>
 </article>
 
@@ -91,6 +100,30 @@ const Tag = filterable ? 'button' : 'span';
     padding: 0.6rem 0.9rem;
     background: var(--color-bg-raised);
     border-bottom: 1px solid var(--color-border);
+  }
+
+  .card__story-trigger {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: transparent;
+    color: var(--color-pink);
+    border: 1px solid var(--color-pink);
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  }
+
+  .card__story-trigger:hover {
+    background: var(--color-pink);
+    color: var(--color-on-accent);
+  }
+
+  .card__story-trigger:active {
+    transform: scale(0.94);
   }
 
   .dot {
@@ -224,15 +257,4 @@ const Tag = filterable ? 'button' : 'span';
     border-color: var(--color-pink);
   }
 
-  .card__story-link {
-    align-self: flex-start;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--color-pink);
-    text-decoration: none;
-  }
-
-  .card__story-link:hover {
-    text-decoration: underline;
-  }
 </style>
