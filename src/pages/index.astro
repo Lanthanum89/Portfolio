@@ -4,10 +4,6 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { projects, categoryOrder } from '../data/projects';
-import figlet from 'figlet';
-
-const banner = figlet.textSync('LAURA', { font: 'ANSI Shadow' }).replace(/\s+$/gm, '');
-
 const featured = projects.filter((project) => project.featured);
 const more = projects
   .filter((project) => !project.featured)
@@ -64,9 +60,6 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
           <span class="terminal__filename mono">laura@portfolio: ~</span>
         </div>
         <div class="terminal__output mono" data-terminal-output role="log" aria-live="polite">
-          <div class="terminal__banner-scroll">
-            <pre class="terminal__banner" aria-hidden="true">{banner}</pre>
-          </div>
           <p class="terminal__line">Type <code>help</code> to see what this does.</p>
         </div>
         <div class="terminal__input-row mono">
@@ -317,24 +310,11 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
   }
 
   .terminal__output {
-    height: 13.5rem;
+    height: 8rem;
     overflow-y: auto;
     padding: 0.85rem 1rem;
     font-size: 0.85rem;
     line-height: 1.6;
-  }
-
-  .terminal__banner-scroll {
-    overflow-x: auto;
-    margin: 0 0 0.6rem;
-  }
-
-  .terminal__banner {
-    margin: 0;
-    color: var(--color-pink);
-    font-size: clamp(0.34rem, 1.6vw, 0.62rem);
-    line-height: 1.3;
-    width: fit-content;
   }
 
   .terminal__output :global(.terminal__line) {

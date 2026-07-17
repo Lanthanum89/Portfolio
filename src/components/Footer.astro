@@ -1,13 +1,21 @@
 ---
+import figlet from 'figlet';
+
 const year = new Date().getFullYear();
+const banner = figlet.textSync('LAURA', { font: 'ANSI Shadow' }).replace(/\s+$/gm, '');
 ---
 
 <footer class="footer">
-  <div class="wrapper footer__inner">
-    <p class="mono">
-      <span class="prompt">laura@portfolio:~$</span> echo "thanks for stopping by" &copy; {year}
-    </p>
-    <a href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer" class="mono">github.com/Lanthanum89</a>
+  <div class="wrapper">
+    <div class="footer__banner-scroll">
+      <pre class="footer__banner" aria-hidden="true">{banner}</pre>
+    </div>
+    <div class="footer__inner">
+      <p class="mono">
+        <span class="prompt">laura@portfolio:~$</span> echo "thanks for stopping by" &copy; {year}
+      </p>
+      <a href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer" class="mono">github.com/Lanthanum89</a>
+    </div>
   </div>
 </footer>
 
@@ -17,8 +25,22 @@ const year = new Date().getFullYear();
     margin-top: 2rem;
   }
 
+  .footer__banner-scroll {
+    overflow-x: auto;
+    padding-top: 2rem;
+  }
+
+  .footer__banner {
+    margin: 0;
+    width: fit-content;
+    color: var(--color-pink);
+    opacity: 0.7;
+    font-size: clamp(0.3rem, 1.4vw, 0.44rem);
+    line-height: 1.3;
+  }
+
   .footer__inner {
-    padding-block: 2rem;
+    padding-block: 1rem 2rem;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem 1.5rem;
