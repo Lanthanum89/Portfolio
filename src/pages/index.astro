@@ -151,7 +151,7 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
         <h2>Let's build something worth talking about.</h2>
         <p class="contact-card__hint">Open to hearing about interesting projects and opportunities.</p>
         <div class="contact-card__links">
-          <a class="button button--primary" href="https://www.instagram.com/codermumuk/" target="_blank" rel="noreferrer">Instagram</a>
+          <a class="button" href="https://www.instagram.com/codermumuk/" target="_blank" rel="noreferrer">Instagram</a>
           <a class="button" href="https://www.linkedin.com/in/laura-norwood/" target="_blank" rel="noreferrer">LinkedIn</a>
           <a class="button" href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer">GitHub</a>
         </div>
@@ -620,16 +620,17 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
     gap: 0.75rem;
   }
 
-  .contact-card .button:not(.button--primary) {
+  .contact-card .button {
     background: color-mix(in srgb, #1a1d24 8%, transparent);
     border-color: color-mix(in srgb, #1a1d24 25%, transparent);
     color: #1a1d24;
   }
 
-  .contact-card .button--primary {
+  .contact-card .button:hover {
     background: #1a1d24;
     border-color: #1a1d24;
     color: #f8f6f3;
+    transform: translateY(-2px);
   }
 
   .story-modal {
