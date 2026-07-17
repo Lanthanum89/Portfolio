@@ -584,6 +584,7 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
   }
 
   .contact-card {
+    --contact-fg: #f8f6f3;
     padding: 2.5rem;
     border-radius: 1rem;
     background: linear-gradient(
@@ -591,11 +592,20 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
       var(--color-accent) 0%,
       var(--color-pink) 100%
     );
-    color: #f8f6f3;
+    color: var(--contact-fg);
+  }
+
+  :root[data-theme='light'] .contact-card {
+    --contact-fg: #1a1d24;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-accent) 55%, white) 0%,
+      color-mix(in srgb, var(--color-pink) 55%, white) 100%
+    );
   }
 
   .contact-card .eyebrow {
-    color: #f8f6f3;
+    color: var(--contact-fg);
     opacity: 0.85;
   }
 
@@ -610,7 +620,7 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
   .contact-card__hint {
     max-width: 32rem;
     margin: 0 0 1.5rem;
-    color: #f8f6f3;
+    color: var(--contact-fg);
     opacity: 0.9;
   }
 
@@ -621,9 +631,9 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
   }
 
   .contact-card .button {
-    background: color-mix(in srgb, #f8f6f3 14%, transparent);
-    border-color: color-mix(in srgb, #f8f6f3 35%, transparent);
-    color: #f8f6f3;
+    background: color-mix(in srgb, var(--contact-fg) 14%, transparent);
+    border-color: color-mix(in srgb, var(--contact-fg) 35%, transparent);
+    color: var(--contact-fg);
   }
 
   .contact-card .button:hover {
