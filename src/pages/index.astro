@@ -85,8 +85,8 @@ const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`
       <h2>A little about me</h2>
       <p>
         I care about two things in software: does it work, and is it actually nice to use.
-        Professionally that's Power Platform, TypeScript, React and Node.js. Personally it's
-        games, data tools, and whatever utility solves the problem in front of me.
+        Professionally that's Power Platform apps, built with Node.js, TypeScript and React.
+        Personally it's games, data tools, and whatever utility solves the problem in front of me.
       </p>
     </section>
 
@@ -149,6 +149,45 @@ const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`
     </section>
   </main>
 
+  <dialog id="story-modal" class="story-modal" aria-labelledby="story-modal-name">
+    <div class="story-modal__titlebar">
+      <span class="dot dot--red"></span>
+      <span class="dot dot--yellow"></span>
+      <span class="dot dot--green"></span>
+      <span class="story-modal__filename mono" data-story-filename></span>
+      <button type="button" class="story-modal__close" data-story-close aria-label="Close">&times;</button>
+    </div>
+    <div class="story-modal__body">
+      <p class="story-modal__eyebrow mono">// the story</p>
+      <h2 id="story-modal-name" data-story-name></h2>
+      <p class="story-modal__description" data-story-description></p>
+
+      <section class="story-modal__section">
+        <h3 class="mono">problem</h3>
+        <p data-story-problem></p>
+      </section>
+
+      <section class="story-modal__section">
+        <h3 class="mono">attempts</h3>
+        <ol class="story-modal__attempts" data-story-attempts></ol>
+      </section>
+
+      <section class="story-modal__section" data-story-challenge-section hidden>
+        <h3 class="mono">the interesting challenge</h3>
+        <p data-story-challenge></p>
+      </section>
+
+      <section class="story-modal__section" data-story-next-section hidden>
+        <h3 class="mono">what's next</h3>
+        <p data-story-next></p>
+      </section>
+
+      <a class="story-modal__cta" data-story-cta target="_blank" rel="noreferrer">
+        View the code <span aria-hidden="true">&#8599;</span>
+      </a>
+    </div>
+  </dialog>
+
   <Footer />
 
   <script>
@@ -156,11 +195,13 @@ const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`
     import { initThemeToggle } from '../scripts/theme-toggle';
     import { initScrollReveal } from '../scripts/scroll-reveal';
     import { initTerminal } from '../scripts/terminal';
+    import { initStoryModal } from '../scripts/story-modal';
 
     initProjectFilter();
     initThemeToggle();
     initScrollReveal();
     initTerminal();
+    initStoryModal();
   </script>
 </Layout>
 
@@ -491,5 +532,161 @@ const terminalFiles = projects.map((project) => `${project.slug}.${project.ext}`
 
   #contact a:hover {
     color: var(--color-pink);
+  }
+
+  .story-modal {
+    width: min(90vw, 38rem);
+    max-height: min(85vh, 40rem);
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 0.6rem;
+    background: var(--color-bg-alt);
+    color: var(--color-text);
+    overflow: hidden;
+  }
+
+  .story-modal::backdrop {
+    background: color-mix(in srgb, black 55%, transparent);
+    backdrop-filter: blur(2px);
+  }
+
+  .story-modal__titlebar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 0.9rem;
+    background: var(--color-bg-raised);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .story-modal__titlebar .dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .story-modal__titlebar .dot--red {
+    background: var(--dot-red);
+  }
+
+  .story-modal__titlebar .dot--yellow {
+    background: var(--dot-yellow);
+  }
+
+  .story-modal__titlebar .dot--green {
+    background: var(--dot-green);
+  }
+
+  .story-modal__filename {
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    overflow-wrap: anywhere;
+  }
+
+  .story-modal__close {
+    margin-left: auto;
+    flex-shrink: 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    line-height: 1;
+    background: transparent;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .story-modal__close:hover {
+    color: var(--color-pink);
+    border-color: var(--color-pink);
+  }
+
+  .story-modal__body {
+    padding: 1.5rem 1.5rem 1.75rem;
+    overflow-y: auto;
+    max-height: calc(min(85vh, 40rem) - 2.8rem);
+  }
+
+  .story-modal__eyebrow {
+    color: var(--color-comment);
+    font-size: 0.85rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .story-modal__body h2 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
+  }
+
+  .story-modal__description {
+    color: var(--color-text-muted);
+    margin: 0 0 1.75rem;
+  }
+
+  .story-modal__section {
+    margin: 0 0 1.5rem;
+  }
+
+  .story-modal__section h3 {
+    font-size: 0.85rem;
+    text-transform: lowercase;
+    letter-spacing: 0.03em;
+    color: var(--color-pink);
+    margin: 0 0 0.6rem;
+  }
+
+  .story-modal__section p {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .story-modal__attempts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .story-modal__attempts li {
+    border-left: 2px solid var(--color-border);
+    padding-left: 0.8rem;
+  }
+
+  .story-modal__attempts :global(.story-modal__attempt-label) {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--color-accent-strong);
+    margin-bottom: 0.2rem;
+  }
+
+  .story-modal__attempts p {
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .story-modal__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.05rem;
+    border-radius: 0.4rem;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .story-modal__cta:hover {
+    background: var(--color-pink);
   }
 </style>
