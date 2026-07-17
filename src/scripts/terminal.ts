@@ -96,7 +96,7 @@ export function initTerminal(): void {
         printLines(HELP_TEXT);
         break;
       case 'whoami':
-        printLines(['Laura Norwood: developer who builds with data and games in mind. Sometimes genuinely useful, sometimes delightfully pointless.']);
+        printLines(['Laura Norwood. I build software that either solves a real problem or just makes someone smile.']);
         break;
       case 'about':
         printLines([
