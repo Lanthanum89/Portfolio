@@ -440,6 +440,18 @@ export const projects: Project[] = [
     tools: ['Puzzle Generation', 'PWA'],
     categories: ['Tools & Apps'],
     pushedAt: '2026-07-09T01:59:11Z',
+    story: {
+      problem: 'How do you even generate a valid Dobble deck, where any two cards share exactly one symbol?',
+      attempts: [
+        'Started by brute-forcing symbol combinations to see how quickly that broke down.',
+        'Switched to a proper combinatorial design once brute force stopped scaling with deck size.',
+        'Added a TypeScript PWA on top of the same generation logic.',
+      ],
+      challenge: 'Keeping every single pair of cards down to exactly one shared symbol, small errors in the underlying maths compound fast as the deck grows.',
+      tradeoffs: 'Chose a proper combinatorial structure over ad-hoc symbol shuffling, more upfront maths, but no risk of duplicate or missing matches sneaking in.',
+      next: 'Let players choose their own symbol set and deck size.',
+      hindsight: 'I underestimated how unforgiving this puzzle is. Get the underlying structure wrong and it fails silently rather than obviously.',
+    },
   },
   {
     name: 'Console Cocktails',
