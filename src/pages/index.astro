@@ -129,7 +129,12 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
 
       {categories.map((group) => (
         <div class="category-group" data-category-group>
-          <p class="category-heading mono">// {group.name.toLowerCase()}</p>
+          <div class="category-heading-row">
+            <p class="category-heading mono">// {group.name.toLowerCase()}</p>
+            {group.items.length > 3 && (
+              <button type="button" class="category-view-all mono" data-view-all>view all</button>
+            )}
+          </div>
           <div class="grid">
             {group.items.map((project, index) => (
               <ProjectCard project={project} rank={index} />
@@ -555,11 +560,35 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
     display: none;
   }
 
+  .category-heading-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0 0 1rem;
+  }
+
   .category-heading {
     color: var(--color-pink);
     font-size: 0.85rem;
     font-weight: 600;
-    margin: 0 0 1rem;
+    margin: 0;
+  }
+
+  .category-view-all {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+
+  .category-view-all:hover {
+    color: var(--color-accent-strong);
   }
 
   .grid {
