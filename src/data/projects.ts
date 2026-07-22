@@ -789,29 +789,6 @@ export const projects: Project[] = [
       hindsight: 'Looking back, I\'d have gone straight to the web version. The console app was a useful stepping stone, but it\'s not the one I actually use now.',
     },
   },
-  {
-    name: '429: Too Many Tabs',
-    slug: '429-too-many-tabs',
-    description:
-      "How many apps does it take to check the time, your calendar, and what's playing? A read-only dashboard for a phone or tablet propped on a desk: clock, binary clock, calendar, to-do list, email, and Spotify, all on one glanceable screen, no backend required.",
-    url: 'https://github.com/Lanthanum89/429-Too-Many-Tabs',
-    languages: ['TypeScript', 'CSS', 'HTML'],
-    tools: ['PWA', 'Capacitor', 'Google Calendar API', 'Gmail API', 'Spotify API'],
-    categories: ['Tools & Apps'],
-    pushedAt: '2026-07-22T10:38:59Z',
-    story: {
-      problem: 'Wanted one screen to glance at instead of unlocking five different apps just to check the time, the calendar, and what was playing.',
-      attempts: [
-        'Started with a single clock widget, then kept adding one glanceable thing at a time: a binary clock, a calendar, a to-do list, email, and Spotify.',
-        'Wired up Google Calendar, Gmail, and Spotify as read-only widgets, all client-side, with no backend to host or maintain.',
-        'Wrapped the same build with Capacitor to also ship as an Android app, so it works as a proper home-screen dashboard, not just a browser tab.',
-      ],
-      challenge: 'Getting three separate OAuth flows, Google Calendar, Gmail, and Spotify, all working client-side with no server to hold a secret.',
-      tradeoffs: 'Chose read-only everywhere, no writing back to any connected account, trading away some usefulness for something safe to leave running unattended on a screen.',
-      next: 'More layout options, so a tablet propped in landscape and a phone propped in portrait don\'t have to look identical.',
-      hindsight: 'I\'d pick one OAuth strategy for all three services before wiring up the first one. Doing Spotify\'s PKCE flow after already committing to a different pattern for Google meant redoing work.',
-    },
-  },
 ];
 
 export const categoryOrder: Category[] = ['Data & ML', 'Sport', 'Tools & Apps', 'Games'];
