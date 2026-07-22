@@ -28,10 +28,17 @@ export function initProjectFilter(): void {
   const render = (): void => {
     const isDefault = selected.size === 0;
 
+    groups.forEach((group) => {
+      const viewAllButton = group.querySelector<HTMLButtonElement>('[data-view-all]');
+      if (viewAllButton) viewAllButton.hidden = !isDefault;
+    });
+
     cards.forEach((card) => {
       const matches = isDefault || cardMatchesAny(card);
       const rank = Number(card.dataset.previewRank ?? '0');
-      const withinPreviewCap = !isDefault || rank < 3;
+      const group = card.closest<HTMLElement>('[data-category-group]');
+      const expanded = group?.dataset.expanded === 'true';
+      const withinPreviewCap = !isDefault || rank < 3 || expanded;
       card.classList.toggle('is-hidden', !(matches && withinPreviewCap));
     });
 
@@ -97,6 +104,19 @@ export function initProjectFilter(): void {
   barButtons.forEach((button) => {
     button.addEventListener('click', () => {
       toggle(button.dataset.filter ?? ALL);
+    });
+  });
+
+  const viewAllButtons = root.querySelectorAll<HTMLButtonElement>('[data-view-all]');
+
+  viewAllButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const group = button.closest<HTMLElement>('[data-category-group]');
+      if (!group) return;
+      const expanded = group.dataset.expanded === 'true';
+      group.dataset.expanded = String(!expanded);
+      button.textContent = expanded ? 'view all' : 'show less';
+      render();
     });
   });
 
