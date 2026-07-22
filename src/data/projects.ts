@@ -101,6 +101,32 @@ export const projects: Project[] = [
     },
   },
   {
+    name: '429: Too Many Tabs',
+    slug: '429-too-many-tabs',
+    description:
+      'One screen instead of five browser tabs. A retro LED clock, a binary clock, a month calendar, to-do list, email, and Spotify all on one glanceable dashboard for a phone or tablet propped up on a desk — no backend, installable as a PWA or a sideloaded Android APK.',
+    url: 'https://github.com/Lanthanum89/429-Too-Many-Tabs',
+    languages: ['TypeScript', 'CSS', 'Java', 'HTML'],
+    tools: ['PWA', 'Google Calendar API', 'Gmail API', 'Spotify API', 'Capacitor'],
+    categories: ['Tools & Apps'],
+    pushedAt: '2026-07-22T10:38:24Z',
+    featured: true,
+    story: {
+      problem: 'Wanted one screen to glance at on a tablet propped up on a desk, instead of switching between a clock, a calendar, email, and Spotify.',
+      attempts: [
+        'Started with a "modes, not themes" idea: Working/Chilling/Gaming layouts that changed which widgets showed and how big they were.',
+        'Wired up Google Calendar and Gmail (read-only) and a Spotify "now playing" widget via Authorization Code + PKCE, so none of it needed a backend or a stored secret.',
+        'Wrapped it with Capacitor for a sideloadable Android APK, built entirely in CI since the dev environment has no route to the Android SDK.',
+        'Dropped the whole modes concept for one glanceable page once switching modes turned out to be more friction than the layout problem it solved — replaced the agenda-list calendar with an actual month-view grid, and added a retro LED-style clock plus a binary clock in the same format as my Binary Clock project.',
+        'Redesigned the visual language twice (mid-century modern, then dark lilac to match SoundTracks) and made the layout properly adaptive: it fits entirely on one screen on a tablet in landscape, no scrolling, at any width from a small tablet up to an ultrawide monitor.',
+      ],
+      challenge: 'Getting Google and Spotify auth to both survive page reloads without a backend to hold a session. Google\'s implicit flow has no refresh token, so tokens are cached in localStorage and the widgets restore silently if the cached token\'s still valid, instead of forcing a reconnect on every navigation.',
+      tradeoffs: 'Chose to drop mode-switching entirely rather than keep patching it — one well-designed responsive layout turned out simpler to reason about than a set of layouts that all had to stay in sync with each other.',
+      next: 'Tap-to-cycle widget sizes, or a proper drag-and-resize layout, instead of a fixed grid.',
+      hindsight: 'I\'d have picked the final dark-lilac look and the single-page layout from the start — the modes concept and the mid-century redesign were both fully working detours before landing on what actually felt right.',
+    },
+  },
+  {
     name: 'Squish Pop',
     slug: 'squish-pop',
     description:
