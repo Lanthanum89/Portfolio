@@ -23,6 +23,16 @@ const categories = categoryOrder
   .filter((group) => group.items.length > 0);
 
 const terminalFiles = projects.map((project) => `${project.slug}/`);
+
+const slugifyCategory = (category: string): string =>
+  category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+const outlineLinks = [
+  { href: '#about', label: 'about' },
+  { href: '#projects', label: 'featured projects' },
+  { href: '#all-projects', label: 'browse by tool' },
+  { href: '#contact', label: 'contact' },
+];
 ---
 
 <Layout
@@ -30,6 +40,41 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
   description="I build software that either solves a real problem or just makes someone smile."
 >
   <Nav />
+
+  <div class="page-outline" data-page-outline>
+    <button
+      type="button"
+      class="page-outline__toggle"
+      data-outline-toggle
+      aria-expanded="false"
+      aria-label="Show page outline"
+    >
+      <span aria-hidden="true">&#9776;</span>
+    </button>
+    <div class="page-outline__backdrop" data-outline-backdrop></div>
+    <nav
+      class="page-outline__drawer mono"
+      aria-label="Page outline"
+      inert
+    >
+      <div class="page-outline__drawer-head">
+        <p class="page-outline__drawer-title">on this page</p>
+        <button
+          type="button"
+          class="page-outline__close"
+          data-outline-close
+          aria-label="Close page outline"
+        >
+          &times;
+        </button>
+      </div>
+      <ul class="page-outline__list" data-outline-list>
+        {outlineLinks.map((link) => (
+          <li><a href={link.href} data-outline-link>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 
   <main id="top">
     <section class="hero">
@@ -103,6 +148,18 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
       <h2>Featured projects</h2>
       <p class="section__hint">A handful of projects I'm most proud of.</p>
 
+      <div class="category-pills mono" role="group" aria-label="Jump to a project type">
+        {categoryOrder.map((category) => (
+          <a
+            class="category-pill"
+            href={`#category-${slugifyCategory(category)}`}
+            data-category-jump={slugifyCategory(category)}
+          >
+            {category.toLowerCase()}
+          </a>
+        ))}
+      </div>
+
       <div class="grid">
         {featured.map((project) => (
           <ProjectCard project={project} filterable={false} />
@@ -112,10 +169,11 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
 
     <section id="all-projects" class="wrapper section" data-projects-root>
       <p class="eyebrow mono">all projects</p>
-      <h2>Browse by type</h2>
+      <h2>Browse by tool</h2>
       <p class="section__hint">
-        Three most recent per category by default. Pick one or more languages above, or click
-        any badge on a card, to see the full, most-recent-first list matching any of them.
+        Pick one or more languages or tools above, or click any badge on a card, to see the
+        full, most-recent-first list matching any of them. Prefer to browse by type instead?
+        Expand a category below.
       </p>
 
       <div class="filter-bar mono" data-filter-bar role="group" aria-label="Filter projects by language">
@@ -128,17 +186,33 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
       <div class="active-filter mono" data-active-filter hidden></div>
 
       {categories.map((group) => (
-        <div class="category-group" data-category-group>
-          <div class="category-heading-row">
-            <p class="category-heading mono">// {group.name.toLowerCase()}</p>
-            {group.items.length > 3 && (
-              <button type="button" class="category-view-all mono" data-view-all>view all</button>
-            )}
-          </div>
-          <div class="grid">
-            {group.items.map((project, index) => (
-              <ProjectCard project={project} rank={index} />
-            ))}
+        <div
+          class="category-group"
+          id={`category-${slugifyCategory(group.name)}`}
+          data-category-group
+          data-open="false"
+        >
+          <button
+            type="button"
+            class="category-toggle mono"
+            data-group-toggle
+            aria-expanded="false"
+            aria-controls={`category-${slugifyCategory(group.name)}-body`}
+          >
+            <span class="category-toggle__marker" aria-hidden="true">&#9656;</span>
+            // {group.name.toLowerCase()} <span class="category-toggle__count">({group.items.length})</span>
+          </button>
+          <div class="category-group__body" id={`category-${slugifyCategory(group.name)}-body`} data-group-body>
+            <div class="category-heading-row">
+              {group.items.length > 3 && (
+                <button type="button" class="category-view-all mono" data-view-all>view all</button>
+              )}
+            </div>
+            <div class="grid">
+              {group.items.map((project, index) => (
+                <ProjectCard project={project} rank={index} />
+              ))}
+            </div>
           </div>
         </div>
       ))}
@@ -221,12 +295,14 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
     import { initScrollReveal } from '../scripts/scroll-reveal';
     import { initTerminal } from '../scripts/terminal';
     import { initStoryModal } from '../scripts/story-modal';
+    import { initPageOutline } from '../scripts/page-outline';
 
     initProjectFilter();
     initThemeToggle();
     initScrollReveal();
     initTerminal();
     initStoryModal();
+    initPageOutline();
   </script>
 </Layout>
 
@@ -367,6 +443,150 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
     color: var(--color-text-muted);
   }
 
+  .page-outline__toggle {
+    position: fixed;
+    top: 5.5rem;
+    right: 1.5rem;
+    z-index: 15;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-alt);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  :root[data-theme='light'] .page-outline__toggle {
+    box-shadow: 0 1px 2px rgba(30, 34, 44, 0.05), 0 8px 20px -14px rgba(30, 34, 44, 0.22);
+  }
+
+  .page-outline__toggle:hover,
+  .page-outline__toggle[aria-expanded='true'] {
+    border-color: var(--color-accent);
+    color: var(--color-accent-strong);
+  }
+
+  @media (max-width: 60rem) {
+    .page-outline__toggle {
+      display: none;
+    }
+  }
+
+  .page-outline__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    background: color-mix(in srgb, black 45%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .page-outline.is-open .page-outline__backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .page-outline__drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 21;
+    width: min(20rem, 85vw);
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg-alt);
+    border-left: 1px solid var(--color-border);
+    box-shadow: -12px 0 36px -18px rgba(0, 0, 0, 0.4);
+    transform: translateX(100%);
+    transition: transform 0.28s ease;
+    overflow-y: auto;
+  }
+
+  .page-outline.is-open .page-outline__drawer {
+    transform: translateX(0);
+  }
+
+  .page-outline__drawer-head {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    background: var(--color-bg-alt);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-outline__drawer-title {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .page-outline__close {
+    flex-shrink: 0;
+    width: 1.8rem;
+    height: 1.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    line-height: 1;
+    background: transparent;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .page-outline__close:hover {
+    color: var(--color-pink);
+    border-color: var(--color-pink);
+  }
+
+  .page-outline__list {
+    list-style: none;
+    margin: 0;
+    padding: 0.6rem 0 1.25rem;
+  }
+
+  .page-outline__list a {
+    display: block;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+  }
+
+  .page-outline__list a::before {
+    content: '#';
+    color: var(--color-comment);
+    margin-right: 0.2em;
+  }
+
+  .page-outline__list a:hover {
+    color: var(--color-text);
+  }
+
+  .page-outline__list a.is-active {
+    color: var(--color-accent-strong);
+    border-left-color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+
   .button {
     display: inline-block;
     padding: 0.65rem 1.4rem;
@@ -456,6 +676,42 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
     color: var(--color-text-muted);
     font-size: 0.9rem;
     margin: 0 0 1.5rem;
+  }
+
+  .category-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: -0.5rem 0 1.75rem;
+  }
+
+  .category-pill {
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: var(--color-bg-alt);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease,
+      transform 0.1s ease;
+  }
+
+  .category-pill::before {
+    content: '#';
+    color: var(--color-comment);
+    margin-right: 0.15em;
+  }
+
+  .category-pill:hover {
+    border-color: var(--color-pink);
+    color: var(--color-pink);
+  }
+
+  .category-pill:active {
+    transform: scale(0.94);
   }
 
   .filter-bar {
@@ -553,26 +809,65 @@ const terminalFiles = projects.map((project) => `${project.slug}/`);
   }
 
   .category-group {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.6rem;
+    background: var(--color-bg-alt);
   }
 
   .category-group.is-empty {
     display: none;
   }
 
-  .category-heading-row {
+  .category-toggle {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    margin: 0 0 1rem;
-  }
-
-  .category-heading {
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    background: none;
+    border: none;
     color: var(--color-pink);
     font-size: 0.85rem;
     font-weight: 600;
-    margin: 0;
+    text-align: left;
+    padding: 0.9rem 1.1rem;
+    cursor: pointer;
+  }
+
+  .category-toggle__marker {
+    display: inline-block;
+    color: var(--color-text-muted);
+    transition: transform 0.15s ease;
+  }
+
+  .category-toggle[aria-expanded='true'] .category-toggle__marker {
+    transform: rotate(90deg);
+  }
+
+  .category-toggle__count {
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .category-toggle:hover {
+    color: var(--color-accent-strong);
+  }
+
+  .category-group__body {
+    display: none;
+    padding: 0 1.1rem 1.1rem;
+  }
+
+  .category-group__body.is-open {
+    display: block;
+  }
+
+  .category-heading-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin: 0 0 1rem;
   }
 
   .category-view-all {
