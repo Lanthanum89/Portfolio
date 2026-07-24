@@ -45,6 +45,13 @@ export function initProjectFilter(): void {
     groups.forEach((group) => {
       const hasVisibleCard = group.querySelector('[data-languages]:not(.is-hidden)');
       group.classList.toggle('is-empty', !hasVisibleCard);
+
+      const body = group.querySelector<HTMLElement>('[data-group-body]');
+      const toggleButton = group.querySelector<HTMLButtonElement>('[data-group-toggle]');
+      const manuallyOpen = group.dataset.open === 'true';
+      const open = manuallyOpen || !isDefault;
+      body?.classList.toggle('is-open', open);
+      toggleButton?.setAttribute('aria-expanded', String(open));
     });
 
     barButtons.forEach((button) => {
@@ -126,6 +133,29 @@ export function initProjectFilter(): void {
     button.addEventListener('click', () => {
       toggle(button.dataset.filterTag ?? ALL);
       bar.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
+    });
+  });
+
+  const groupToggles = root.querySelectorAll<HTMLButtonElement>('[data-group-toggle]');
+
+  groupToggles.forEach((button) => {
+    button.addEventListener('click', () => {
+      const group = button.closest<HTMLElement>('[data-category-group]');
+      if (!group) return;
+      group.dataset.open = String(group.dataset.open !== 'true');
+      render();
+    });
+  });
+
+  const jumpLinks = document.querySelectorAll<HTMLAnchorElement>('[data-category-jump]');
+
+  jumpLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      const targetId = link.getAttribute('href')?.slice(1);
+      const group = targetId ? document.getElementById(targetId) : null;
+      if (!group || group.dataset.open === 'true') return;
+      group.dataset.open = 'true';
+      render();
     });
   });
 
