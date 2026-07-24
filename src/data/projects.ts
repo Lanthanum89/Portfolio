@@ -138,7 +138,6 @@ export const projects: Project[] = [
     tools: ['PWA', 'Game Design'],
     categories: ['Games'],
     pushedAt: '2026-07-15T09:26:37Z',
-    featured: true,
     story: {
       problem: 'My daughter wanted a game that was just enjoyable: nothing to lose, no fail state, nothing stressful.',
       attempts: [
