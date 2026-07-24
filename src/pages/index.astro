@@ -41,7 +41,7 @@ const outlineLinks = [
 >
   <Nav />
 
-  <nav class="page-outline mono" data-page-outline aria-label="Page outline">
+  <div class="page-outline" data-page-outline>
     <button
       type="button"
       class="page-outline__toggle"
@@ -51,12 +51,30 @@ const outlineLinks = [
     >
       <span aria-hidden="true">&#9776;</span>
     </button>
-    <ul class="page-outline__list" data-outline-list>
-      {outlineLinks.map((link) => (
-        <li><a href={link.href} data-outline-link>{link.label}</a></li>
-      ))}
-    </ul>
-  </nav>
+    <div class="page-outline__backdrop" data-outline-backdrop></div>
+    <nav
+      class="page-outline__drawer mono"
+      aria-label="Page outline"
+      inert
+    >
+      <div class="page-outline__drawer-head">
+        <p class="page-outline__drawer-title">on this page</p>
+        <button
+          type="button"
+          class="page-outline__close"
+          data-outline-close
+          aria-label="Close page outline"
+        >
+          &times;
+        </button>
+      </div>
+      <ul class="page-outline__list" data-outline-list>
+        {outlineLinks.map((link) => (
+          <li><a href={link.href} data-outline-link>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 
   <main id="top">
     <section class="hero">
@@ -425,23 +443,11 @@ const outlineLinks = [
     color: var(--color-text-muted);
   }
 
-  .page-outline {
+  .page-outline__toggle {
     position: fixed;
     top: 5.5rem;
     right: 1.5rem;
     z-index: 15;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  @media (max-width: 60rem) {
-    .page-outline {
-      display: none;
-    }
-  }
-
-  .page-outline__toggle {
     width: 2.2rem;
     height: 2.2rem;
     display: inline-flex;
@@ -466,35 +472,100 @@ const outlineLinks = [
     color: var(--color-accent-strong);
   }
 
+  @media (max-width: 60rem) {
+    .page-outline__toggle {
+      display: none;
+    }
+  }
+
+  .page-outline__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    background: color-mix(in srgb, black 45%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .page-outline.is-open .page-outline__backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .page-outline__drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 21;
+    width: min(20rem, 85vw);
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg-alt);
+    border-left: 1px solid var(--color-border);
+    box-shadow: -12px 0 36px -18px rgba(0, 0, 0, 0.4);
+    transform: translateX(100%);
+    transition: transform 0.28s ease;
+    overflow-y: auto;
+  }
+
+  .page-outline.is-open .page-outline__drawer {
+    transform: translateX(0);
+  }
+
+  .page-outline__drawer-head {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    background: var(--color-bg-alt);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-outline__drawer-title {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .page-outline__close {
+    flex-shrink: 0;
+    width: 1.8rem;
+    height: 1.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    line-height: 1;
+    background: transparent;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .page-outline__close:hover {
+    color: var(--color-pink);
+    border-color: var(--color-pink);
+  }
+
   .page-outline__list {
     list-style: none;
-    margin: 0.5rem 0 0;
-    padding: 0.6rem 0;
-    min-width: 11rem;
-    background: var(--color-bg-alt);
-    border: 1px solid var(--color-border);
-    border-radius: 0.6rem;
-    opacity: 0;
-    transform: translateY(-4px);
-    pointer-events: none;
-    transition: opacity 0.15s ease, transform 0.15s ease;
-  }
-
-  :root[data-theme='light'] .page-outline__list {
-    box-shadow: 0 1px 2px rgba(30, 34, 44, 0.05), 0 12px 32px -18px rgba(30, 34, 44, 0.22);
-  }
-
-  .page-outline:hover .page-outline__list,
-  .page-outline.is-open .page-outline__list {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+    margin: 0;
+    padding: 0.6rem 0 1.25rem;
   }
 
   .page-outline__list a {
     display: block;
-    padding: 0.4rem 1rem;
-    font-size: 0.82rem;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9rem;
     color: var(--color-text-muted);
     text-decoration: none;
     border-left: 2px solid transparent;
@@ -513,6 +584,7 @@ const outlineLinks = [
   .page-outline__list a.is-active {
     color: var(--color-accent-strong);
     border-left-color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
   }
 
   .button {

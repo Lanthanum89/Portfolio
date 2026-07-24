@@ -1,27 +1,41 @@
 export function initPageOutline(): void {
   const root = document.querySelector<HTMLElement>('[data-page-outline]');
   const toggle = root?.querySelector<HTMLButtonElement>('[data-outline-toggle]');
+  const closeButton = root?.querySelector<HTMLButtonElement>('[data-outline-close]');
+  const backdrop = root?.querySelector<HTMLElement>('[data-outline-backdrop]');
+  const drawer = root?.querySelector<HTMLElement>('.page-outline__drawer');
   const links = root?.querySelectorAll<HTMLAnchorElement>('[data-outline-link]');
 
-  if (!root || !toggle || !links || links.length === 0) return;
+  if (!root || !toggle || !closeButton || !backdrop || !drawer || !links || links.length === 0) return;
+
+  const open = (): void => {
+    root.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    drawer.removeAttribute('inert');
+    closeButton.focus();
+  };
+
+  const close = (): void => {
+    root.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('inert', '');
+    toggle.focus();
+  };
 
   toggle.addEventListener('click', () => {
-    const isOpen = root.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', String(isOpen));
+    if (root.classList.contains('is-open')) close();
+    else open();
   });
 
-  document.addEventListener('click', (event) => {
-    if (root.classList.contains('is-open') && !root.contains(event.target as Node)) {
-      root.classList.remove('is-open');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
+  closeButton.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && root.classList.contains('is-open')) close();
   });
 
   links.forEach((link) => {
-    link.addEventListener('click', () => {
-      root.classList.remove('is-open');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', close);
   });
 
   const sections = Array.from(links)
