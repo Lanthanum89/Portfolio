@@ -8,6 +8,9 @@ interface Particle {
   colorIndex: number;
 }
 
+const INFLUENCE_RADIUS = 150;
+const PUSH_STRENGTH = 2.2;
+
 export function initHeroParticles(): void {
   const canvas = document.querySelector<HTMLCanvasElement>('[data-hero-particles]');
   const hero = canvas?.closest<HTMLElement>('.hero');
@@ -22,6 +25,8 @@ export function initHeroParticles(): void {
   let particles: Particle[] = [];
   let colors: [string, string] = ['#e8b339', '#f2789f'];
   let frameId = 0;
+  let mouseX = -Infinity;
+  let mouseY = -Infinity;
 
   const readColors = (): void => {
     const styles = getComputedStyle(document.documentElement);
@@ -31,15 +36,15 @@ export function initHeroParticles(): void {
   };
 
   const seedParticles = (): void => {
-    const count = Math.min(90, Math.max(24, Math.round((width * height) / 14000)));
+    const count = Math.min(110, Math.max(36, Math.round((width * height) / 9500)));
     particles = Array.from({ length: count }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      r: 0.6 + Math.random() * 1.3,
-      vx: (Math.random() - 0.5) * 0.12,
-      vy: 0.04 + Math.random() * 0.08,
+      r: 1.3 + Math.random() * 2,
+      vx: (Math.random() - 0.5) * 0.16,
+      vy: 0.05 + Math.random() * 0.1,
       phase: Math.random() * Math.PI * 2,
-      colorIndex: Math.random() < 0.7 ? 0 : 1,
+      colorIndex: Math.random() < 0.65 ? 0 : 1,
     }));
   };
 
@@ -55,38 +60,68 @@ export function initHeroParticles(): void {
     seedParticles();
   };
 
+  const paintParticle = (p: Particle, alpha: number, radius: number, glow: number): void => {
+    const color = colors[p.colorIndex];
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = color;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = glow;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+    ctx.fill();
+  };
+
   const drawStatic = (): void => {
     ctx.clearRect(0, 0, width, height);
-    particles.forEach((p) => {
-      ctx.globalAlpha = 0.5;
-      ctx.fillStyle = colors[p.colorIndex];
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-    });
+    particles.forEach((p) => paintParticle(p, 0.6, p.r, 6));
     ctx.globalAlpha = 1;
+    ctx.shadowBlur = 0;
   };
 
   const drawFrame = (time: number): void => {
     ctx.clearRect(0, 0, width, height);
     particles.forEach((p) => {
+      const dx = p.x - mouseX;
+      const dy = p.y - mouseY;
+      const dist = Math.hypot(dx, dy);
+      let boost = 0;
+      if (dist < INFLUENCE_RADIUS) {
+        boost = 1 - dist / INFLUENCE_RADIUS;
+        const nx = dist === 0 ? 0 : dx / dist;
+        const ny = dist === 0 ? 0 : dy / dist;
+        p.x += nx * boost * PUSH_STRENGTH;
+        p.y += ny * boost * PUSH_STRENGTH;
+      }
+
       p.x += p.vx;
       p.y += p.vy;
-      if (p.x < 0) p.x = width;
-      if (p.x > width) p.x = 0;
-      if (p.y > height) {
-        p.y = 0;
+      if (p.x < -10) p.x = width + 10;
+      if (p.x > width + 10) p.x = -10;
+      if (p.y > height + 10) {
+        p.y = -10;
         p.x = Math.random() * width;
       }
-      const twinkle = 0.35 + 0.35 * Math.sin(time / 900 + p.phase);
-      ctx.globalAlpha = twinkle;
-      ctx.fillStyle = colors[p.colorIndex];
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
+
+      const twinkle = 0.45 + 0.4 * Math.sin(time / 900 + p.phase);
+      const alpha = Math.min(1, twinkle + boost * 0.5);
+      const radius = p.r * (1 + boost * 0.9);
+      const glow = 5 + boost * 14;
+      paintParticle(p, alpha, radius, glow);
     });
     ctx.globalAlpha = 1;
+    ctx.shadowBlur = 0;
     frameId = requestAnimationFrame(drawFrame);
+  };
+
+  const handlePointerMove = (event: PointerEvent): void => {
+    const rect = hero.getBoundingClientRect();
+    mouseX = event.clientX - rect.left;
+    mouseY = event.clientY - rect.top;
+  };
+
+  const handlePointerLeave = (): void => {
+    mouseX = -Infinity;
+    mouseY = -Infinity;
   };
 
   readColors();
@@ -96,6 +131,8 @@ export function initHeroParticles(): void {
     drawStatic();
   } else {
     frameId = requestAnimationFrame(drawFrame);
+    hero.addEventListener('pointermove', handlePointerMove);
+    hero.addEventListener('pointerleave', handlePointerLeave);
   }
 
   new MutationObserver(() => {
