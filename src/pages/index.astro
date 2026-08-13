@@ -78,6 +78,7 @@ const outlineLinks = [
 
   <main id="top">
     <section class="hero">
+      <canvas class="hero__particles" data-hero-particles aria-hidden="true"></canvas>
       <div class="wrapper hero__inner">
       <p class="eyebrow mono hero-in" style="--hero-delay: 0ms">hi, i'm</p>
       <h1 class="mono hero-in" style="--hero-delay: 60ms">
@@ -308,6 +309,7 @@ const outlineLinks = [
     import { initTerminal } from '../scripts/terminal';
     import { initStoryModal } from '../scripts/story-modal';
     import { initPageOutline } from '../scripts/page-outline';
+    import { initHeroParticles } from '../scripts/hero-particles';
 
     initProjectFilter();
     initThemeToggle();
@@ -315,11 +317,14 @@ const outlineLinks = [
     initTerminal();
     initStoryModal();
     initPageOutline();
+    initHeroParticles();
   </script>
 </Layout>
 
 <style>
   .hero {
+    position: relative;
+    overflow: hidden;
     padding-block: 6rem 3rem;
     background: linear-gradient(
       135deg,
@@ -327,6 +332,18 @@ const outlineLinks = [
       color-mix(in srgb, var(--color-pink) 14%, transparent) 55%,
       transparent 100%
     );
+  }
+
+  .hero__particles {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
   }
 
   .hero h1 {
