@@ -110,7 +110,7 @@ export const projects: Project[] = [
     description:
       'One screen instead of five browser tabs. A retro LED clock, a binary clock, a month calendar, weather with sunrise/sunset and UV, a live rain radar, email, Spotify, Guardian headlines, live bus departures, a countdown, and a GitHub activity feed, all on one glanceable dashboard for a phone or tablet propped up on a desk — no backend, installable as a PWA or a sideloaded Android APK.',
     url: 'https://github.com/Lanthanum89/429-Too-Many-Tabs',
-    languages: ['TypeScript', 'CSS', 'Java', 'HTML'],
+    languages: ['TypeScript', 'CSS', 'JavaScript', 'HTML'],
     tools: ['PWA', 'Spotify API', 'Capacitor', 'Cloudflare Workers', 'GitHub API'],
     categories: ['Tools & Apps'],
     pushedAt: '2026-07-26T19:21:35Z',
@@ -256,7 +256,7 @@ export const projects: Project[] = [
       "What does an unbeaten Premier League season actually look like in the numbers? An in-depth analysis of Arsenal's Invincibles season with pandas and matplotlib.",
     url: 'https://github.com/Lanthanum89/Premier-League-2003-2004-Data-Analysis',
     languages: ['Jupyter Notebook'],
-    tools: ['Data Analysis', 'pandas'],
+    tools: ['Data Analysis', 'pandas', 'matplotlib', 'seaborn'],
     categories: ['Sport', 'Data & ML'],
     pushedAt: '2026-07-09T02:00:23Z',
     story: {
@@ -323,7 +323,7 @@ export const projects: Project[] = [
       "What actually won Hamilton each race in 2020, beyond the final standings? A FastF1-powered breakdown of his race wins across the season.",
     url: 'https://github.com/Lanthanum89/f1-analysis',
     languages: ['Jupyter Notebook'],
-    tools: ['Data Analysis', 'FastF1'],
+    tools: ['Data Analysis', 'FastF1', 'pandas', 'matplotlib', 'seaborn'],
     categories: ['Sport', 'Data & ML'],
     pushedAt: '2026-07-09T01:59:22Z',
     story: {
@@ -345,7 +345,7 @@ export const projects: Project[] = [
       'Wanted to explore F1 lap time data properly, not just from a terminal. A session analysis tool with both a CLI and an interactive web GUI, built on FastF1 data.',
     url: 'https://github.com/Lanthanum89/f1-lap-time-analyser',
     languages: ['Python'],
-    tools: ['Data Analysis', 'FastF1'],
+    tools: ['Data Analysis', 'FastF1', 'pandas', 'matplotlib', 'Streamlit'],
     categories: ['Sport', 'Data & ML'],
     pushedAt: '2026-07-09T01:59:25Z',
     story: {
@@ -367,7 +367,7 @@ export const projects: Project[] = [
       'Fantasy Premier League team selection is really an optimisation problem wearing a football shirt. A GUI that displays player statistics and suggests teams based on form and value.',
     url: 'https://github.com/Lanthanum89/fpl-analyser',
     languages: ['Python'],
-    tools: ['Data Analysis', 'FPL'],
+    tools: ['Data Analysis', 'FPL', 'tkinter'],
     categories: ['Sport', 'Data & ML'],
     pushedAt: '2026-07-09T01:59:33Z',
     story: {
@@ -389,7 +389,7 @@ export const projects: Project[] = [
       'Wanted a clearer view of account performance than Instagram\'s own stats give you. A Python GUI for analysing performance using the Meta Graph API.',
     url: 'https://github.com/Lanthanum89/instagram-analytics',
     languages: ['Python', 'Batchfile'],
-    tools: ['Data Analysis', 'Meta Graph API'],
+    tools: ['Data Analysis', 'Meta Graph API', 'tkinter', 'pandas', 'matplotlib', 'seaborn'],
     categories: ['Data & ML'],
     pushedAt: '2026-07-09T01:59:50Z',
     story: {

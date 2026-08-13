@@ -42,8 +42,8 @@ const spotifyBadgeUrl = SPOTIFY_UID
     <div class="footer__inner">
       <p class="mono">
         <span class="prompt">laura@portfolio:~$</span> echo "thanks for stopping by"
-        <a href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer" class="footer__inner-link">github.com/Lanthanum89</a>
       </p>
+      <a href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer" class="footer__inner-link mono">github.com/Lanthanum89</a>
     </div>
   </div>
 </footer>
@@ -56,7 +56,7 @@ const spotifyBadgeUrl = SPOTIFY_UID
 
   .footer__top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem 2rem;
@@ -112,6 +112,11 @@ const spotifyBadgeUrl = SPOTIFY_UID
 
   .footer__inner {
     padding-block: 1.5rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
     color: var(--color-text-muted);
     font-size: 0.85rem;
   }
@@ -125,7 +130,6 @@ const spotifyBadgeUrl = SPOTIFY_UID
   }
 
   .footer__inner-link {
-    margin-left: 1rem;
     text-decoration: none;
     color: var(--color-text-muted);
   }
@@ -149,17 +153,17 @@ const spotifyBadgeUrl = SPOTIFY_UID
   }
 
   .footer__now-playing-badge {
-    height: 4rem;
+    height: 6.5rem;
     width: auto;
-    max-width: 22rem;
+    max-width: 26rem;
     object-fit: contain;
-    border-radius: 0.5rem;
+    border-radius: 0.6rem;
     border: 1px solid var(--color-border);
   }
 
   @media (max-width: 30rem) {
     .footer__now-playing-badge {
-      height: 3.25rem;
+      height: 4.5rem;
       max-width: 100%;
     }
   }
