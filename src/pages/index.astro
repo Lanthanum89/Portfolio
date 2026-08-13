@@ -138,7 +138,7 @@ const outlineLinks = [
       <p class="eyebrow mono">tech i reach for</p>
       <div class="tech-row mono">
         {['Power Platform', 'TypeScript', 'JavaScript', 'React', 'Node.js', 'Python', 'SQL'].map((tech) => (
-          <span class="tech-pill">{tech}</span>
+          <button type="button" class="tech-pill" data-filter-tag={tech}>{tech}</button>
         ))}
       </div>
     </section>
@@ -667,6 +667,7 @@ const outlineLinks = [
   }
 
   .tech-pill {
+    font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: 600;
     padding: 0.3rem 0.75rem;
@@ -674,6 +675,17 @@ const outlineLinks = [
     background: var(--color-bg-alt);
     color: var(--color-string);
     border: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  }
+
+  .tech-pill:hover {
+    border-color: var(--color-pink);
+    color: var(--color-pink);
+  }
+
+  .tech-pill:active {
+    transform: scale(0.94);
   }
 
   .section__hint {
