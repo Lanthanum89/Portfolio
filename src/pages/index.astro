@@ -217,6 +217,10 @@ const outlineLinks = [
         </div>
       ))}
 
+      <p class="no-matches mono" data-no-matches hidden>
+        No other projects use this tag yet — it might only show up on a Featured project above.
+      </p>
+
       <p class="see-more">
         <a href="https://github.com/Lanthanum89?tab=repositories" target="_blank" rel="noreferrer">
           See everything on GitHub &rarr;
@@ -890,6 +894,19 @@ const outlineLinks = [
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     gap: 1.25rem;
+  }
+
+  .no-matches {
+    margin: 0.5rem 0 0;
+    padding: 1rem 1.1rem;
+    border: 1px dashed var(--color-border);
+    border-radius: 0.6rem;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+  }
+
+  .no-matches[hidden] {
+    display: none;
   }
 
   .see-more {

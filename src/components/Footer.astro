@@ -14,20 +14,17 @@ const spotifyBadgeUrl = SPOTIFY_UID
 
 <footer class="footer">
   <div class="wrapper">
-    <div class="footer__banner-scroll footer__banner-scroll--first">
-      <pre class="footer__banner" aria-hidden="true">{banner}</pre>
-    </div>
-    <p class="footer__banner-label mono">// aka</p>
-    <div class="footer__banner-scroll footer__banner-scroll--alias">
-      <pre class="footer__banner footer__banner--alias" aria-hidden="true">{aliasBanner}</pre>
-    </div>
-    <p class="footer__banner-alias-text mono" aria-hidden="true">LANTHANUM89</p>
-    <div class="footer__inner">
-      <p class="mono">
-        <span class="prompt">laura@portfolio:~$</span> echo "thanks for stopping by"
-      </p>
-
-      <a href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer" class="mono">github.com/Lanthanum89</a>
+    <div class="footer__top">
+      <div class="footer__banner-block">
+        <div class="footer__banner-scroll footer__banner-scroll--first">
+          <pre class="footer__banner" aria-hidden="true">{banner}</pre>
+        </div>
+        <p class="footer__banner-label mono">// aka</p>
+        <div class="footer__banner-scroll footer__banner-scroll--alias">
+          <pre class="footer__banner footer__banner--alias" aria-hidden="true">{aliasBanner}</pre>
+        </div>
+        <p class="footer__banner-alias-text mono" aria-hidden="true">LANTHANUM89</p>
+      </div>
 
       {spotifyBadgeUrl && (
         <div class="footer__now-playing">
@@ -41,6 +38,14 @@ const spotifyBadgeUrl = SPOTIFY_UID
         </div>
       )}
     </div>
+
+    <div class="footer__inner">
+      <p class="mono">
+        <span class="prompt">laura@portfolio:~$</span> echo "thanks for stopping by"
+      </p>
+
+      <a href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer" class="mono">github.com/Lanthanum89</a>
+    </div>
   </div>
 </footer>
 
@@ -50,12 +55,22 @@ const spotifyBadgeUrl = SPOTIFY_UID
     margin-top: 2rem;
   }
 
-  .footer__banner-scroll {
-    overflow-x: auto;
+  .footer__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    padding-top: 2rem;
   }
 
-  .footer__banner-scroll--first {
-    padding-top: 2rem;
+  .footer__banner-block {
+    min-width: 0;
+    flex: 1 1 20rem;
+  }
+
+  .footer__banner-scroll {
+    overflow-x: auto;
   }
 
   .footer__banner {
@@ -121,9 +136,11 @@ const spotifyBadgeUrl = SPOTIFY_UID
   }
 
   .footer__now-playing {
+    flex-shrink: 0;
     display: flex;
-    align-items: center;
-    gap: 0.6rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
   .footer__now-playing-label {
@@ -133,11 +150,18 @@ const spotifyBadgeUrl = SPOTIFY_UID
   }
 
   .footer__now-playing-badge {
-    height: 1.8rem;
+    height: 4rem;
     width: auto;
-    max-width: 14rem;
+    max-width: 22rem;
     object-fit: contain;
-    border-radius: 0.35rem;
+    border-radius: 0.5rem;
     border: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 30rem) {
+    .footer__now-playing-badge {
+      height: 3.25rem;
+      max-width: 100%;
+    }
   }
 </style>

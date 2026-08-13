@@ -13,6 +13,7 @@ export function initProjectFilter(): void {
   // shortcuts that select a filter and jump down to this section.
   const tagButtons = document.querySelectorAll<HTMLButtonElement>('button[data-filter-tag]');
   const status = root.querySelector<HTMLElement>('[data-active-filter]');
+  const noMatches = root.querySelector<HTMLElement>('[data-no-matches]');
 
   if (cards.length === 0) return;
 
@@ -44,8 +45,11 @@ export function initProjectFilter(): void {
       card.classList.toggle('is-hidden', !(matches && withinPreviewCap));
     });
 
+    let anyVisibleCard = false;
+
     groups.forEach((group) => {
       const hasVisibleCard = group.querySelector('[data-languages]:not(.is-hidden)');
+      if (hasVisibleCard) anyVisibleCard = true;
       group.classList.toggle('is-empty', !hasVisibleCard);
 
       const body = group.querySelector<HTMLElement>('[data-group-body]');
@@ -55,6 +59,8 @@ export function initProjectFilter(): void {
       body?.classList.toggle('is-open', open);
       toggleButton?.setAttribute('aria-expanded', String(open));
     });
+
+    if (noMatches) noMatches.hidden = isDefault || anyVisibleCard;
 
     barButtons.forEach((button) => {
       const value = button.dataset.filter ?? ALL;
