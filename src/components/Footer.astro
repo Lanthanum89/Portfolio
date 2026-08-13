@@ -42,9 +42,8 @@ const spotifyBadgeUrl = SPOTIFY_UID
     <div class="footer__inner">
       <p class="mono">
         <span class="prompt">laura@portfolio:~$</span> echo "thanks for stopping by"
+        <a href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer" class="footer__inner-link">github.com/Lanthanum89</a>
       </p>
-
-      <a href="https://github.com/Lanthanum89" target="_blank" rel="noreferrer" class="mono">github.com/Lanthanum89</a>
     </div>
   </div>
 </footer>
@@ -113,25 +112,25 @@ const spotifyBadgeUrl = SPOTIFY_UID
 
   .footer__inner {
     padding-block: 1.5rem 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.75rem 1.5rem;
-    justify-content: space-between;
     color: var(--color-text-muted);
     font-size: 0.85rem;
+  }
+
+  .footer__inner p {
+    margin: 0;
   }
 
   .prompt {
     color: var(--color-comment);
   }
 
-  .footer__inner a {
+  .footer__inner-link {
+    margin-left: 1rem;
     text-decoration: none;
     color: var(--color-text-muted);
   }
 
-  .footer__inner a:hover {
+  .footer__inner-link:hover {
     color: var(--color-accent-strong);
   }
 
