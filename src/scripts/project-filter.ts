@@ -9,7 +9,9 @@ export function initProjectFilter(): void {
   const cards = root.querySelectorAll<HTMLElement>('[data-languages]');
   const groups = root.querySelectorAll<HTMLElement>('[data-category-group]');
   const barButtons = bar.querySelectorAll<HTMLButtonElement>('button[data-filter]');
-  const tagButtons = root.querySelectorAll<HTMLButtonElement>('button[data-filter-tag]');
+  // Includes badges outside root (e.g. the static Featured section), which act as
+  // shortcuts that select a filter and jump down to this section.
+  const tagButtons = document.querySelectorAll<HTMLButtonElement>('button[data-filter-tag]');
   const status = root.querySelector<HTMLElement>('[data-active-filter]');
 
   if (cards.length === 0) return;
