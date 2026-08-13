@@ -137,7 +137,15 @@ const outlineLinks = [
     <section class="wrapper section section--compact" data-reveal>
       <p class="eyebrow mono">tech i reach for</p>
       <div class="tech-row mono">
-        {['Power Platform', 'TypeScript', 'JavaScript', 'React', 'Node.js', 'Python', 'SQL'].map((tech) => (
+        <span class="tech-pill tech-pill--professional" title="My day job — no portfolio projects use this">
+          <svg class="tech-pill__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="3.5" y="7" width="17" height="12" rx="1.8" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M3.5 12.5h17M10.5 12v1.5M13.5 12v1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Power Platform
+        </span>
+        {['TypeScript', 'JavaScript', 'React', 'Node.js', 'Python', 'SQL'].map((tech) => (
           <button type="button" class="tech-pill" data-filter-tag={tech}>{tech}</button>
         ))}
       </div>
@@ -686,6 +694,27 @@ const outlineLinks = [
 
   .tech-pill:active {
     transform: scale(0.94);
+  }
+
+  .tech-pill--professional {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: default;
+    color: var(--color-accent-strong);
+    background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+  }
+
+  .tech-pill--professional:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+    color: var(--color-accent-strong);
+  }
+
+  .tech-pill__icon {
+    width: 0.9em;
+    height: 0.9em;
+    flex-shrink: 0;
   }
 
   .section__hint {
