@@ -9,6 +9,7 @@ interface Particle {
 const LINK_DIST = 130;
 const MOUSE_RADIUS = 170;
 const MOUSE_PUSH = 0.6;
+const CALM_SPEED = 0.35;
 
 export function initHeroParticles(): void {
   const canvas = document.querySelector<HTMLCanvasElement>('[data-hero-particles]');
@@ -16,16 +17,16 @@ export function initHeroParticles(): void {
   const ctx = canvas?.getContext('2d');
   if (!canvas || !hero || !ctx) return;
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
+  let calm = motionQuery.matches;
   let width = 0;
   let height = 0;
   let particles: Particle[] = [];
   let mutedColor = '#9296a3';
   let accentColor = '#e8b339';
   let pinkColor = '#f2789f';
-  let frameId = 0;
   let mouseX = -Infinity;
   let mouseY = -Infinity;
 
@@ -36,30 +37,57 @@ export function initHeroParticles(): void {
     pinkColor = styles.getPropertyValue('--color-pink').trim() || pinkColor;
   };
 
-  const seedParticles = (): void => {
-    const count = Math.min(85, Math.max(30, Math.round((width * height) / 12000)));
-    particles = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: 1.2 + Math.random() * 1.4,
-      vx: (Math.random() - 0.5) * 0.14,
-      vy: (Math.random() - 0.5) * 0.14,
-    }));
+  const targetCount = (): number =>
+    Math.min(85, Math.max(30, Math.round((width * height) / 12000)));
+
+  const createParticle = (): Particle => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    r: 1.2 + Math.random() * 1.4,
+    vx: (Math.random() - 0.5) * 0.14,
+    vy: (Math.random() - 0.5) * 0.14,
+  });
+
+  const fitParticleCount = (): void => {
+    const count = targetCount();
+    if (particles.length > count) {
+      particles.length = count;
+      return;
+    }
+    while (particles.length < count) particles.push(createParticle());
   };
 
   const resize = (): void => {
     const rect = hero.getBoundingClientRect();
-    width = rect.width;
-    height = rect.height;
+    const nextWidth = Math.round(rect.width);
+    const nextHeight = Math.round(rect.height);
+    if (nextWidth === width && nextHeight === height) return;
+    if (nextWidth === 0 || nextHeight === 0) return;
+
+    const scaleX = width === 0 ? 0 : nextWidth / width;
+    const scaleY = height === 0 ? 0 : nextHeight / height;
+
+    width = nextWidth;
+    height = nextHeight;
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    seedParticles();
+
+    if (particles.length && scaleX > 0 && scaleY > 0) {
+      particles.forEach((p) => {
+        p.x *= scaleX;
+        p.y *= scaleY;
+      });
+    } else {
+      particles = [];
+    }
+    fitParticleCount();
   };
 
   const proximityAt = (x: number, y: number): number => {
+    if (calm) return 0;
     const dist = Math.hypot(x - mouseX, y - mouseY);
     return dist < MOUSE_RADIUS ? 1 - dist / MOUSE_RADIUS : 0;
   };
@@ -105,20 +133,24 @@ export function initHeroParticles(): void {
   };
 
   const drawFrame = (): void => {
+    const speed = calm ? CALM_SPEED : 1;
+
     particles.forEach((p) => {
-      const dx = p.x - mouseX;
-      const dy = p.y - mouseY;
-      const dist = Math.hypot(dx, dy);
-      if (dist < MOUSE_RADIUS) {
-        const push = (1 - dist / MOUSE_RADIUS) * MOUSE_PUSH;
-        const nx = dist === 0 ? 0 : dx / dist;
-        const ny = dist === 0 ? 0 : dy / dist;
-        p.x += nx * push;
-        p.y += ny * push;
+      if (!calm) {
+        const dx = p.x - mouseX;
+        const dy = p.y - mouseY;
+        const dist = Math.hypot(dx, dy);
+        if (dist < MOUSE_RADIUS) {
+          const push = (1 - dist / MOUSE_RADIUS) * MOUSE_PUSH;
+          const nx = dist === 0 ? 0 : dx / dist;
+          const ny = dist === 0 ? 0 : dy / dist;
+          p.x += nx * push;
+          p.y += ny * push;
+        }
       }
 
-      p.x += p.vx;
-      p.y += p.vy;
+      p.x += p.vx * speed;
+      p.y += p.vy * speed;
       if (p.x < -10) p.x = width + 10;
       if (p.x > width + 10) p.x = -10;
       if (p.y < -10) p.y = height + 10;
@@ -126,7 +158,7 @@ export function initHeroParticles(): void {
     });
 
     paintScene();
-    frameId = requestAnimationFrame(drawFrame);
+    requestAnimationFrame(drawFrame);
   };
 
   const handlePointerMove = (event: PointerEvent): void => {
@@ -143,23 +175,20 @@ export function initHeroParticles(): void {
   readColors();
   resize();
 
-  if (reducedMotion) {
-    paintScene();
-  } else {
-    frameId = requestAnimationFrame(drawFrame);
-    hero.addEventListener('pointermove', handlePointerMove);
-    hero.addEventListener('pointerleave', handlePointerLeave);
-  }
+  hero.addEventListener('pointermove', handlePointerMove);
+  hero.addEventListener('pointerleave', handlePointerLeave);
 
-  new MutationObserver(() => {
-    readColors();
-    if (reducedMotion) paintScene();
-  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  motionQuery.addEventListener('change', (event) => {
+    calm = event.matches;
+    if (calm) handlePointerLeave();
+  });
 
-  new ResizeObserver(() => {
-    cancelAnimationFrame(frameId);
-    resize();
-    if (reducedMotion) paintScene();
-    else frameId = requestAnimationFrame(drawFrame);
-  }).observe(hero);
+  new MutationObserver(readColors).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  });
+
+  new ResizeObserver(resize).observe(hero);
+
+  requestAnimationFrame(drawFrame);
 }
