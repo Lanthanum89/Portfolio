@@ -39,7 +39,6 @@ export const projects: Project[] = [
     tools: ['Machine Learning', 'f1', 'pandas', 'scikit-learn', 'XGBoost', 'LightGBM', 'matplotlib'],
     categories: ['Sport', 'Data & ML'],
     pushedAt: '2026-07-09T01:59:21Z',
-    featured: true,
     story: {
       problem: 'Predicting an F1 champion from gut feel is fun at the pub, not so convincing as an engineer.',
       attempts: [
@@ -810,6 +809,7 @@ export const projects: Project[] = [
     tools: ['WinForms', '.NET 8', 'Claude Code Hooks'],
     categories: ['Tools & Apps'],
     pushedAt: '2026-09-09T10:39:45Z',
+    featured: true,
     story: {
       problem: 'Kept alt-tabbing back to the terminal just to check whether Claude Code was still running, waiting on me, or done.',
       attempts: [
