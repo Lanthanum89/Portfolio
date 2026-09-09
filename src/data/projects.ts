@@ -801,6 +801,29 @@ export const projects: Project[] = [
     },
   },
   {
+    name: 'Claude Status Light',
+    slug: 'claude-status-traffic-lights',
+    description:
+      'Wanted to know Claude Code\'s state without alt-tabbing back to the terminal. A tiny always-on-top WinForms overlay, wired to Claude Code\'s hooks, that recolours like a traffic light: grey idle, amber running, red waiting on you, green done.',
+    url: 'https://github.com/Lanthanum89/Claude-Status-Traffic-Lights',
+    languages: ['C#', 'PowerShell'],
+    tools: ['WinForms', '.NET 8', 'Claude Code Hooks'],
+    categories: ['Tools & Apps'],
+    pushedAt: '2026-09-09T10:39:45Z',
+    story: {
+      problem: 'Kept alt-tabbing back to the terminal just to check whether Claude Code was still running, waiting on me, or done.',
+      attempts: [
+        'Built a small self-contained WinForms app: a draggable, always-on-top dot pinned over everything else.',
+        'Wired it to Claude Code\'s hooks (SessionStart, UserPromptSubmit, Notification, Stop, SessionEnd) via a PowerShell script that writes status to a local JSON file the overlay polls every 500ms.',
+        'Added a one-command publish script that builds and installs the exe in one go, after losing time to a rebuild that didn\'t actually update the running copy.',
+      ],
+      challenge: 'The status file is machine-global, not per-project, so with more than one Claude Code session running at once the dot reflects whichever session fired a hook most recently, not each session individually.',
+      tradeoffs: 'Chose a global status file over per-project tracking, trading multi-session accuracy for something that installs in one command and needed no session-id plumbing through every hook.',
+      next: 'Per-project or per-session status, instead of one global dot.',
+      hindsight: 'I\'d have written the install-and-publish script from the very first version. Losing time to a stale exe from an out-of-sync build made the manual copy step obvious as the first thing worth automating away.',
+    },
+  },
+  {
     name: 'ThinkStation',
     slug: 'thinkstation',
     description:
