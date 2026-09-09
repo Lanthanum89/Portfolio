@@ -803,7 +803,7 @@ export const projects: Project[] = [
     name: 'Claude Status Light',
     slug: 'claude-status-traffic-lights',
     description:
-      'Wanted to know Claude Code\'s state without alt-tabbing back to the terminal. A tiny always-on-top WinForms overlay, wired to Claude Code\'s hooks, that recolours like a traffic light: grey idle, amber running, red waiting on you, green done.',
+      'It got annoying flipping between tabs to see where Claude was at. A tiny always-on-top WinForms overlay, wired to Claude Code\'s hooks, that recolours like a traffic light: grey idle, amber running, red waiting on you, green done.',
     url: 'https://github.com/Lanthanum89/Claude-Status-Traffic-Lights',
     languages: ['C#', 'PowerShell'],
     tools: ['WinForms', '.NET 8', 'Claude Code Hooks'],
