@@ -849,6 +849,17 @@ export const projects: Project[] = [
       hindsight: 'I\'d pick a smaller curated word list from the start. The full ~150k word dictionary works but makes the bundle heavier than a simple puzzle game needs.',
     },
   },
+  {
+    name: 'Sort Grid',
+    slug: 'sort-grid',
+    description:
+      'An F1-themed sorting algorithm visualiser. Cars represent array values and move across a starting grid as the real algorithm executes, with the source panel staying in sync through semantic recorder keys rather than hard-coded line numbers.',
+    url: 'https://github.com/Lanthanum89/sort-grid',
+    languages: ['TypeScript', 'CSS', 'HTML'],
+    tools: ['PWA', 'Shiki', 'React', 'Vite'],
+    categories: ['Tools & Apps'],
+    pushedAt: '2026-09-16T10:26:39+01:00',
+  },
 ];
 
 export const categoryOrder: Category[] = ['Data & ML', 'Sport', 'Tools & Apps', 'Games'];
