@@ -859,6 +859,18 @@ export const projects: Project[] = [
     tools: ['PWA', 'Shiki', 'React', 'Vite'],
     categories: ['Tools & Apps'],
     pushedAt: '2026-09-16T10:26:39+01:00',
+    story: {
+      problem: 'Wanted an algorithm visualiser where the source panel couldn\'t silently drift out of sync with the animation the moment the code changed.',
+      attempts: [
+        'Built a recorder that steps through each sort emitting typed events (compare, swap, sorted) tagged with a semantic key, instead of hard-coding which line number lit up at each step.',
+        'Wired the same recorder keys to synchronised JavaScript, Python and C# source panels, highlighted with Shiki, so switching languages mid-playback still lines up with the running algorithm.',
+        'Added playback, scrubbing and speed controls on top of the recorded step list, plus an F1-grid animation where cars represent array values.',
+      ],
+      challenge: 'Keeping three separate language implementations of each sort (bubble, insertion, selection, quick) firing the same recorder keys at the equivalent point, so the highlighted line is always the right one regardless of which language is on screen.',
+      tradeoffs: 'Chose semantic recorder keys over hard-coded line numbers, trading a bit more upfront wiring in each sort implementation for a source panel that can\'t quietly desync as the code is edited.',
+      next: 'Add merge sort and heap sort alongside the existing four algorithms.',
+      hindsight: 'I\'d have designed the recorder-key approach from the start rather than the more obvious hard-coded line numbers, since the retrofit touched every algorithm implementation at once.',
+    },
   },
 ];
 
