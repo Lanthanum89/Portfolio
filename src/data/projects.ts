@@ -107,10 +107,10 @@ export const projects: Project[] = [
     name: '429: Too Many Tabs',
     slug: '429-too-many-tabs',
     description:
-      'One screen instead of five browser tabs. A retro LED clock, a binary clock, a month calendar, weather with sunrise/sunset and UV, a live rain radar, email, Spotify, Guardian headlines, live bus departures, a countdown, and a GitHub activity feed, all on one glanceable dashboard for a phone or tablet propped up on a desk — no backend, installable as a PWA or a sideloaded Android APK.',
+      'One screen instead of five browser tabs. A retro LED clock, a binary clock, a month calendar, weather with sunrise/sunset and UV, a live rain radar, email, Spotify, Guardian headlines, live bus departures, a countdown, and a GitHub activity feed, all on one glanceable dashboard for a phone or tablet propped up on a desk — no backend, installable as a PWA.',
     url: 'https://github.com/Lanthanum89/429-Too-Many-Tabs',
     languages: ['TypeScript', 'CSS', 'JavaScript', 'HTML'],
-    tools: ['PWA', 'Spotify API', 'Capacitor', 'Cloudflare Workers', 'GitHub API'],
+    tools: ['PWA', 'Spotify API', 'Cloudflare Workers', 'GitHub API'],
     categories: ['Tools & Apps'],
     pushedAt: '2026-07-26T19:21:35Z',
     featured: true,
@@ -119,7 +119,6 @@ export const projects: Project[] = [
       attempts: [
         'Started with a "modes, not themes" idea: Working/Chilling/Gaming layouts that changed which widgets showed and how big they were.',
         'Wired up Google Calendar and Gmail (read-only) and a Spotify "now playing" widget via Authorization Code + PKCE, so none of it needed a backend or a stored secret.',
-        'Wrapped it with Capacitor for a sideloadable Android APK, built entirely in CI since the dev environment has no route to the Android SDK.',
         'Dropped the whole modes concept for one glanceable page once switching modes turned out to be more friction than the layout problem it solved — replaced the agenda-list calendar with an actual month-view grid, and added a retro LED-style clock plus a binary clock in the same format as my Binary Clock project.',
         'Redesigned the visual language twice (mid-century modern, then dark lilac to match SoundTracks) and made the layout properly adaptive: it fits entirely on one screen on a tablet in landscape, no scrolling, at any width from a small tablet up to an ultrawide monitor.',
         'Tightened up the shared-row layout: removed Calendar\'s own height cap so it stretches to match Clock instead of falling short and leaving dead space, freed up vertical room by trimming Clock\'s max-height and the header\'s padding, and bumped up the greeting text now that the header takes less space.',
