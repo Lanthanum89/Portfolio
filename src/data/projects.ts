@@ -162,7 +162,7 @@ export const projects: Project[] = [
     name: 'Squishy Chess',
     slug: 'squishy-chess',
     description:
-      'Chess, minus the intimidation. Pastel chess with squishy, blobby characters instead of pieces, built as a tablet-first PWA that\'s best in landscape. A football-themed edition, Football Chess, is currently in development.',
+      'Chess, minus the intimidation. Pastel chess with squishy, blobby characters instead of pieces, built as a tablet-first PWA that\'s best in landscape. A football-themed edition, Football Chess, is in development.',
     url: 'https://github.com/Lanthanum89/squishy-chess',
     languages: ['TypeScript'],
     tools: ['PWA', 'Game Design'],
@@ -174,8 +174,19 @@ export const projects: Project[] = [
         'Swapped the pieces for squishy, blobby characters in a pastel palette, so the board feels friendly instead of formal.',
         'Built it as a tablet-first PWA, designed for landscape.',
       ],
-      next: 'Football Chess, a football-themed edition of the same game, is in development: same chess rules, computer difficulty levels, friend mode, undo, promotion, saved games and offline support, with a different look.',
+      next: 'Football Chess, a football-themed edition of the same game, is in development.',
     },
+  },
+  {
+    name: 'Football Chess',
+    slug: 'football-chess',
+    description:
+      'A football-themed edition of Squishy Chess, for little champions. Real chess rules with computer difficulty levels, friend mode, undo, promotion, saved games and offline support. Blue moves first, orange second. Currently in development.',
+    url: 'https://github.com/Lanthanum89/football-chess',
+    languages: ['TypeScript'],
+    tools: ['PWA', 'React', 'Vite', 'Game Design'],
+    categories: ['Games', 'Sport'],
+    pushedAt: '2026-10-13T11:25:28Z',
   },
   {
     name: 'Swim Progression App',
