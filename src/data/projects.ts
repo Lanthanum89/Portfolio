@@ -187,6 +187,19 @@ export const projects: Project[] = [
     tools: ['PWA', 'React', 'Vite', 'Game Design'],
     categories: ['Games', 'Sport'],
     pushedAt: '2026-10-13T11:25:28Z',
+    story: {
+      problem: 'Squishy Chess made chess friendlier for little players. I wanted a version for the football-mad ones, without changing the actual chess.',
+      attempts: [
+        'Reused the Squishy Chess game and kept the real rules and chess terminology, so it still teaches proper chess.',
+        'Reskinned it as two teams, blue (moves first) and orange, with team badges that use circles and triangles as well as colour.',
+        'Turned the supplied Canva football characters into transparent PNG cutouts, one for each of the twelve pieces, and loaded only the PNGs so the original SVGs are not bundled or cached.',
+        'Kept the full feature set: computer difficulty levels, friend mode, undo, promotion, saved games, keyboard controls and responsive layouts. Fonts are bundled so it works offline.',
+        'Gave it its own PWA identity and storage keys, so saved games do not mix with Squishy Chess.',
+      ],
+      challenge: 'Making the cutouts: they were produced with image editing, so tiny details can differ from the original Canva exports.',
+      tradeoffs: 'Chose to restyle the existing game instead of building a new one, trading a bigger redesign for a version that plays exactly like the original.',
+      next: 'Still in development.',
+    },
   },
   {
     name: 'Swim Progression App',
