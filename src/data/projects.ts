@@ -159,6 +159,25 @@ export const projects: Project[] = [
     },
   },
   {
+    name: 'Squishy Chess',
+    slug: 'squishy-chess',
+    description:
+      'Chess, minus the intimidation. Pastel chess with squishy, blobby characters instead of pieces, built as a tablet-first PWA that\'s best in landscape. A football-themed edition, Football Chess, is currently in development.',
+    url: 'https://github.com/Lanthanum89/squishy-chess',
+    languages: ['TypeScript'],
+    tools: ['PWA', 'Game Design'],
+    categories: ['Games'],
+    pushedAt: '2026-10-12T20:28:51Z',
+    story: {
+      problem: 'Chess is a great game for kids, but a standard board of identical-looking pieces is not exactly inviting.',
+      attempts: [
+        'Swapped the pieces for squishy, blobby characters in a pastel palette, so the board feels friendly instead of formal.',
+        'Built it as a tablet-first PWA, designed for landscape.',
+      ],
+      next: 'Football Chess, a football-themed edition of the same game, is in development: same chess rules, computer difficulty levels, friend mode, undo, promotion, saved games and offline support, with a different look.',
+    },
+  },
+  {
     name: 'Swim Progression App',
     slug: 'swim-progression-app',
     description:
